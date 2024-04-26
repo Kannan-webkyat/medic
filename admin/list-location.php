@@ -27,16 +27,32 @@
                 <input id="searchFilter" type="text" placeholder="Search Students">
             </div> -->
         </div>
+
+        <?php
+        require './action/location/LocationManager.php';
+        include '../_class/dbConfig.php';
+
+        $conn = (new dbConfig)->getConnection();
+        $crud = new LocationManager($conn);
+        $datas = $crud->list();
+        ?>
         <div class="content">
             <div class="table-container">
                 <table id="list-location">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Course</th>
+                            <th scope="col">Title</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php foreach ($datas as $index => $data) { ?>
+                            <tr>
+                                <td scope="col"><?php echo $index + 1 ?></td>
+                                <td scope="col"><?php echo $data['title'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>
