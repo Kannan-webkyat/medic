@@ -16,7 +16,7 @@
     <main id="swup" class="transition-fade" page-ref="course-collection">
         <div data-swup-name="list-course-collection"></div>
         <div class="page-header">
-            <h1 class="page-title">Leads</h1>
+            <h1 class="page-title">Courses Collection</h1>
         </div>
         <div class="table-options">
             <div class="option">
