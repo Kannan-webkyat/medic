@@ -19,6 +19,7 @@ class Sidemenu {
                 </div>
                 <div class="navigation">
                     <ul>
+                    <li><a link-ref="category" href="list-category.php"><i class="fas fa-user-tie"></i> &nbsp; Category</a></li>     
                         <li><a link-ref="course" href="list-course.php"><i class="fas fa-user-tie"></i> &nbsp; Courses</a></li>
                         <li><a link-ref="colleges" href="list-college.php"><i class="fas fa-user-tie"></i> &nbsp; Colleges</a></li>     
                     </ul>
