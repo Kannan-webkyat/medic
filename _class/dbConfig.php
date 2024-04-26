@@ -1,10 +1,13 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class dbConfig
 {
     private $host     = "localhost";
-    private $dbName   = "u140335295_indecor";
-    private $userName = "u140335295_indecor";
-    private $password = "Indecor@123";
+    private $dbName   = "college";
+    private $userName = "root";
+    private $password = "";
     // private $host     = "localhost";
     // private $dbName   = "indecor_final";
     // private $userName = "root";
