@@ -74,6 +74,13 @@
                             <input type="text" id="minimum-percentage" name="minimum-percentage" />
                         </div>
                         <!-- end of Minimum Percentage -->
+                        
+                        <!-- Job Opertunity -->
+                        <div class="input-holder split-4">
+                            <label for="">Job Opertunity </label>
+                            <input type="text" id="job-opertunity " name="job-opertunity " />
+                        </div>
+                        <!-- end of Job Opertunity -->
 
 
 

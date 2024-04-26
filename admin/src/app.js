@@ -250,7 +250,24 @@ const namespaceManager = () => {
                     loader.stop();
                     initTiny();
                 }
-                break;
+            break;
+            case "list-location":
+                {
+                    loader.load();
+                    sidemenu.active("location");
+                    header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                    loader.stop();
+                }
+            break;
+            case "add-location":
+                {
+                    loader.load();
+                    sidemenu.active("location");
+                    header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                    loader.stop();
+                    initTiny();
+                }
+            break;
     }
 };
 
