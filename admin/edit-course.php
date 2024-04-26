@@ -15,7 +15,8 @@
 </head>
 
 <body data-barba="wrapper">
-    <main data-barba="container" data-barba-namespace="edit-category">
+    <main id="swup" class="transition-fade" page-ref="course">
+        <div data-swup-name="edit-course"></div>
         <div class="page-header">
             <h1 class="page-title">Add Category</h1>
         </div>
@@ -37,6 +38,9 @@
         </section>
     </main>
 </body>
+
+<script src="https://unpkg.com/swup@4"></script>
+<script src="https://unpkg.com/@swup/progress-plugin@3"></script>
 <!-- global jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- app js -->
