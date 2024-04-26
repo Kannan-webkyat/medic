@@ -16,6 +16,42 @@
 
 <body data-barba="wrapper">
     <main id="swup" class="transition-fade" page-ref="colleges">
+
+<?php
+include '../_class/dbConfig.php';
+include './action/college/CollegeManager.php';
+$conn           = (new dbConfig)->getConnection();
+$collegeManager = new CollegeManager($conn);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $title           = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $images          = $_FILES['images'];
+    $location        = filter_var($_POST['location'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $about           = filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $youtubeLink     = filter_var($_POST['youtubeLink'], FILTER_SANITIZE_URL);
+    $courseCategory  = filter_var($_POST['courseCategory'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $facility        = filter_var($_POST['facility'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $pickCourses     = filter_var($_POST['pickCourses'], FILTER_SANITIZE_SPECIAL_CHARS);
+    $isDirectCollege = isset($_POST['isDirectCollege']) ? 1 : 0;
+    $featured        = isset($_POST['featured']) ? 1 : 0;
+
+    $data = [
+        'title'           => $title,
+        'image'          => $images,
+        'location'        => $location,
+        'about'           => $about,
+        'youtubeLink'     => $youtubeLink,
+        'courseCategory'  => $courseCategory,
+        'facility'        => $facility,
+        'pickCourses'     => $pickCourses,
+        'isDirectCollege' => $isDirectCollege,
+        'featured'        => $featured,
+    ];
+
+    $collegeManager->addCollege($data);
+}
+?>
         <div data-swup-name="add-college"></div>
         <div class="page-header">
             <h1 class="page-title">Add College</h1>
@@ -23,7 +59,7 @@
 
         <section class="details">
             <div class="box-section">
-                <form action="" id="add-college">
+                    <form action="" method="POST" enctype="multipart/form-data" id="add-college">
                     <div class="flex">
 
                         <div class="input-holder split-4">
@@ -90,8 +126,10 @@
                 </form>
             </div>
         </section>
+
     </main>
 </body>
+
 <script src="https://unpkg.com/swup@4"></script>
 <script src="https://unpkg.com/@swup/progress-plugin@3"></script>
 <!-- global jquery -->

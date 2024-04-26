@@ -1,4 +1,4 @@
-import barba from "./barba.js";
+
 import Button from "./component/button/button.js";
 import Header from "./component/header/Header.js";
 import Loader from "./component/loader/Loader.js";
