@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Add Location</title>
+    <title>Edit Location</title>
     <!-- main style -->
     <link rel="stylesheet" href="libs/css/style.css">
 
@@ -15,14 +15,14 @@
 
 <body data-barba="wrapper">
     <main id="swup" class="transition-fade" page-ref="location">
-        <div data-swup-name="add-location"></div>
+        <div data-swup-name="edit-location"></div>
         <div class="page-header">
-            <h1 class="page-title">Add Location</h1>
+            <h1 class="page-title">Edit Location</h1>
         </div>
 
         <section class="details">
             <div class="box-section">
-                <form action="" id="add-Location">
+                <form action="" id="edit-Location">
                     <div class="flex">
 
                         <!-- title -->

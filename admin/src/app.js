@@ -250,6 +250,14 @@ const namespaceManager = () => {
                 initTiny();
             }
             break;
+        case "edit-category":
+            {
+                loader.load();
+                sidemenu.active("category");
+                header.update("category", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
         case "list-location":
             {
                 loader.load();
@@ -284,6 +292,13 @@ const namespaceManager = () => {
                 initTiny();
             }
             break;
+            case "edit-facility":
+                {
+                    loader.load();
+                    sidemenu.active("facility");
+                    header.update("facility", sidemenu.current().find("i")[0].outerHTML);
+                    loader.stop();
+                }
         case "list-course-collection":
             {
                 loader.load();
@@ -299,6 +314,39 @@ const namespaceManager = () => {
                 header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
+            }
+            break;
+            case "edit-course-collection":
+                {
+                    loader.load();
+                    sidemenu.active("course-collection");
+                    header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                    loader.stop();
+                }
+                break;
+        case "list-college-collection":
+            {
+                loader.load();
+                sidemenu.active("college-collection");
+                header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-college-collection":
+            {
+                loader.load();
+                sidemenu.active("college-collection");
+                header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+        case "edit-college-collection":
+            {
+                loader.load();
+                sidemenu.active("college-collection");
+                header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
             }
             break;
     }
