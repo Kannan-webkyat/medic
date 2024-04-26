@@ -1,4 +1,3 @@
-
 import Button from "./component/button/button.js";
 import Header from "./component/header/Header.js";
 import Loader from "./component/loader/Loader.js";
@@ -242,31 +241,113 @@ const namespaceManager = () => {
                 loader.stop();
             }
             break;
-            case "add-category":
-                {
-                    loader.load();
-                    sidemenu.active("category");
-                    header.update("category", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                    initTiny();
-                }
+        case "add-category":
+            {
+                loader.load();
+                sidemenu.active("category");
+                header.update("category", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
             break;
-            case "list-location":
-                {
-                    loader.load();
-                    sidemenu.active("location");
-                    header.update("location", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                }
+        case "edit-category":
+            {
+                loader.load();
+                sidemenu.active("category");
+                header.update("category", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
             break;
-            case "add-location":
+        case "list-location":
+            {
+                loader.load();
+                sidemenu.active("location");
+                header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-location":
+            {
+                loader.load();
+                sidemenu.active("location");
+                header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+        case "list-facility":
+            {
+                loader.load();
+                sidemenu.active("facility");
+                header.update("facility", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-facility":
+            {
+                loader.load();
+                sidemenu.active("facility");
+                header.update("facility", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+            case "edit-facility":
                 {
                     loader.load();
-                    sidemenu.active("location");
-                    header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                    sidemenu.active("facility");
+                    header.update("facility", sidemenu.current().find("i")[0].outerHTML);
                     loader.stop();
-                    initTiny();
                 }
+        case "list-course-collection":
+            {
+                loader.load();
+                sidemenu.active("course-collection");
+                header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-course-collection":
+            {
+                loader.load();
+                sidemenu.active("course-collection");
+                header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+            case "edit-course-collection":
+                {
+                    loader.load();
+                    sidemenu.active("course-collection");
+                    header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                    loader.stop();
+                }
+                break;
+        case "list-college-collection":
+            {
+                loader.load();
+                sidemenu.active("college-collection");
+                header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-college-collection":
+            {
+                loader.load();
+                sidemenu.active("college-collection");
+                header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+        case "edit-college-collection":
+            {
+                loader.load();
+                sidemenu.active("college-collection");
+                header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
             break;
     }
 };

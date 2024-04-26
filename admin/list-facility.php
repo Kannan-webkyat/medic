@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>All College</title>
+    <title>All Facility</title>
     <!-- main style -->
     <link rel="stylesheet" href="libs/css/style.css" />
 
@@ -13,14 +13,14 @@
 </head>
 
 <body data-barba="wrapper">
-    <main id="swup" class="transition-fade" page-ref="colleges">
-        <div data-swup-name="list-college"></div>
+    <main id="swup" class="transition-fade" page-ref="Location">
+        <div data-swup-name="list-facility"></div>
         <div class="page-header">
-            <h1 class="page-title">All College</h1>
+            <h1 class="page-title">Facility</h1>
         </div>
         <div class="table-options">
             <div class="option">
-                <a href="add-college.php"><button class="assign_button">Add College<ion-icon name="add-outline">
+                <a href="add-facility.php"><button class="assign_button">Add Facility<ion-icon name="add-outline">
                         </ion-icon></button></a>
             </div>
             <!-- <div class="option">
@@ -29,11 +29,11 @@
         </div>
         <div class="content">
             <div class="table-container">
-                <table id="list-college">
+                <table id="list-facility">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">College</th>
+                            <th scope="col">Course</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

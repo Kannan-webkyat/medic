@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>Add Category</title>
+    <title>Edit Location</title>
     <!-- main style -->
     <link rel="stylesheet" href="libs/css/style.css">
 
@@ -14,56 +14,38 @@
 </head>
 
 <body data-barba="wrapper">
-    <main id="swup" class="transition-fade" page-ref="category">
-        <div data-swup-name="add-category"></div>
+    <main id="swup" class="transition-fade" page-ref="location">
+        <div data-swup-name="edit-location"></div>
         <div class="page-header">
-            <h1 class="page-title">Add Category</h1>
+            <h1 class="page-title">Edit Location</h1>
         </div>
 
         <section class="details">
             <div class="box-section">
-                <form action="" method="POST" enctype="multipart/form-data" id="add-category">
+                <form action="" id="edit-Location">
                     <div class="flex">
 
+                        <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" required name="title" />
+                            <input id="title" />
+                        </div>
 
-                        </div>
+                        <!-- location  image -->
                         <div class="input-holder split-4">
-                            <label for="">Category Image</label>
-                            <input id="category-image" required name="category-image" type="file" />
+                            <label for="">location Image </label>
+                            <input id="location-images" type="file" />
                         </div>
+                        <!-- end of location  image  -->
+
+
+
 
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
-
-        <?php
-        include '../_class/dbConfig.php';
-        include './action/course-category/courseCategoryManager.php';
-
-        $conn                  = (new dbConfig)->getConnection();
-        $courseCategoryManager = new CouresCategoryManager($conn);
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $title         = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $categoryImage = $_FILES['category-image'];
-
-            $data = [
-                'title' => $title,
-                'image' => $categoryImage,
-            ];
-
-            if ($courseCategoryManager->add($data)) {
-                header('Location: list-category.php');
-            } else {
-                echo 'error';
-            }
-        }
-        ?>
-
     </main>
 </body>
 <script src="https://unpkg.com/swup@4"></script>
