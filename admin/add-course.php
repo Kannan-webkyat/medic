@@ -78,9 +78,16 @@
                         <!-- Job Opertunity -->
                         <div class="input-holder split-4">
                             <label for="">Job Opertunity </label>
-                            <input type="text" id="job-opertunity " name="job-opertunity " />
+                            <input type="text" id="job-opertunity " name="job-opertunity" />
                         </div>
                         <!-- end of Job Opertunity -->
+                        <!-- frequently asked questions  -->
+                        <div class="input-holder" style="width: 100%;">
+                            <label for="">Frequently Asked Questions</label>
+                            <textarea name="frequently-asked-questions" class="tiny" id="frequently-asked-questions"></textarea>
+
+                        </div>
+                        <!-- end of frequently asked questions  -->
 
 
 

@@ -1,4 +1,3 @@
-
 import Button from "./component/button/button.js";
 import Header from "./component/header/Header.js";
 import Loader from "./component/loader/Loader.js";
@@ -242,31 +241,65 @@ const namespaceManager = () => {
                 loader.stop();
             }
             break;
-            case "add-category":
-                {
-                    loader.load();
-                    sidemenu.active("category");
-                    header.update("category", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                    initTiny();
-                }
+        case "add-category":
+            {
+                loader.load();
+                sidemenu.active("category");
+                header.update("category", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
             break;
-            case "list-location":
-                {
-                    loader.load();
-                    sidemenu.active("location");
-                    header.update("location", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                }
+        case "list-location":
+            {
+                loader.load();
+                sidemenu.active("location");
+                header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
             break;
-            case "add-location":
-                {
-                    loader.load();
-                    sidemenu.active("location");
-                    header.update("location", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                    initTiny();
-                }
+        case "add-location":
+            {
+                loader.load();
+                sidemenu.active("location");
+                header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+        case "list-facility":
+            {
+                loader.load();
+                sidemenu.active("facility");
+                header.update("facility", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-facility":
+            {
+                loader.load();
+                sidemenu.active("facility");
+                header.update("facility", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
+        case "list-course-collection":
+            {
+                loader.load();
+                sidemenu.active("course-collection");
+                header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+        case "add-course-collection":
+            {
+                loader.load();
+                sidemenu.active("course-collection");
+                header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
             break;
     }
 };

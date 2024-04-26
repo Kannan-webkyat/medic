@@ -23,6 +23,9 @@ class Sidemenu {
                         <li><a link-ref="course" href="list-course.php"><i class="fas fa-user-tie"></i> &nbsp; Courses</a></li>
                         <li><a link-ref="colleges" href="list-college.php"><i class="fas fa-user-tie"></i> &nbsp; Colleges</a></li>     
                         <li><a link-ref="location" href="list-location.php"><i class="fas fa-user-tie"></i> &nbsp; Location</a></li>     
+                        <li><a link-ref="facility" href="list-facility.php"><i class="fas fa-user-tie"></i> &nbsp; Facility</a></li>     
+                        <li><a link-ref="course-collection" href="list-course-collection.php"><i class="fas fa-user-tie"></i> &nbsp; Course Collection</a></li>     
+                        <li><a link-ref="college-collection" href="list-college-collection.php"><i class="fas fa-user-tie"></i> &nbsp; College Collection</a></li>     
                     </ul>
                 </div>
             </nav>`;
