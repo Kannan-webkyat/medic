@@ -27,14 +27,14 @@
 
                         <!-- title -->
                         <div class="input-holder split-4">
-                            <label for="">Title</label>
+                            <label for="">Titlee</label>
                             <input id="title" />
                         </div>
 
                         <!-- main banner image -->
                         <div class="input-holder split-4">
                             <label for="">Main Banner Image</label>
-                            <input id="banner-images"  type="file" />
+                            <input id="banner-images" type="file" />
 
                         </div>
 
