@@ -22,81 +22,123 @@
 
         <section class="details">
             <div class="box-section">
-                <form action="" id="add-course">
-                    <div class="flex">
 
+                <form action="" method="POST" enctype="multipart/form-data" id="add-course">
+                    <div class="flex">
                         <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" />
+                            <input id="title" name="title" required />
                         </div>
 
                         <!-- main banner image -->
                         <div class="input-holder split-4">
                             <label for="">Main Banner Image</label>
-                            <input id="banner-images" type="file" />
+                            <input id="banner-image" name="banner-image" required type="file" />
                         </div>
                         <!-- end of main banner image -->
+
+                        <!-- fetching locations -->
+                        <?php
+                        include '../_class/dbConfig.php';
+                        include './action/course-category/courseCategoryManager.php';
+
+                        $conn = (new dbConfig)->getConnection();
+                        $categoryObj = new CouresCategoryManager($conn);
+                        $categories = $categoryObj->list();
+                        ?>
+                        <div class="input-holder split-4">
+                            <label for="">Course Category</label>
+                            <select name="category" id="category" required>
+                                <option value="">Select category</option>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
                         <!-- about course -->
                         <div class="input-holder" style="width: 100%;">
                             <label for="">About Course</label>
-                            <textarea name="" class="tiny" id="about course"></textarea>
-
+                            <textarea name="about" class="tiny" id="about"></textarea>
                         </div>
                         <!--end of about course -->
 
                         <!-- duration -->
                         <div class="input-holder split-4">
                             <label for="">Duration</label>
-                            <input type="text" id="duration" name="duration" />
+                            <input type="text" required id="duration" name="duration" />
                         </div>
                         <!-- end of duration -->
 
                         <!-- duration -->
                         <div class="input-holder split-4" style="width: 100%;">
                             <label for=""> Elegibitliy</label>
-                            <input type="text" id=" elegibitliy" name=" elegibitliy" />
+                            <input type="text" required id="elegibitliy" name="elegibitliy" />
                         </div>
                         <!-- end of duration -->
-
 
                         <!-- Minimum age -->
                         <div class="input-holder split-4">
                             <label for="">Minimum Age</label>
-                            <input type="text" id="minimum-age" name="minimum age" />
+                            <input type="text" required id="minimum-age" name="minimum-age" />
                         </div>
                         <!-- end of Minimum age -->
-                        
+
                         <!-- Minimum Percentage -->
                         <div class="input-holder split-4">
                             <label for="">Minimum Percentage</label>
-                            <input type="text" id="minimum-percentage" name="minimum-percentage" />
+                            <input type="text" required id="minimum-percentage" name="minimum-percentage" />
                         </div>
                         <!-- end of Minimum Percentage -->
-                        
+
                         <!-- Job Opertunity -->
                         <div class="input-holder split-4">
                             <label for="">Job Opertunity </label>
-                            <input type="text" id="job-opertunity " name="job-opertunity" />
+                            <input type="text" required id="job-opertunity" name="job-opertunity" />
                         </div>
                         <!-- end of Job Opertunity -->
-                        <!-- frequently asked questions  -->
-                        <div class="input-holder" style="width: 100%;">
-                            <label for="">Frequently Asked Questions</label>
-                            <textarea name="frequently-asked-questions" class="tiny" id="frequently-asked-questions"></textarea>
-
-                        </div>
-                        <!-- end of frequently asked questions  -->
-
-
-
-
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $about = filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $duration = filter_var($_POST['duration'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $elegibitliy = filter_var($_POST['elegibitliy'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $minimumAge = filter_var($_POST['minimum-age'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $minimumPercentage = filter_var($_POST['minimum-percentage'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $jobOpertunity = filter_var($_POST['job-opertunity'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $bannerImage = $_FILES['banner-image'];
+            $category = filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT);
+
+            $data = [
+                'title' => $title,
+                'about' => $about,
+                'duration' => $duration,
+                'elegibitliy' => $elegibitliy,
+                'minimumAge' => $minimumAge,
+                'minimumPercentage' => $minimumPercentage,
+                'jobOpertunity' => $jobOpertunity,
+                'bannerImage' => $bannerImage,
+                'categoryId' => $category
+            ];
+
+            include './action/course/CourseManager.php';
+            $obj = new CourseManager($conn);
+            if ($obj->add($data)) {
+                echo "<script>window.location = 'list-course.php';</script>";
+                exit();
+            } else {
+                echo "Course could not be added. Please try again.";
+            }
+        }
+        ?>
+
     </main>
 </body>
 <script src="https://unpkg.com/swup@4"></script>

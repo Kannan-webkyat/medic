@@ -1,5 +1,5 @@
 <?php
-class CouresCategoryManager
+class LocationManager
 {
           private mysqli $conn;
 
@@ -20,7 +20,7 @@ class CouresCategoryManager
                               $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "INSERT INTO course_category (title,`image`,created_at) VALUES (?,?,?)";
+                    $query = "INSERT INTO location (title,`image`,created_at) VALUES (?,?,?)";
                     $sql   = $this->conn->prepare($query);
                     $sql->bind_param('sss', $data['title'], $image, $currentDateTime);
                     return $sql->execute();
@@ -30,9 +30,9 @@ class CouresCategoryManager
           {
                     include './action/modules/documentUploader.php';
                     $image = '';
-                    if (isset($_FILES['image'])) {
+                    if (isset($data['image'])) {
                               $uploader = new DocumentUploader();
-                              $image    = $uploader->uploadDocument($_FILES);
+                              $image    = $uploader->uploadDocument($data);
                     }
 
                     $query = "UPDATE course_category SET title = ?,`image` = ? WHERE id = ?";
@@ -43,7 +43,8 @@ class CouresCategoryManager
 
           public function delete($id)
           {
-                    $query = "DELETE FROM course_category WHERE id = ?";
+
+                    $query = "DELETE FROM location WHERE id = ?";
                     $sql   = $this->conn->prepare($query);
                     $sql->bind_param('i', $id);
                     return $sql->execute();
@@ -51,10 +52,14 @@ class CouresCategoryManager
 
           public function list()
           {
-                    $query = "SELECT * FROM course_category WHERE status != 0";
-                    $sql   = $this->conn->prepare($query);
-                    $sql->execute();
-                    $result = $sql->get_result();
-                    return $result->fetch_all(MYSQLI_ASSOC);
+                    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+                              $query = "SELECT * FROM `location` WHERE `status` != 0";
+                              $sql   = $this->conn->prepare($query);
+                              $sql->execute();
+                              $result = $sql->get_result();
+                              return $result->fetch_all(MYSQLI_ASSOC);
+                    } else {
+                              return "Invalid request method";
+                    }
           }
 }

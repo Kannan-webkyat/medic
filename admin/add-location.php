@@ -22,30 +22,49 @@
 
         <section class="details">
             <div class="box-section">
-                <form action="" id="add-Location">
+                <form action="" method="POST" enctype="multipart/form-data" id="add-Location">
                     <div class="flex">
 
                         <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" />
+                            <input id="title" required name="title" />
                         </div>
 
                         <!-- location  image -->
                         <div class="input-holder split-4">
                             <label for="">location Image </label>
-                            <input id="location-images" type="file" />
+                            <input id="location-image" required name="location-image" type="file" />
                         </div>
                         <!-- end of location  image  -->
-
-
-
 
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
+        <?php
+        include '../_class/dbConfig.php';
+        include './action/location/LocationManager.php';
+
+        $conn = (new dbConfig)->getConnection();
+        $crud = new LocationManager($conn);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title         = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $image = $_FILES['location-image'];
+
+            $data = [
+                'title' => $title,
+                'image' => $image,
+            ];
+
+            if ($crud->add($data)) {
+                header('Location: list-location.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
     </main>
 </body>
 <script src="https://unpkg.com/swup@4"></script>

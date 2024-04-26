@@ -27,6 +27,18 @@
                 <input id="searchFilter" type="text" placeholder="Search Students">
             </div> -->
         </div>
+
+        <!-- fetching data from database -->
+        <?php
+        require './action/course-category/courseCategoryManager.php';
+        include '../_class/dbConfig.php';
+
+        $conn = (new dbConfig)->getConnection();
+
+        $courseCategoryManager = new CouresCategoryManager($conn);
+        $datas                 = $courseCategoryManager->list();
+        ?>
+
         <div class="content">
             <div class="table-container">
                 <table id="list-category">
@@ -36,7 +48,14 @@
                             <th scope="col">Course</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php foreach ($datas as $index => $data) { ?>
+                            <tr>
+                                <td scope="col"><?php echo $index + 1 ?></td>
+                                <td scope="col"><?php echo $data['title'] ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
                 </table>
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>

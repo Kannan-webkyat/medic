@@ -33,10 +33,32 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Course</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Eligibility</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <!-- fetching all course -->
+                    <?php
+                    include '../_class/dbConfig.php';
+                    include './action/course/CourseManager.php';
+
+                    $conn = (new dbConfig)->getConnection();
+                    $courseObj = new CourseManager($conn);
+                    $courses = $courseObj->list();
+                    ?>
+                    <tbody>
+                        <?php foreach ($courses as $course) : ?>
+                            <tr>
+                                <td><?php echo $course['id']; ?></td>
+                                <td><?php echo $course['title']; ?></td>
+                                <td><?php echo $course['category']; ?></td>
+                                <td><?php echo $course['duration']; ?></td>
+                                <td><?php echo $course['eligibility']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>
