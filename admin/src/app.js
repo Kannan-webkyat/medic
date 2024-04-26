@@ -234,6 +234,23 @@ const namespaceManager = () => {
                 loader.stop();
             }
             break;
+        case "list-category":
+            {
+                loader.load();
+                sidemenu.active("category");
+                header.update("category", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
+            case "add-category":
+                {
+                    loader.load();
+                    sidemenu.active("category");
+                    header.update("category", sidemenu.current().find("i")[0].outerHTML);
+                    loader.stop();
+                    initTiny();
+                }
+                break;
     }
 };
 
