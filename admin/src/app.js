@@ -211,16 +211,16 @@ const namespaceManager = () => {
         case "list-college":
             {
                 loader.load();
-                sidemenu.active("course");
-                header.update("course", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("college");
+                header.update("college", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
             }
             break;
         case "add-college":
             {
                 loader.load();
-                sidemenu.active("course");
-                header.update("course", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("college");
+                header.update("college", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
             }
@@ -228,8 +228,8 @@ const namespaceManager = () => {
         case "edit-college":
             {
                 loader.load();
-                sidemenu.active("course");
-                header.update("course", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("college");
+                header.update("college", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
             }
             break;
@@ -275,6 +275,15 @@ const namespaceManager = () => {
                 initTiny();
             }
             break;
+        case "edit-location":
+            {
+                loader.load();
+                sidemenu.active("location");
+                header.update("location", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
         case "list-facility":
             {
                 loader.load();
@@ -292,13 +301,12 @@ const namespaceManager = () => {
                 initTiny();
             }
             break;
-            case "edit-facility":
-                {
-                    loader.load();
-                    sidemenu.active("facility");
-                    header.update("facility", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                }
+        case "edit-facility": {
+            loader.load();
+            sidemenu.active("facility");
+            header.update("facility", sidemenu.current().find("i")[0].outerHTML);
+            loader.stop();
+        }
         case "list-course-collection":
             {
                 loader.load();
@@ -316,14 +324,14 @@ const namespaceManager = () => {
                 initTiny();
             }
             break;
-            case "edit-course-collection":
-                {
-                    loader.load();
-                    sidemenu.active("course-collection");
-                    header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
-                    loader.stop();
-                }
-                break;
+        case "edit-course-collection":
+            {
+                loader.load();
+                sidemenu.active("course-collection");
+                header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+            }
+            break;
         case "list-college-collection":
             {
                 loader.load();

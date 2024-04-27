@@ -359,7 +359,7 @@ p {
 }
 
 #fixed-menu {
-  z-index: 5;
+  z-index: 5000;
   background-color: white;
   position: fixed;
   bottom: 0;
@@ -434,6 +434,38 @@ p {
   }
 }
 
+.booknow-btn-ph {
+  text-decoration: none;
+  width: 138px;
+  height: 44px;
+  position: fixed;
+  bottom: 74px;
+  right: 46px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  background-color: #000000;
+  border: none;
+  border-radius: 60px;
+  padding: 13px;
+  text-align: center;
+  z-index: 1000;
+  animation: borderPulse 2000ms infinite ease-out;
+}
+@media (min-width: 900px) {
+  .booknow-btn-ph {
+    display: none;
+  }
+}
+
+@keyframes borderPulse {
+  0%, 45% {
+    box-shadow: 0px 0px 0px 0px rgba(120, 119, 142, 0.7);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 15px rgba(242, 242, 242, 0.01);
+  }
+}
 @media (min-width: 1024px) {
   #fixed-cta {
     display: none;
@@ -484,6 +516,26 @@ header .container nav ul li a img {
 header .container nav ul li .active {
   background: #eaf1ff;
   color: #1c64f2;
+}
+header .container a {
+  text-decoration: none;
+}
+header .container .booknow-btn {
+  width: 138px;
+  height: 44px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  background-color: #111928;
+  border: none;
+  border-radius: 60px;
+  padding: 13px;
+  text-align: center;
+}
+@media (max-width: 900px) {
+  header .container .booknow-btn {
+    display: none;
+  }
 }
 header .container .hamburger {
   background-color: #ffffff;
@@ -842,6 +894,57 @@ header .container .sidemenu ul li a:hover {
     width: 15px;
     height: 15px;
   }
+}
+
+#location {
+  margin-top: 60px;
+}
+#location .destination {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+#location .destination .location-image {
+  position: relative;
+  margin-top: 20px;
+  width: calc(25% - 15px) !important;
+}
+#location .destination .location-image .thumbnail {
+  border-radius: 10px;
+  width: 100%;
+}
+#location .destination .location-image .no-of-college {
+  position: absolute;
+  top: 11px;
+  left: 8px;
+  padding: 6px 15px;
+  background-color: #1C64F2;
+  border-radius: 50px;
+}
+#location .destination .location-image .no-of-college h4 {
+  color: #ffffff;
+  font-size: 14px;
+}
+#location .destination .location-image .place {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  border-radius: 0 0 10px 10px;
+  width: 100%;
+  padding: 10px;
+  background: rgb(5, 5, 5);
+  background: linear-gradient(0deg, rgb(5, 5, 5) 0%, rgba(255, 255, 255, 0) 77%);
+  height: 40%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+#location .destination .location-image .place h3 {
+  color: white;
+  font-weight: 400;
+}
+#location .destination .location-image .place .icon {
+  margin-right: 8px;
 }
 
 #colleges {
@@ -2027,5 +2130,102 @@ header .container .sidemenu ul li a:hover {
 @media (max-width: 425px) {
   #college-section .card-wrapper .cards {
     width: 100% !important;
+  }
+}
+
+.addmission-form {
+  margin-bottom: 50px;
+}
+.addmission-form h2 {
+  text-align: center !important;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.addmission-form button {
+  width: 30%;
+  height: 48px;
+  width: 100px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 16px;
+  background-color: #1c64f2;
+  border: 1px solid #1E429F;
+  border-radius: 60px;
+}
+.addmission-form button:hover {
+  background-color: #111928;
+  border: 1px solid #4B5563;
+  cursor: pointer;
+}
+.addmission-form .book-now-form {
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0901960784), 0 6px 20px 0 rgba(0, 0, 0, 0.0745098039);
+  border-radius: 28px;
+  width: 70%;
+  padding: 20px;
+}
+.addmission-form .input-field {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.addmission-form .input-field .box {
+  width: 48%;
+}
+.addmission-form .input-field .box .textarea {
+  width: 100%;
+}
+.addmission-form .input-field .field {
+  padding: 12px 10px;
+}
+.addmission-form .input-field .field .holder {
+  width: 100%;
+}
+.addmission-form .input-field .field .holder .input input {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+}
+.addmission-form .input-field .field .holder .input textarea {
+  width: 100%;
+  background: none;
+  border: none !important;
+  outline: none;
+  resize: none;
+  font-size: 14px;
+}
+.addmission-form .input-field .message {
+  width: 100%;
+}
+@media (max-width: 599px) {
+  .addmission-form .book-now-form {
+    width: 100%;
+  }
+  .addmission-form button {
+    width: 100% !important;
+  }
+  .addmission-form .address {
+    margin-bottom: 25px;
+  }
+  .addmission-form .address:nth-child(4) {
+    margin-bottom: 0;
+  }
+  .addmission-form .address h4 {
+    font-size: 17px;
+  }
+  .addmission-form form {
+    margin-top: 30px;
+  }
+  .addmission-form .input-field {
+    flex-direction: column;
+    margin: 0 !important;
+  }
+  .addmission-form .input-field .box {
+    width: 100% !important;
+    margin-bottom: 30px;
   }
 }/*# sourceMappingURL=style.css.map */

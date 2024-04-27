@@ -22,6 +22,16 @@ $commoncolor: #eaf1ff;
 
 }
 
+// sticky cta style
+
+
+
+
+
+
+
+
+
 .loader-container {
   width: 100%;
   height: 100%;
@@ -472,7 +482,7 @@ p {
 // fixed menu
 
 #fixed-menu {
-  z-index: 5;
+  z-index: 5000;
   background-color: white;
   // height: 40px;
   position: fixed;
@@ -571,6 +581,47 @@ p {
   }
 }
 
+// sticky cta
+
+.booknow-btn-ph {
+
+  text-decoration: none;
+  width: 138px;
+  height: 44px;
+  position: fixed;
+  bottom: 74px;
+  right: 46px;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 17px;
+  background-color: #000000;
+  border: none;
+  border-radius: 60px;
+  padding: 13px;
+  text-align: center;
+  z-index: 1000;
+  animation: borderPulse 2000ms infinite ease-out;
+
+
+  @media (min-width:900px) {
+    display: none;
+  }
+
+
+}
+
+@keyframes borderPulse {
+
+  0%,
+  45% {
+    box-shadow: 0px 0px 0px 0px rgba(120, 119, 142, 0.7);
+  }
+
+  100% {
+    box-shadow: 0px 0px 0px 15px rgba(242, 242, 242, 0.01);
+  }
+}
+
 
 @media (min-width:1024px) {
   #fixed-cta {
@@ -638,6 +689,27 @@ header {
         }
       }
 
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    .booknow-btn {
+      width: 138px;
+      height: 44px;
+      cursor: pointer;
+      color: #ffffff;
+      font-size: 17px;
+      background-color: $secondarycolor;
+      border: none;
+      border-radius: 60px;
+      padding: 13px;
+      text-align: center;
+
+      @media (max-width:900px) {
+        display: none;
+      }
     }
 
     .hamburger {
@@ -1125,8 +1197,71 @@ header {
     }
   }
 }
-#location{
-  
+
+#location {
+  margin-top: 60px;
+
+  .destination {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .location-image {
+      position: relative;
+      margin-top: 20px;
+      width: calc(100% / 4 - 15px) !important;
+
+      .thumbnail {
+        border-radius: 10px;
+        width: 100%;
+
+      }
+
+      .no-of-college {
+        position: absolute;
+        top: 11px;
+        left: 8px;
+        padding: 6px 15px;
+        background-color: #1C64F2;
+        border-radius: 50px;
+
+
+        h4 {
+          color: #ffffff;
+          font-size: 14px;
+        }
+
+      }
+
+      .place {
+        position: absolute;
+        display: flex;
+        bottom: 0;
+        border-radius: 0 0 10px 10px;
+        width: 100%;
+        padding: 10px;
+        background: rgb(5, 5, 5);
+        background: linear-gradient(0deg, rgba(5, 5, 5, 1) 0%, rgba(255, 255, 255, 0) 77%);
+
+        height: 40%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+
+        h3 {
+          color: white;
+          font-weight: 400;
+        }
+
+        .icon {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+
+
 }
 
 #colleges {
@@ -1446,9 +1581,10 @@ header {
           @media (max-width:635px) {
             width: calc(100% / 3 - 15px) !important;
           }
+
           @media (max-width:521px) {
             width: calc(100% / 2 - 10px) !important;
-            
+
           }
 
 
@@ -1500,34 +1636,39 @@ header {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        
 
-        
+
+
 
         .image {
           margin-bottom: 30px;
-          &:last-child{
-        
+
+          &:last-child {
+
             margin: 0;
           }
+
           width: calc(100% / 4 - 10px);
+
           @media (max-width:635px) {
             width: calc(100% / 3 - 10px) !important;
           }
+
           @media (max-width:521px) {
             width: calc(100% / 2 - 10px) !important;
-            
+
           }
+
           @media (max-width:425px) {
             width: 100% !important;
           }
-        
+
 
           img {
             width: 100%;
             border-radius: 10px;
           }
-        
+
         }
       }
     }
@@ -2514,7 +2655,8 @@ header {
     .card {
       width: calc(100% / 4 - 15px);
       margin-bottom: 30px;
-      &:last-child{
+
+      &:last-child {
         margin: 0;
       }
 
@@ -2745,3 +2887,142 @@ header {
 }
 
 // END OF COLLEGE PAGE STYLE
+
+// BOOK NOW PAGE STYLE
+.addmission-form {
+  margin-bottom: 50px;
+
+  h2{
+    text-align: center !important;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+
+
+  button {
+    // margin-top: 20px;
+    width: calc(100% - 70%);
+    height: 48px;
+    width: 100px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 16px;
+    background-color: $primarycolor;
+    border: 1px solid #1E429F;
+
+    border-radius: 60px;
+  }
+
+  button:hover {
+    background-color: $secondarycolor;
+    border: 1px solid #4B5563;
+    cursor: pointer;
+
+  }
+.book-now-form{
+margin: 0 auto;
+
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 #00000017, 0 6px 20px 0 #00000013;
+  border-radius: 28px;
+  width: 70%;
+  padding: 20px;
+}
+  .input-field {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 100%;
+    margin-bottom: 30px;
+
+
+    .box {
+      width: 48%;
+
+
+      .textarea {
+        width: 100%;
+      }
+
+    }
+
+    .field {
+      padding: 12px 10px;
+
+
+      // width: 250px;
+      .holder {
+        width: 100%;
+
+        .input {
+          input {
+            width: 100%;
+            background: none;
+            border: none;
+            outline: none;
+          }
+
+          textarea {
+            width: 100%;
+            background: none;
+            border: none !important;
+            outline: none;
+            resize: none;
+            font-size: 14px;
+
+          }
+
+
+        }
+
+
+
+
+      }
+
+    }
+
+    .message {
+      width: 100%;
+     
+    }
+  }
+  @media (max-width:599px) {
+    // padding: 2px;
+.book-now-form{
+  width: 100%;
+}
+    button {
+      width: 100% !important;
+    }
+
+    .address {
+      margin-bottom: 25px;
+
+      &:nth-child(4) {
+        margin-bottom: 0;
+      }
+
+      h4 {
+        font-size: 17px;
+      }
+    }
+
+    form {
+
+      margin-top: 30px;
+    }
+
+    .input-field {
+      flex-direction: column;
+      margin: 0 !important;
+
+      .box {
+        width: 100% !important;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+// END OF BOOK NOW PAGE STYLE

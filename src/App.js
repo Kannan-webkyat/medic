@@ -71,6 +71,11 @@ const namespaceManager = () => {
         basic();
       }
       break;
+      case "book-now":
+        {
+          basic();
+        }
+        break;
   }
 };
 
