@@ -22,31 +22,56 @@
             <h1 class="page-title">Edit College Collection</h1>
         </div>
 
+        <?php
+        include '../_class/dbConfig.php';
+        $conn = (new dbConfig)->getConnection();
+        $id = $_GET['id'];
+
+        include './action/college-collection/CollegeCollectionManager.php';
+        $collegeCollectionManager = new CollegeCollectionManager($conn);
+        $collegeCollection = $collegeCollectionManager->fetchEdit($id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $colleges = $_POST['colleges'] ?? [];
+
+            $data = compact('id', 'title', 'colleges');
+            if ($collegeCollectionManager->edit($data)) {
+                header('Location: list-college-collection.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
+
         <section class="details">
             <div class="box-section">
                 <form action="" method="POST" enctype="multipart/form-data" id="edit-college-collection">
                     <div class="flex">
 
-                    <div class="input-holder split-4">
-                        <label for="">Title</label>
-                        <input id="title" name="title" />
+                        <div class="input-holder split-4">
+                            <label for="">Title</label>
+                            <input id="title" value="<?php echo $collegeCollection['title']; ?>" required name="title" />
+                        </div>
 
+                        <div class="input-holder split-4">
+                            <label for="">Select College</label>
+                            <select required id="colleges" name="colleges[]" multiple>
+                                <option value="">Select</option>
+                                <?php
+                                include './action/college/CollegeManager.php';
+                                $collegeManager = new CollegeManager($conn);
+                                $colleges = $collegeManager->list();
+                                foreach ($colleges as $college) : ?>
+                                    <option <?php echo in_array($college['id'], $collegeCollection['colleges']) ? 'selected' : '' ?> value="<?php echo $college['id']; ?>"><?php echo $college['title']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
-
-                    <div class="input-holder split-4">
-                        <label for="">Select College</label>
-                        <select id="select-college" name="select-college">
-                            <option value="">Select</option>
-                        </select>
-
-                    </div>
-
-            </div>
-            <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-            </form>
+                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                </form>
             </div>
         </section>
-
     </main>
 </body>
 

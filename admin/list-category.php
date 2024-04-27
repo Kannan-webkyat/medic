@@ -45,21 +45,43 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Course</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($datas as $index => $data) { ?>
+                        <?php foreach ($datas as $index => $data) : ?>
                             <tr>
                                 <td scope="col"><?php echo $index + 1 ?></td>
                                 <td scope="col"><?php echo $data['title'] ?></td>
+                                <td>
+                                    <a href="edit-category.php?id=<?php echo $data['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    <form action="" method="POST">
+                                        <input type="text" name="id" value="<?php echo $data['id'] ?>" hidden>
+                                        <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this category?');">
+                                            <ion-icon name="trash-outline"></ion-icon>Delete
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
-                        <?php } ?>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $delete = $courseCategoryManager->delete($id);
+            if ($delete) {
+                header('location: list-category.php');
+            } else {
+                echo 'error while delete';
+            }
+        }
+        ?>
     </main>
 </body>
 

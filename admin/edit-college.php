@@ -21,76 +21,127 @@
         <div class="page-header">
             <h1 class="page-title">Edit College</h1>
         </div>
+        <?php
+        include '../_class/dbConfig.php';
+        $conn = (new dbConfig)->getConnection();
+        $collgeId = $_GET['id'];
 
+        include './action/college/CollegeManager.php';
+        $collegeManager = new CollegeManager($conn);
+        $college = $collegeManager->fetchEdit($collgeId);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $about = filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $youtubeLink = filter_var($_POST['youtube-link'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $facility = $_POST['facility'] ?? [];
+            $courses = $_POST['courses'] ?? [];
+            $isDirectCollege = isset($_POST['direct-college']) ? 1 : 0;
+            $isFeatured = isset($_POST['featured']) ? 1 : 0;
+            $location = $_POST['location'];
+            $collegeImages = $_FILES['images'] ?? [];
+
+            $datas = compact('collgeId', 'title', 'about', 'youtubeLink', 'facility', 'courses', 'isDirectCollege', 'isFeatured', 'location', 'collegeImages');
+
+            if ($collegeManager->edit($datas)) {
+                header('Location: list-college.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
         <section class="details">
             <div class="box-section">
-                <form action="" method="POST" enctype="multipart/form-data" id="edit-college">
+                <form action="" method="POST" enctype="multipart/form-data" id="add-college">
                     <div class="flex">
 
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" />
-
+                            <input id="title" value="<?php echo $college['title'] ?>" required name="title" />
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">College Images</label>
-                            <input id="images" multiple type="file" />
-
+                            <input id="images" name="images[]" multiple type="file" accept="image/*" />
                         </div>
+                        <!-- fetching locations -->
+                        <?php
+                        include './action/location/LocationManager.php';
+                        $locationObj = new LocationManager($conn);
+                        $loactions = $locationObj->list();
+                        ?>
                         <div class="input-holder split-4">
                             <label for="">Location</label>
-                            <select>
-                                <option value="">Select</option>
+                            <select name="location" id="location" required>
+                                <option value="">Select Location</option>
+                                <?php foreach ($loactions as $location) : ?>
+                                    <option <?php echo $college['location_id'] === $location['id'] ? 'selected' : '' ?> value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-
                         </div>
+
                         <div class="input-holder" style="width: 100%;">
                             <label for="">About College</label>
-                            <textarea name="" class="tiny" id="about"></textarea>
-
+                            <textarea name="about" class="tiny" id="about"> <?php echo $college['about'] ?></textarea>
                         </div>
+
                         <div class="input-holder" style="width: 100%;">
                             <label for="">Youtube Link</label>
-                            <textarea name=""></textarea>
-
+                            <textarea name="youtube-link" id="youtube-link"><?php echo $college['yt_url'] ?></textarea>
                         </div>
-                        <div class="input-holder split-4">
-                            <label for="">Choose course category </label>
-                            <select id="course-category">
-                                <option value="">Select</option>
-                            </select>
 
-                        </div>
                         <div class="input-holder split-4">
                             <label for="">Choose facility </label>
-                            <select id="facility">
-                                <option value="">Select</option>
+                            <select name="facility[]" id="facility" multiple required>
+                                <option value="">Select Facility</option>
+                                <?php
+                                include './action/facility/FacilityManager.php';
+                                $facilityManager = new FacilityManager($conn);
+                                $facilities = $facilityManager->list();
+                                foreach ($facilities as $facility) : ?>
+                                    <option <?php echo in_array($facility['id'], array_column($college['facilities'], 'facility_id')) ? 'selected' : '' ?> value="<?php echo $facility['id']; ?>"><?php echo $facility['title']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">Pick Courses Provided by the college </label>
-                            <select pick-courses>
-                                <option value="">Select</option>
+                            <select name="courses[]" id="courses" multiple required>
+                                <option value="">Select Course</option>
+                                <?php
+                                include './action/course/CourseManager.php';
+                                $courseManager = new CourseManager($conn);
+                                $courses = $courseManager->list();
+                                foreach ($courses as $course) : ?>
+                                    <option <?php echo in_array($course['id'], array_column($college['courses'], 'course_id')) ? 'selected' : '' ?> value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">is Direct College?</label>
-                            <input id="direct-college" type="checkbox" />
-
+                            <input id="direct-college" <?php echo $college['direct'] ? 'checked' : '' ?> name="direct-college" type="checkbox" />
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">Featured </label>
-                            <input id="featured " type="checkbox" />
+                            <input id="featured" <?php echo $college['featured'] ? 'checked' : '' ?> name="featured" type="checkbox" />
+                        </div>
 
+                        <div class="input-holder" style="width: 100%;">
+                            <label for="">College Images</label>
+                            <?php
+                            foreach ($college['images'] as $image) : ?>
+                                <div class="image-holder">
+                                    <img width="250" src="./action/college/docs/<?php echo $image['image']; ?>" alt="">
+                                </div>
+                            <?php endforeach; ?>
                         </div>
                     </div>
-                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
-
     </main>
 </body>
 

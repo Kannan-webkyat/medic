@@ -22,13 +22,13 @@
 
         <section class="details">
             <div class="box-section">
-                <form action="" id="add-facility">
+                <form action="" method="POST" enctype="multipart/form-data" id="add-facility">
                     <div class="flex">
 
                         <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" name="title"/>
+                            <input id="title" name="title" />
                         </div>
 
                         <!-- facility icon -->
@@ -38,16 +38,35 @@
                         </div>
                         <!-- end of facility icon  -->
 
-                       
-
-
-
-
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
+
+        <?php
+        include '../_class/dbConfig.php';
+        include './action/facility/FacilityManager.php';
+
+        $conn = (new dbConfig)->getConnection();
+        $crud = new FacilityManager($conn);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $facilityIcon = $_FILES['facility-icon'];
+
+            $data = [
+                'title' => $title,
+                'facilityIcon' => $facilityIcon,
+            ];
+
+            if ($crud->add($data)) {
+                header('Location: list-facility.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
+
     </main>
 </body>
 <script src="https://unpkg.com/swup@4"></script>

@@ -20,15 +20,42 @@
             <h1 class="page-title">Edit facility</h1>
         </div>
 
+        <?php
+        include '../_class/dbConfig.php';
+        include './action/facility/FacilityManager.php';
+
+        $conn = (new dbConfig)->getConnection();
+        $crud = new FacilityManager($conn);
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $facility = $crud->fetchEdit($id);
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'id' => $id,
+                'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+                'image' => $_FILES['facility-icon'] ?? []
+            ];
+
+            if ($crud->edit($data)) {
+                header('Location: list-facility.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
+
         <section class="details">
             <div class="box-section">
-                <form action="" id="edit-facility">
+                <form action="" method="POST" enctype="multipart/form-data" id="edit-facility">
                     <div class="flex">
 
                         <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" name="title" />
+                            <input id="title" name="title" value="<?php echo $facility['title']; ?>" />
                         </div>
 
                         <!-- facility icon -->
@@ -38,13 +65,13 @@
                         </div>
                         <!-- end of facility icon  -->
 
-
-
-
-
-
+                        <!-- Display current image -->
+                        <div class="input-holder split-4">
+                            <label for="">Current Icon</label>
+                            <img width="250" src="./action/facility/docs/<?php echo $facility['image']; ?>" alt="Current Image">
+                        </div>
                     </div>
-                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>

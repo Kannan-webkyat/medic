@@ -22,41 +22,87 @@
 
         <section class="details">
             <div class="box-section">
-                <form action="" id="edit-course">
-                    <div class="flex">
+                <?php
+                if (isset($_GET['id'])) {
+                    include '../_class/dbConfig.php';
+                    include './action/course/CourseManager.php';
+                    $conn = (new dbConfig)->getConnection();
+                    $courseId = $_GET['id'];
+                    $courseManager = new CourseManager($conn);
+                    $course = $courseManager->fetchEdit($courseId);
+                }
 
+
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $data = [
+                        'id' => $courseId,
+                        'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'about' => filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'duration' => filter_var($_POST['duration'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'elegibitliy' => filter_var($_POST['elegibitliy'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'minimumAge' => filter_var($_POST['minimum-age'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'minimumPercentage' => filter_var($_POST['minimum-percentage'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'jobOpertunity' => filter_var($_POST['job-opertunity'], FILTER_SANITIZE_SPECIAL_CHARS),
+                        'bannerImage' => $_FILES['image'],
+                        'categoryId' => filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT)
+                    ];
+
+                    $result = $courseManager->edit($data);
+                    if ($result) {
+                        header('Location: list-course.php');
+                    } else {
+                        echo '<p class="error">Error updating course</p>';
+                    }
+                }
+                ?>
+                <form action="" method="POST" enctype="multipart/form-data" id="edit-course">
+                    <div class="flex">
                         <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" />
+                            <input id="title" name="title" value="<?php echo $course['title']; ?>" />
                         </div>
 
                         <!-- main banner image -->
                         <div class="input-holder split-4">
                             <label for="">Main Banner Image</label>
-                            <input id="banner-images" type="file" />
+                            <input id="banner-images" name="image" type="file" />
                         </div>
                         <!-- end of main banner image -->
+
+                        <?php
+                        include './action/course-category/courseCategoryManager.php';
+                        $categoryObj = new CouresCategoryManager($conn);
+                        $categories = $categoryObj->list();
+                        ?>
+                        <div class="input-holder split-4">
+                            <label for="">Course Category</label>
+                            <select name="category" id="category" required>
+                                <option value="">Select category</option>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option <?php echo $course['category_id'] === $category['id'] ? "selected" : "" ?> value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
                         <!-- about course -->
                         <div class="input-holder" style="width: 100%;">
                             <label for="">About Course</label>
-                            <textarea name="" class="tiny" id="about course"></textarea>
-
+                            <textarea name="about" class="tiny" id="about-course"><?php echo $course['about']; ?></textarea>
                         </div>
                         <!--end of about course -->
 
                         <!-- duration -->
                         <div class="input-holder split-4">
                             <label for="">Duration</label>
-                            <input type="text" id="duration" name="duration" />
+                            <input type="text" id="duration" name="duration" value="<?php echo $course['duration']; ?>" />
                         </div>
                         <!-- end of duration -->
 
                         <!-- duration -->
                         <div class="input-holder split-4" style="width: 100%;">
                             <label for=""> Elegibitliy</label>
-                            <input type="text" id=" elegibitliy" name=" elegibitliy" />
+                            <input type="text" id="elegibitliy" name="elegibitliy" value="<?php echo $course['eligibility']; ?>" />
                         </div>
                         <!-- end of duration -->
 
@@ -64,36 +110,31 @@
                         <!-- Minimum age -->
                         <div class="input-holder split-4">
                             <label for="">Minimum Age</label>
-                            <input type="text" id="minimum-age" name="minimum age" />
+                            <input type="text" id="minimum-age" name="minimum-age" value="<?php echo $course['minimum_age']; ?>" />
                         </div>
                         <!-- end of Minimum age -->
 
                         <!-- Minimum Percentage -->
                         <div class="input-holder split-4">
                             <label for="">Minimum Percentage</label>
-                            <input type="text" id="minimum-percentage" name="minimum-percentage" />
+                            <input type="text" id="minimum-percentage" name="minimum-percentage" value="<?php echo $course['minimum_percentage']; ?>" />
                         </div>
                         <!-- end of Minimum Percentage -->
 
                         <!-- Job Opertunity -->
                         <div class="input-holder split-4">
                             <label for="">Job Opertunity </label>
-                            <input type="text" id="job-opertunity " name="job-opertunity" />
+                            <input type="text" id="job-opertunity " name="job-opertunity" value="<?php echo $course['job_opportunity']; ?>" />
                         </div>
-                        <!-- end of Job Opertunity -->
-                        <!-- frequently asked questions  -->
-                        <div class="input-holder" style="width: 100%;">
-                            <label for="">Frequently Asked Questions</label>
-                            <textarea name="frequently-asked-questions" class="tiny" id="frequently-asked-questions"></textarea>
 
+                        <!-- Display current banner image -->
+                        <div class="input-holder split-4">
+                            <label for="">Current Banner Image</label>
+                            <img width="250" src="./action/course/docs/<?php echo $course['banner_image']; ?>" alt="Current Banner Image">
                         </div>
-                        <!-- end of frequently asked questions  -->
-
-
-
 
                     </div>
-                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>

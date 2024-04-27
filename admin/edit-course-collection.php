@@ -22,25 +22,54 @@
             <h1 class="page-title">Edit Course Collection</h1>
         </div>
 
+        <?php
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            include '../_class/dbConfig.php';
+            include './action/course-collection/CourseCollectionManager.php';
+            $conn = (new dbConfig)->getConnection();
+            $courseCollectionManager = new CourseCollectionManager($conn);
+            $courseCollection = $courseCollectionManager->fetchEdit($id);
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $courses = isset($_POST['courses']) ? $_POST['courses'] : array();
+            $datas = [
+                'id' => $id,
+                'title' => $title,
+                'courses' => $courses,
+            ];
+            if ($courseCollectionManager->edit($datas)) {
+                header('Location: list-course-collection.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
+
         <section class="details">
             <div class="box-section">
-                <form action="" method="POST" enctype="multipart/form-data" id="edit-course-collection">
+                <form action="" method="POST" id="edit-course-collection">
                     <div class="flex">
 
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" name="title" />
-
+                            <input type="text" name="title" value="<?php echo $courseCollection['title']; ?>">
                         </div>
 
                         <div class="input-holder split-4">
                             <label for="">Select Courses</label>
-                            <select id="select-courses" name="select-courses">
-                                <option value="">Select</option>
+                            <select id="courses" required name="courses[]" multiple>
+                                <?php
+                                include './action/course/CourseManager.php';
+                                $courseManager = new CourseManager($conn);
+                                $courses = $courseManager->list();
+                                foreach ($courses as $course) : ?>
+                                    <option <?php echo in_array($course['id'], array_column($courseCollection['courses'], 'course_id')) ? 'selected' : '' ?> value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-
                         </div>
-
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>

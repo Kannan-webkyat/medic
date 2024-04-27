@@ -30,15 +30,32 @@ class CouresCategoryManager
           {
                     include './action/modules/documentUploader.php';
                     $image = '';
-                    if (isset($_FILES['image'])) {
+                    if (!empty($data['image']['name'])) {
                               $uploader = new DocumentUploader();
-                              $image    = $uploader->uploadDocument($_FILES);
+                              $path = __DIR__ . '/docs/';
+                              $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "UPDATE course_category SET title = ?,`image` = ? WHERE id = ?";
-                    $sql   = $this->conn->prepare($query);
-                    $sql->bind_param('ssi', $data['title'], $image, $data['id']);
+                    if (!empty($image)) {
+                              $query = "UPDATE course_category SET title = ?, `image` = ? WHERE id = ?";
+                              $sql = $this->conn->prepare($query);
+                              $sql->bind_param('ssi', $data['title'], $image, $data['id']);
+                    } else {
+                              $query = "UPDATE course_category SET title = ? WHERE id = ?";
+                              $sql = $this->conn->prepare($query);
+                              $sql->bind_param('si', $data['title'], $data['id']);
+                    }
                     return $sql->execute();
+          }
+
+          public function fetchEdit($id)
+          {
+                    $query = "SELECT * FROM course_category WHERE id = ?";
+                    $sql = $this->conn->prepare($query);
+                    $sql->bind_param('i', $id);
+                    $sql->execute();
+                    $result = $sql->get_result();
+                    return $result->fetch_assoc();
           }
 
           public function delete($id)
@@ -51,7 +68,7 @@ class CouresCategoryManager
 
           public function list()
           {
-                    $query = "SELECT * FROM course_category WHERE status != 0";
+                    $query = "SELECT * FROM course_category WHERE status != 0 ORDER BY id DESC";
                     $sql   = $this->conn->prepare($query);
                     $sql->execute();
                     $result = $sql->get_result();

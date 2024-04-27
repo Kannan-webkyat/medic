@@ -29,24 +29,54 @@
 
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" name="title" />
+                            <input id="title" required name="title" />
 
                         </div>
 
                         <div class="input-holder split-4">
                             <label for="">Select College</label>
-                            <select id="select-college" name="select-college">
+                            <select id="colleges" name="colleges[]" multiple>
                                 <option value="">Select</option>
+                                <?php
+                                include '../_class/dbConfig.php';
+                                include './action/college/CollegeManager.php';
+
+                                $conn = (new dbConfig)->getConnection();
+                                $collegeManager = new CollegeManager($conn);
+                                $colleges = $collegeManager->list();
+
+                                foreach ($colleges as $college) {
+                                    echo "<option value='" . $college['id'] . "'>" . $college['title'] . "</option>";
+                                }
+                                ?>
                             </select>
-
                         </div>
-
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
 
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            include './action/college-collection/CollegeCollectionManager.php';
+            $collegeCollectionManager = new CollegeCollectionManager($conn);
+
+            $data = [
+                'title' => $_POST['title'],
+                'colleges' => isset($_POST['colleges']) ? $_POST['colleges'] : []
+            ];
+
+            $result = $collegeCollectionManager->add($data);
+
+            if ($result) {
+                header("Location: list-college-collection.php");
+                exit();
+            } else {
+                echo "Failed to add college collection.";
+            }
+        }
+        ?>
     </main>
 </body>
 

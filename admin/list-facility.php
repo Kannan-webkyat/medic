@@ -13,6 +13,7 @@
 </head>
 
 <body data-barba="wrapper">
+
     <main id="swup" class="transition-fade" page-ref="Location">
         <div data-swup-name="list-facility"></div>
         <div class="page-header">
@@ -33,14 +34,53 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Course</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php
+                        include '../_class/dbConfig.php';
+                        include './action/facility/FacilityManager.php';
+
+                        $conn = (new dbConfig)->getConnection();
+                        $crud = new FacilityManager($conn);
+                        $facilities = $crud->list();
+                        ?>
+
+                        <?php foreach ($facilities as $facility) : ?>
+                            <tr>
+                                <td><?php echo $facility['id']; ?></td>
+                                <td><?php echo $facility['title']; ?></td>
+                                <td>
+                                    <a href="edit-facility.php?id=<?php echo $facility['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    <form action="" method="POST">
+                                        <input type="text" name="id" value="<?php echo $facility['id'] ?>" hidden>
+                                        <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this category?');">
+                                            <ion-icon name="trash-outline"></ion-icon>Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
+
+        <!-- delete -->
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $delete = $crud->delete($id);
+            if ($delete) {
+                header('location: list-course.php');
+            } else {
+                echo 'error while delete';
+            }
+        }
+        ?>
     </main>
 </body>
 

@@ -33,14 +33,55 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">College</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Featured</th>
+                            <th scope="col">Direct College</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>
+                        <?php
+                        include './action/college/CollegeManager.php';
+                        include '../_class/dbConfig.php';
+                        $conn = (new dbConfig)->getConnection();
+                        $collegeManager = new CollegeManager($conn);
+                        $colleges = $collegeManager->list();
+                        foreach ($colleges as $index => $college) : ?>
+                            <tr>
+                                <td><?php echo $index + 1; ?></td>
+                                <td><?php echo $college['title']; ?></td>
+                                <td><?php echo $college['location']; ?></td>
+                                <td><?php echo $college['featured'] ? 'Yes' : 'No'; ?></td>
+                                <td><?php echo $college['direct'] ? 'Yes' : 'No'; ?></td>
+                                <td>
+                                    <a href="edit-college.php?id=<?php echo $college['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    <form action="" method="POST">
+                                        <input type="text" name="id" value="<?php echo $college['id'] ?>" hidden>
+                                        <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this college ?');">
+                                            <ion-icon name="trash-outline"></ion-icon>Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
                 </table>
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
+        <!-- delete -->
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $delete = $courseObj->delete($id);
+            if ($delete) {
+                header('location: list-college.php');
+            } else {
+                echo 'error while delete';
+            }
+        }
+        ?>
     </main>
 </body>
 

@@ -8,25 +8,169 @@ class CollegeManager
         $this->conn = $db;
     }
 
-    public function addCollege($data)
+    public function add($data)
     {
         $currentDateTime = date('Y-m-d H:i:s');
+        include './action/modules/documentUploader.php';
 
-        $query = "INSERT INTO college (title,about,location_id,category_id,direct,featured,created_at) VALUES (?,?,?,?,?,?,?)";
+        $query = "INSERT INTO college (title,about,location_id,yt_url,direct,featured,created_at) VALUES (?,?,?,?,?,?,?)";
         $sql   = $this->conn->prepare($query);
-        $sql->bind_param('ssiiiis', $data['title'], $data['about'], $data['locationId'], $data['categoryId'], $data['direct'], $data['featured'], $currentDateTime);
-        return $sql->execute();
+        $sql->bind_param('ssisiis', $data['title'], $data['about'], $data['location'], $data['youtubeLink'], $data['isDirectCollege'], $data['isFeatured'], $currentDateTime);
+        if ($sql->execute()) {
+            $collegeId = $sql->insert_id;
+
+            if (!empty($data['collegeImages'])) {
+                $path = __DIR__ . '/docs/';
+                $countFiles = count($data['collegeImages']['name']);
+                for ($i = 0; $i < $countFiles; $i++) {
+                    $originalFileName = $data['collegeImages']['name'][$i];
+                    $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+                    $newFileName = uniqid() . '.' . $fileExtension;
+                    $targetFilePath = $path . $newFileName;
+                    if (move_uploaded_file($data['collegeImages']['tmp_name'][$i], $targetFilePath)) {
+                        // inserting to database
+                        $query = "INSERT INTO college_images (college_id, `image`) VALUES (?, ?)";
+                        $sql = $this->conn->prepare($query);
+                        $sql->bind_param('is', $collegeId, $newFileName);
+                        $sql->execute();
+                    }
+                }
+            }
+
+            // inserting college courses
+            if (isset($data['courses'])) {
+                foreach ($data['courses'] as $courseId) {
+                    $query = "INSERT INTO college_courses (college_id, course_id) VALUES (?, ?)";
+                    $sql = $this->conn->prepare($query);
+                    $sql->bind_param('ii', $collegeId, $courseId);
+                    $sql->execute();
+                }
+            }
+
+            // inserting college facilities
+            if (isset($data['facility'])) {
+                foreach ($data['facility'] as $facilityId) {
+                    $query = "INSERT INTO college_facilities (college_id, facility_id) VALUES (?, ?)";
+                    $sql = $this->conn->prepare($query);
+                    $sql->bind_param('ii', $collegeId, $facilityId);
+                    $sql->execute();
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function editCollege($data)
+    public function edit($data)
     {
-        $query = "UPDATE college SET title = ?,about = ?,location_id = ?,category_id = ?,direct = ?,featured = ? WHERE id = ?";
+        include './action/modules/documentUploader.php';
+
+        $query = "UPDATE college SET title=?, about=?, location_id=?, direct=?, featured=? WHERE id=?";
         $sql   = $this->conn->prepare($query);
-        $sql->bind_param('ssiiii', $data['title'], $data['about'], $data['locationId'], $data['categoryId'], $data['direct'], $data['featured'], $data['id']);
-        return $sql->execute();
+        $sql->bind_param('ssiiii', $data['title'], $data['about'], $data['location'], $data['isDirectCollege'], $data['isFeatured'], $data['collgeId']);
+        if ($sql->execute()) {
+            $collegeId = $data['collgeId'];
+
+            if (!empty($data['collegeImages'])) {
+                $path = __DIR__ . '/docs/';
+                $countFiles = count($data['collegeImages']['name']);
+                for ($i = 0; $i < $countFiles; $i++) {
+                    $originalFileName = $data['collegeImages']['name'][$i];
+                    $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+                    $newFileName = uniqid() . '.' . $fileExtension;
+                    $targetFilePath = $path . $newFileName;
+                    if (move_uploaded_file($data['collegeImages']['tmp_name'][$i], $targetFilePath)) {
+                        // inserting to database
+                        $query = "INSERT INTO college_images (college_id, `image`) VALUES (?, ?)";
+                        $sql = $this->conn->prepare($query);
+                        $sql->bind_param('is', $collegeId, $newFileName);
+                        $sql->execute();
+                    }
+                }
+            }
+
+            // updating college courses
+            if (isset($data['courses'])) {
+                // First, clear existing courses
+                $deleteQuery = "DELETE FROM college_courses WHERE college_id = ?";
+                $deleteSql = $this->conn->prepare($deleteQuery);
+                $deleteSql->bind_param('i', $collegeId);
+                $deleteSql->execute();
+
+                // Then, insert new course entries
+                foreach ($data['courses'] as $courseId) {
+                    $query = "INSERT INTO college_courses (college_id, course_id) VALUES (?, ?)";
+                    $sql = $this->conn->prepare($query);
+                    $sql->bind_param('ii', $collegeId, $courseId);
+                    $sql->execute();
+                }
+            }
+
+            // updating college facilities
+            if (isset($data['facility'])) {
+                // First, clear existing facilities
+                $deleteQuery = "DELETE FROM college_facilities WHERE college_id = ?";
+                $deleteSql = $this->conn->prepare($deleteQuery);
+                $deleteSql->bind_param('i', $collegeId);
+                $deleteSql->execute();
+
+                // Then, insert new facility entries
+                foreach ($data['facility'] as $facilityId) {
+                    $query = "INSERT INTO college_facilities (college_id, facility_id) VALUES (?, ?)";
+                    $sql = $this->conn->prepare($query);
+                    $sql->bind_param('ii', $collegeId, $facilityId);
+                    $sql->execute();
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public function deleteCollege($id)
+    public function fetchEdit($id)
+    {
+        $query = "SELECT * FROM college WHERE id = ?";
+        $sql = $this->conn->prepare($query);
+        $sql->bind_param('i', $id);
+        $sql->execute();
+        $result = $sql->get_result();
+        $collegeData = $result->fetch_assoc();
+
+        // fetching colleage facilities
+        $facilityQuery = "SELECT id,facility_id FROM college_facilities WHERE college_id = ?";
+        $facilitySql = $this->conn->prepare($facilityQuery);
+        $facilitySql->bind_param('i', $id);
+        $facilitySql->execute();
+        $facilityResult = $facilitySql->get_result();
+        $collegeFacilities = $facilityResult->fetch_all(MYSQLI_ASSOC);
+        $collegeData['facilities'] = $collegeFacilities;
+
+        // fetching college courses
+        $courseQuery = "SELECT id,course_id FROM college_courses WHERE college_id = ?";
+        $courseSql = $this->conn->prepare($courseQuery);
+        $courseSql->bind_param('i', $id);
+        $courseSql->execute();
+        $courseResult = $courseSql->get_result();
+        $collegeCourses = $courseResult->fetch_all(MYSQLI_ASSOC);
+        $collegeData['courses'] = $collegeCourses;
+
+        // Fetching college images
+        $imageQuery = "SELECT `image` FROM college_images WHERE college_id = ?";
+        $imageSql = $this->conn->prepare($imageQuery);
+        $imageSql->bind_param('i', $id);
+        $imageSql->execute();
+        $imageResult = $imageSql->get_result();
+        $collegeImages = $imageResult->fetch_all(MYSQLI_ASSOC);
+        $collegeData['images'] = $collegeImages;
+
+        return $collegeData;
+    }
+
+    public function delete($id)
     {
         $query = "DELETE FROM college WHERE id = ?";
         $sql   = $this->conn->prepare($query);
@@ -34,9 +178,9 @@ class CollegeManager
         return $sql->execute();
     }
 
-    public function listColleges()
+    public function list()
     {
-        $query = "SELECT * FROM college WHERE status != 0";
+        $query = "SELECT c.id,c.title,c.featured,c.direct,l.title AS location FROM college c INNER JOIN location l ON c.location_id = l.id WHERE c.status != 0 ORDER BY c.id DESC";
         $sql   = $this->conn->prepare($query);
         $sql->execute();
         $result = $sql->get_result();

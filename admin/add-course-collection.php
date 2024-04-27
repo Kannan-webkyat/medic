@@ -29,24 +29,47 @@
 
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" name="title" />
+                            <input id="title" required name="title" />
 
                         </div>
 
                         <div class="input-holder split-4">
                             <label for="">Select Courses</label>
-                            <select id="select-courses" name="select-courses">
-                                <option value="">Select</option>
+                            <select required id="courses" name="courses[]" multiple>
+                                <?php
+                                include '../_class/dbConfig.php';
+                                include './action/course/CourseManager.php';
+                                $conn = (new dbConfig)->getConnection();
+                                $courseManager = new CourseManager($conn);
+                                $courses = $courseManager->list();
+                                foreach ($courses as $course) : ?>
+                                    <option value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-
                         </div>
-
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
 
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $courses = isset($_POST['courses']) ? $_POST['courses'] : array();
+            $datas = [
+                'title' => $title,
+                'courses' => $courses,
+            ];
+            include './action/course-collection/CourseCollectionManager.php';
+            $courseCollectionManager = new CourseCollectionManager($conn);
+            if ($courseCollectionManager->add($datas)) {
+                header('Location: list-course-collection.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
     </main>
 </body>
 

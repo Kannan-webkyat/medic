@@ -20,29 +20,59 @@
             <h1 class="page-title">Edit Location</h1>
         </div>
 
+        <?php
+        include '../_class/dbConfig.php';
+        include './action/location/LocationManager.php';
+
+        $conn = (new dbConfig)->getConnection();
+        $crud = new LocationManager($conn);
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $location = $crud->fetchEdit($id);
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $data = [
+                'id' => $id,
+                'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+                'image' => $_FILES['location-image'] ?? []
+            ];
+
+            if ($crud->edit($data)) {
+                header('Location: list-location.php');
+            } else {
+                echo 'error';
+            }
+        }
+        ?>
+
         <section class="details">
             <div class="box-section">
-                <form action="" id="edit-Location">
+                <form action="" method="POST" enctype="multipart/form-data" id="edit-Location">
                     <div class="flex">
 
                         <!-- title -->
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" />
+                            <input id="title" value="<?php echo $location['title'] ?>" required name="title" />
                         </div>
 
                         <!-- location  image -->
                         <div class="input-holder split-4">
                             <label for="">location Image </label>
-                            <input id="location-images" type="file" />
+                            <input id="location-image" name="location-image" type="file" />
                         </div>
                         <!-- end of location  image  -->
 
-
-
+                        <!-- Display location image -->
+                        <div class="input-holder split-4">
+                            <label for="">Current Image</label>
+                            <img width="250" src="./action/location/docs/<?php echo $location['image']; ?>" alt="Current Image">
+                        </div>
 
                     </div>
-                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>

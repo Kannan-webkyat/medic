@@ -37,6 +37,7 @@
                             <th scope="col">Category</th>
                             <th scope="col">Duration</th>
                             <th scope="col">Eligibility</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <!-- fetching all course -->
@@ -49,13 +50,22 @@
                     $courses = $courseObj->list();
                     ?>
                     <tbody>
-                        <?php foreach ($courses as $course) : ?>
+                        <?php foreach ($courses as $index => $course) : ?>
                             <tr>
-                                <td><?php echo $course['id']; ?></td>
+                                <td><?php echo $index + 1; ?></td>
                                 <td><?php echo $course['title']; ?></td>
                                 <td><?php echo $course['category']; ?></td>
                                 <td><?php echo $course['duration']; ?></td>
                                 <td><?php echo $course['eligibility']; ?></td>
+                                <td>
+                                    <a href="edit-course.php?id=<?php echo $course['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    <form action="" method="POST">
+                                        <input type="text" name="id" value="<?php echo $course['id'] ?>" hidden>
+                                        <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this category?');">
+                                            <ion-icon name="trash-outline"></ion-icon>Delete
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -63,6 +73,18 @@
             </div>
             <ul id="pagination-demo" class="pagination-sm"></ul>
         </div>
+
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $delete = $courseObj->delete($id);
+            if ($delete) {
+                header('location: list-course.php');
+            } else {
+                echo 'error while delete';
+            }
+        }
+        ?>
     </main>
 </body>
 

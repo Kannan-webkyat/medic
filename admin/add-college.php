@@ -18,39 +18,39 @@
 
         <?php
         include '../_class/dbConfig.php';
-        include './action/college/CollegeManager.php';
-        include './action/location/LocationManager.php';
-
-        $conn           = (new dbConfig)->getConnection();
-        $collegeManager = new CollegeManager($conn);
+        $conn = (new dbConfig)->getConnection();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $title           = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $images          = $_FILES['images'];
-            $location        = filter_var($_POST['location'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $about           = filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $youtubeLink     = filter_var($_POST['youtubeLink'], FILTER_SANITIZE_URL);
-            $courseCategory  = filter_var($_POST['courseCategory'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $facility        = filter_var($_POST['facility'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $pickCourses     = filter_var($_POST['pickCourses'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $isDirectCollege = isset($_POST['isDirectCollege']) ? 1 : 0;
-            $featured        = isset($_POST['featured']) ? 1 : 0;
+            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $about = filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $youtubeLink = filter_var($_POST['youtube-link'], FILTER_SANITIZE_SPECIAL_CHARS);
+            $facility = isset($_POST['facility']) ? $_POST['facility'] : array();
+            $courses = isset($_POST['courses']) ? $_POST['courses'] : array();
+            $isDirectCollege = isset($_POST['direct-college']) ? 1 : 0;
+            $isFeatured = isset($_POST['featured']) ? 1 : 0;
+            $location = $_POST['location'];
+            $collegeImages = isset($_FILES['images']) ? $_FILES['images'] : array();
 
-            $data = [
-                'title'           => $title,
-                'image'          => $images,
-                'location'        => $location,
-                'about'           => $about,
-                'youtubeLink'     => $youtubeLink,
-                'courseCategory'  => $courseCategory,
-                'facility'        => $facility,
-                'pickCourses'     => $pickCourses,
+            $datas = [
+                'title' => $title,
+                'about' => $about,
+                'youtubeLink' => $youtubeLink,
+                'facility' => $facility,
+                'courses' => $courses,
                 'isDirectCollege' => $isDirectCollege,
-                'featured'        => $featured,
+                'isFeatured' => $isFeatured,
+                'location' => $location,
+                'collegeImages' => $collegeImages,
             ];
 
-            $collegeManager->addCollege($data);
+            include './action/college/CollegeManager.php';
+            $collegeManager = new CollegeManager($conn);
+            if ($collegeManager->add($datas)) {
+                header('Location: list-college.php');
+            } else {
+                echo 'error';
+            }
         }
         ?>
         <div data-swup-name="add-college"></div>
@@ -65,15 +65,16 @@
 
                         <div class="input-holder split-4">
                             <label for="">Title</label>
-                            <input id="title" name="title" />
+                            <input id="title" required name="title" />
 
                         </div>
                         <div class="input-holder split-4">
                             <label for="">College Images</label>
-                            <input id="images" name="images[]" multiple type="file" />
+                            <input id="images" required name="images[]" multiple type="file" accept="image/*" />
                         </div>
                         <!-- fetching locations -->
                         <?php
+                        include './action/location/LocationManager.php';
                         $locationObj = new LocationManager($conn);
                         $loactions = $locationObj->list();
                         ?>
@@ -86,60 +87,59 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
+
                         <div class="input-holder" style="width: 100%;">
                             <label for="">About College</label>
-                            <textarea name="about" required class="tiny" id="about"></textarea>
-
+                            <textarea name="about" class="tiny" id="about"></textarea>
                         </div>
+
                         <div class="input-holder" style="width: 100%;">
                             <label for="">Youtube Link</label>
                             <textarea name="youtube-link" id="youtube-link"></textarea>
-
                         </div>
-                        <?php
-                        include './action/course-category/courseCategoryManager.php';
-                        $courseCategoryManager = new CouresCategoryManager($conn);
-                        $courseCategories = $courseCategoryManager->list();
-                        ?>
+
                         <div class="input-holder split-4">
-                            <label for="">Choose course category </label>
-                            <select name="course-category" id="course-category" required>
-                                <option value="">Select Category</option>
-                                <?php foreach ($courseCategories as $category) : ?>
-                                    <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                            <label for="">Choose facility </label>
+                            <select name="facility[]" id="facility" multiple required>
+                                <option value="">Select Facility</option>
+                                <?php
+                                include './action/facility/FacilityManager.php';
+                                $facilityManager = new FacilityManager($conn);
+                                $facilities = $facilityManager->list();
+                                foreach ($facilities as $facility) : ?>
+                                    <option value="<?php echo $facility['id']; ?>"><?php echo $facility['title']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="input-holder split-4">
-                            <label for="">Choose facility </label>
-                            <select id="facility">
-                                <option value="">Select</option>
-                            </select>
 
-                        </div>
                         <div class="input-holder split-4">
                             <label for="">Pick Courses Provided by the college </label>
-                            <select pick-courses>
-                                <option value="">Select</option>
+                            <select name="courses[]" id="courses" multiple required>
+                                <option value="">Select Course</option>
+                                <?php
+                                include './action/course/CourseManager.php';
+                                $courseManager = new CourseManager($conn);
+                                $courses = $courseManager->list();
+                                foreach ($courses as $course) : ?>
+                                    <option value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
+                                <?php endforeach; ?>
                             </select>
-
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">is Direct College?</label>
-                            <input id="direct-college" type="checkbox" />
-
+                            <input id="direct-college" name="direct-college" type="checkbox" />
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">Featured </label>
-                            <input id="featured " type="checkbox" />
-
+                            <input id="featured" name="featured" type="checkbox" />
                         </div>
                     </div>
                     <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
                 </form>
             </div>
         </section>
-
     </main>
 </body>
 

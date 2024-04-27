@@ -1,5 +1,5 @@
 <?php
-class CourseManager
+class FacilityManager
 {
           private mysqli $conn;
 
@@ -14,15 +14,15 @@ class CourseManager
                     $currentDateTime = date('Y-m-d H:i:s');
 
                     $image = '';
-                    if (isset($data['bannerImage'])) {
+                    if (!empty($data['image']['name'])) {
                               $uploader = new DocumentUploader();
                               $path = __DIR__ . '/docs/';
-                              $image    = $uploader->uploadDocument($data['bannerImage'], $path);
+                              $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "INSERT INTO course (category_id,title,duration,eligibility,minimum_age,minimum_percentage,about,job_opportunity,banner_image,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    $query = "INSERT INTO facility (title,`image`,created_at) VALUES (?,?,?)";
                     $sql   = $this->conn->prepare($query);
-                    $sql->bind_param('isssssssss', $data['categoryId'], $data['title'], $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $currentDateTime);
+                    $sql->bind_param('sss', $data['title'], $image, $currentDateTime);
                     return $sql->execute();
           }
 
@@ -32,24 +32,26 @@ class CourseManager
                     $image = '';
                     if (!empty($data['image']['name'])) {
                               $uploader = new DocumentUploader();
-                              $image    = $uploader->uploadDocument($data);
+                              $path = __DIR__ . '/docs/';
+                              $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "UPDATE course SET title = ?, duration = ?, eligibility = ?, minimum_age = ?, minimum_percentage = ?, about = ?, job_opportunity = ?" . (!empty($image) ? ",banner_image = ?" : "") . " WHERE id = ?";
-                    $sql   = $this->conn->prepare($query);
                     if (!empty($image)) {
-                              $sql->bind_param('ssssssssi', $data['title'], $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $data['id']);
+                              $query = "UPDATE facility SET title = ?,`image` = ? WHERE id = ?";
+                              $sql   = $this->conn->prepare($query);
+                              $sql->bind_param('ssi', $data['title'], $image, $data['id']);
                     } else {
-                              $sql->bind_param('sssssssi', $data['title'], $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $data['id']);
+                              $query = "UPDATE facility SET title = ? WHERE id = ?";
+                              $sql   = $this->conn->prepare($query);
+                              $sql->bind_param('si', $data['title'], $data['id']);
                     }
-                    $result = $sql->execute();
-                    return $result;
+                    return $sql->execute();
           }
 
           public function fetchEdit($id)
           {
-                    $query = "SELECT * FROM course WHERE id = ?";
-                    $sql = $this->conn->prepare($query);
+                    $query = "SELECT * FROM facility WHERE id = ?";
+                    $sql   = $this->conn->prepare($query);
                     $sql->bind_param('i', $id);
                     $sql->execute();
                     $result = $sql->get_result();
@@ -58,8 +60,7 @@ class CourseManager
 
           public function delete($id)
           {
-
-                    $query = "DELETE FROM course WHERE id = ?";
+                    $query = "DELETE FROM facility WHERE id = ?";
                     $sql   = $this->conn->prepare($query);
                     $sql->bind_param('i', $id);
                     return $sql->execute();
@@ -68,7 +69,7 @@ class CourseManager
           public function list()
           {
                     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                              $query = "SELECT c.title,c.duration,c.eligibility,c.id,cc.title AS category FROM course c INNER JOIN course_category cc ON c.category_id = cc.id WHERE c.status != 0 ORDER BY c.id DESC";
+                              $query = "SELECT * FROM facility WHERE `status` != 0 ORDER BY id DESC";
                               $sql   = $this->conn->prepare($query);
                               $sql->execute();
                               $result = $sql->get_result();
