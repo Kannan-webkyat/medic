@@ -75,7 +75,7 @@
             $id = $_POST['id'];
             $delete = $crud->delete($id);
             if ($delete) {
-                header('location: list-course.php');
+                header('location: list-facility.php');
             } else {
                 echo 'error while delete';
             }

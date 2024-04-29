@@ -67,7 +67,7 @@
 
                         <!-- Display location image -->
                         <div class="input-holder split-4">
-                            <label for="">Current Image</label>
+                            <label for="">Current Logo</label>
                             <img width="250" src="./action/location/docs/<?php echo $location['image']; ?>" alt="Current Image">
                         </div>
 

@@ -74,7 +74,7 @@
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'];
-            $delete = $courseObj->delete($id);
+            $delete = $collegeManager->delete($id);
             if ($delete) {
                 header('location: list-college.php');
             } else {

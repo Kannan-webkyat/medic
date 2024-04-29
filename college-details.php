@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College-Details - Medic Guidance</title>
-    <link rel="stylesheet" href="./style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
-        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css"
-        integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="http://localhost/medic/style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -28,40 +24,40 @@
         <div id="fixed-menu">
             <ul>
                 <li>
-                    <a href="index.html"><img src="./assets/icons/home.png" />Home</a>
+                    <a href="http://localhost/medic/index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
                 </li>
                 <li>
-                    <a href="./courses.html"><img src="./assets/icons/course.png" />Courses</a>
+                    <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
                 </li>
                 <li>
-                    <a href="./colleges.html"><img src="./assets/icons/college.png" />Colleges</a>
+                    <a href="http://localhost/medic/colleges"><img src="http://localhost/medic/assets/icons/college.png" />Colleges</a>
                 </li>
             </ul>
         </div>
 
-        
+
         <!-- sticky cta -->
-        <a href="./book-now.html" class="booknow-btn-ph">Book Now</a>
+        <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
 
         <header>
             <div class="container">
-                <a href="./index.html" class="logo">
-                    <img src="./assets/images/logo.png" alt="medic guidence logo">
+                <a href="http://localhost/medic/index" class="logo">
+                    <img src="http://localhost/medic/assets/images/logo.png" alt="medic guidence logo">
                 </a>
                 <nav>
                     <ul>
                         <li>
-                            <a href="index.html"><img src="./assets/icons/home.png" />Home</a>
+                            <a href="index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
                         </li>
                         <li>
-                            <a href="./courses.html"><img src="./assets/icons/course.png" />Courses</a>
+                            <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
                         </li>
                         <li>
-                            <a href="./colleges.html"><img src="./assets/icons/college.png" />Colleges</a>
+                            <a href="http://localhost/medic/colleges"><img src="http://localhost/medic/assets/icons/college.png" />Colleges</a>
                         </li>
                     </ul>
                 </nav>
-                <a href="./book-now.html" class="booknow-btn desktop-cta">Book Now</a>
+                <a href="http://localhost/medic/book-now" class="booknow-btn desktop-cta">Book Now</a>
 
                 <div class="hamburger">
                     <div class="bar"></div>
@@ -70,10 +66,10 @@
                 </div>
                 <div class="sidemenu">
                     <ul>
-                        <li><a href="./about.html">About</a></li>
-                        <li><a href="./contact-us.html">Contact Us</a></li>
+                        <li><a href="http://localhost/medic/about">About</a></li>
+                        <li><a href="http://localhost/medic/contact-us">Contact Us</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="./news.html">News / Articles</a></li>
+                        <li><a href="http://localhost/medic/news">News / Articles</a></li>
 
                     </ul>
                 </div>
@@ -92,20 +88,20 @@
                     <!-- hero section -->
                     <div class="college-img">
                         <div class="left-img">
-                            <img src="./assets/images/big-img.svg" alt="college-image">
+                            <img src="http://localhost/medic/assets/images/big-img.svg" alt="college-image">
                         </div>
                         <div class="right-img">
                             <div class="box">
-                                <img src="./assets/images/right-img1.svg" alt="college-image">
+                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
                             </div>
                             <div class="box">
-                                <img src="./assets/images/right-img1.svg" alt="college-image">
+                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
                             </div>
                             <div class="box">
-                                <img src="./assets/images/right-img1.svg" alt="college-image">
+                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
                             </div>
                             <div class="box">
-                                <img src="./assets/images/right-img1.svg" alt="college-image">
+                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
                             </div>
                         </div>
                         <!-- end of hero section -->
@@ -176,8 +172,6 @@
                                         of medical education in India.
                                     </p>
                                 </div>
-
-
                                 <hr>
 
                                 <div class="highlights">
@@ -227,8 +221,7 @@
                                     </ul>
                                 </div>
                                 <div class="vdo">
-                                    <iframe width="800" height="300"
-                                        src="https://www.youtube.com/embed/tgbNymZ7vqYhttps://www.youtube.com/watch?v=TYCFxvU-Lzgx">
+                                    <iframe width="800" height="300" src="https://www.youtube.com/embed/tgbNymZ7vqYhttps://www.youtube.com/watch?v=TYCFxvU-Lzgx">
 
                                     </iframe>
                                 </div>
@@ -236,7 +229,7 @@
                                     <h3>CMC Vellore Facilities</h3>
                                     <div class="box">
                                         <div class="heading">
-                                            <img src="./assets/icons/Library.png" alt="Library-icon">
+                                            <img src="http://localhost/medic/assets/icons/Library.png" alt="Library-icon">
                                             <h4>Library </h4>
                                         </div>
                                         <div class="content">
@@ -249,7 +242,7 @@
                                     </div>
                                     <div class="box">
                                         <div class="heading">
-                                            <img src="./assets/icons/Laboratory.png" alt="Laboratory-icon">
+                                            <img src="http://localhost/medic/assets/icons/Laboratory.png" alt="Laboratory-icon">
                                             <h4>Laboratory </h4>
                                         </div>
                                         <div class="content">
@@ -262,7 +255,7 @@
                                     </div>
                                     <div class="box">
                                         <div class="heading">
-                                            <img src="./assets/icons/sports.png" alt="Sports-icon">
+                                            <img src="http://localhost/medic/assets/icons/sports.png" alt="Sports-icon">
                                             <h4>Sports </h4>
                                         </div>
                                         <div class="content">
@@ -275,7 +268,7 @@
                                     </div>
                                     <div class="box">
                                         <div class="heading">
-                                            <img src="./assets/icons/Canteen.png" alt="Canteen-icon">
+                                            <img src="http://localhost/medic/assets/icons/Canteen.png" alt="Canteen-icon">
                                             <h4>Canteen </h4>
                                         </div>
                                         <div class="content">
@@ -294,8 +287,8 @@
                             <div id="courses">
                                 <h3>Courses provided by Christian Medical College.</h3>
                                 <div class="card-wrapper ">
-                                    <a href="./course-details.html" class="card">
-                                        <img src="./assets/images/course-img.svg" alt="">
+                                    <a href="http://localhost/medic/course-details" class="card">
+                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
                                         <div class="content">
                                             <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
                                             <div class="sub-content">
@@ -311,8 +304,8 @@
                                         </div>
                                     </a>
 
-                                    <a href="./course-details.html" class="card">
-                                        <img src="./assets/images/course-img.svg" alt="">
+                                    <a href="http://localhost/medic/course-details" class="card">
+                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
                                         <div class="content">
                                             <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
                                             <div class="sub-content">
@@ -328,8 +321,8 @@
                                         </div>
                                     </a>
 
-                                    <a href="./course-details.html" class="card">
-                                        <img src="./assets/images/course-img.svg" alt="">
+                                    <a href="http://localhost/medic/course-details" class="card">
+                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
                                         <div class="content">
                                             <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
                                             <div class="sub-content">
@@ -345,8 +338,8 @@
                                         </div>
                                     </a>
 
-                                    <a href="./course-details.html" class="card">
-                                        <img src="./assets/images/course-img.svg" alt="">
+                                    <a href="http://localhost/medic/course-details" class="card">
+                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
                                         <div class="content">
                                             <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
                                             <div class="sub-content">
@@ -374,16 +367,16 @@
                                     <h3>Gallery</h3>
                                     <div class="gallery-img">
                                         <div class="image">
-                                            <img src="./assets/images/gallery-img.svg" alt="">
+                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
                                         </div>
                                         <div class="image">
-                                            <img src="./assets/images/gallery-img.svg" alt="">
+                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
                                         </div>
                                         <div class="image">
-                                            <img src="./assets/images/gallery-img.svg" alt="">
+                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
                                         </div>
                                         <div class="image">
-                                            <img src="./assets/images/gallery-img.svg" alt="">
+                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
                                         </div>
                                     </div>
                                 </div>
@@ -393,9 +386,9 @@
                             <!-- news / articles -->
                             <div class="news">
                                 <h3>News / Articles</h3>
-                                <a href="./news.html" class="content">
+                                <a href="http://localhost/medic/news" class="content">
                                     <div class="date">
-                                        <img src="./assets/icons/calendar-con.png" alt="">
+                                        <img src="http://localhost/medic/assets/icons/calendar-con.png" alt="">
                                         <h5>Mar 10, 2024</h5>
                                     </div>
                                     <div class="discription">
@@ -413,9 +406,9 @@
 
                                     </div>
                                 </a>
-                                <a href="./news.html" class="content">
+                                <a href="http://localhost/medic/news" class="content">
                                     <div class="date">
-                                        <img src="./assets/icons/calendar-con.png" alt="">
+                                        <img src="http://localhost/medic/assets/icons/calendar-con.png" alt="">
                                         <h5>Mar 10, 2024</h5>
                                     </div>
                                     <div class="discription">
@@ -446,14 +439,13 @@
                                     <div class="field">
                                         <div class="holder">
                                             <div class="icon">
-                                                <img src="./assets/icons/name-icon.png" alt="name icon">
+                                                <img src="http://localhost/medic/assets/icons/name-icon.png" alt="name icon">
                                             </div>
                                             <div class="input">
-                                                <input type="text" id="name" name="name" required
-                                                    placeholder="Enter your name">
+                                                <input type="text" id="name" name="name" required placeholder="Enter your name">
                                             </div>
                                             <div class="x-icon">
-                                                <img src="./assets/icons/x-icon.png" alt=" close">
+                                                <img src="http://localhost/medic/assets/icons/x-icon.png" alt=" close">
                                             </div>
                                         </div>
                                     </div>
@@ -464,14 +456,13 @@
                                     <div class="field">
                                         <div class="holder">
                                             <div class="icon">
-                                                <img src="./assets/icons/email-icon.png" alt="email icon">
+                                                <img src="http://localhost/medic/assets/icons/email-icon.png" alt="email icon">
                                             </div>
                                             <div class="input">
-                                                <input type="email" id="email" name="email" required
-                                                    placeholder="Enter email address">
+                                                <input type="email" id="email" name="email" required placeholder="Enter email address">
                                             </div>
                                             <div class="x-icon">
-                                                <img src="./assets/icons/x-icon.png" alt="close">
+                                                <img src="http://localhost/medic/assets/icons/x-icon.png" alt="close">
                                             </div>
                                         </div>
                                     </div>
@@ -484,14 +475,13 @@
                                     <div class="field">
                                         <div class="holder">
                                             <div class="icon">
-                                                <img src="./assets/icons/mobile-icon.png" alt="email icon">
+                                                <img src="http://localhost/medic/assets/icons/mobile-icon.png" alt="email icon">
                                             </div>
                                             <div class="input">
-                                                <input type="tel" id="phone" name="phone" required
-                                                    placeholder="Enter phone number">
+                                                <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
                                             </div>
                                             <div class="x-icon">
-                                                <img src="./assets/icons/x-icon.png" alt="close">
+                                                <img src="http://localhost/medic/assets/icons/x-icon.png" alt="close">
                                             </div>
                                         </div>
                                     </div>
@@ -504,7 +494,7 @@
                                     <div class="field">
                                         <div class="holder">
                                             <div class="icon">
-                                                <img src="./assets/icons/course-icon.png" alt="email icon">
+                                                <img src="http://localhost/medic/assets/icons/course-icon.png" alt="email icon">
                                             </div>
                                             <div class="input select-holder">
                                                 <select id="course" name="course" required>
@@ -516,7 +506,7 @@
                                                 </select>
                                             </div>
                                             <!-- <div class="x-icon">
-                                            <img src="./assets/icons/x-icon.png" alt="close">
+                                            <img src="http://localhost/medic/assets/icons/x-icon.png" alt="close">
                                         </div> -->
                                         </div>
                                     </div>
@@ -542,13 +532,9 @@
     <script src="https://unpkg.com/@swup/progress-plugin@3"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
-        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./src/App.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="http://localhost/medic/src/App.js"></script>
 
 
 </body>

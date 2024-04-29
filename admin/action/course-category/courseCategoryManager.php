@@ -12,6 +12,7 @@ class CouresCategoryManager
           {
                     include './action/modules/documentUploader.php';
                     $currentDateTime = date('Y-m-d H:i:s');
+                    $slug = strtolower(str_replace(' ', '-', $data['title']));
 
                     $image = '';
                     if (isset($data['image'])) {
@@ -20,9 +21,9 @@ class CouresCategoryManager
                               $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "INSERT INTO course_category (title,`image`,created_at) VALUES (?,?,?)";
+                    $query = "INSERT INTO course_category (title,slug,`image`,created_at) VALUES (?,?,?,?)";
                     $sql   = $this->conn->prepare($query);
-                    $sql->bind_param('sss', $data['title'], $image, $currentDateTime);
+                    $sql->bind_param('ssss', $data['title'], $slug, $image, $currentDateTime);
                     return $sql->execute();
           }
 
@@ -36,14 +37,16 @@ class CouresCategoryManager
                               $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
+                    $slug = strtolower(str_replace(' ', '-', $data['title']));
+
                     if (!empty($image)) {
-                              $query = "UPDATE course_category SET title = ?, `image` = ? WHERE id = ?";
+                              $query = "UPDATE course_category SET title = ?, slug = ?, `image` = ? WHERE id = ?";
                               $sql = $this->conn->prepare($query);
-                              $sql->bind_param('ssi', $data['title'], $image, $data['id']);
+                              $sql->bind_param('sssi', $data['title'], $slug, $image, $data['id']);
                     } else {
-                              $query = "UPDATE course_category SET title = ? WHERE id = ?";
+                              $query = "UPDATE course_category SET title = ?, slug = ? WHERE id = ?";
                               $sql = $this->conn->prepare($query);
-                              $sql->bind_param('si', $data['title'], $data['id']);
+                              $sql->bind_param('ssi', $data['title'], $slug, $data['id']);
                     }
                     return $sql->execute();
           }

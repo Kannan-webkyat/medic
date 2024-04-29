@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../class/query.php';
+require_once 'http://localhost/medic/class/query.php';
 $obj = new query();
 header('Content-Type: application/json; charset=utf-8');
 $data     = json_decode(file_get_contents('php://input'), true);

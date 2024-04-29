@@ -14,7 +14,7 @@ class Sidemenu {
             <nav class="sidemenu">
                 <div class="header">
                 <div class="logo" style="width:100px; display:flex; align-items:center; justify-content:center;">
-                        <img style="width:100%;" src="../assets/images/logo/logo.png" alt="">
+                        <img style="width:100%;" src="http://localhost/medic/assets/images/logo/logo.png" alt="">
                     </div>
                 </div>
                 <div class="navigation">

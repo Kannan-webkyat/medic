@@ -43,7 +43,7 @@ const loader = new Loader();
 //                 header.update("course", sidemenu.current().find("i")[0].outerHTML);
 //                 loader.stop();
 //                 return;
-//                 const crued = import("../server/CRUED.js");
+//                 const crued = import("http://localhost/medic/server/CRUED.js");
 //                 let table = new Table($("#list_category")[0]);
 
 //                 // get cateogyr
@@ -61,7 +61,7 @@ const loader = new Loader();
 //                                 const rowContent = [slno, category];
 //                                 table.addRow(rowContent, id, null);
 //                                 table.actions({
-//                                     edit: `./edit-category.html?id=${id}`,
+//                                     edit: `http://localhost/medic/edit-category.html?id=${id}`,
 //                                     delete: async (id) => {
 //                                         const data = {
 //                                             category_id: id,
@@ -134,7 +134,7 @@ const loader = new Loader();
 //     .then((data) => {
 //       // console.log(data);
 //       if (data[0]["info"] != "true") {
-//         location.replace("./index.html");
+//         location.replace("http://localhost/medic/index");
 //       }
 //     });
 // }
@@ -147,7 +147,7 @@ const loader = new Loader();
 //       .then((response) => response.json())
 //       .then((data) => {
 //         if (data == 1) {
-//           location.href = "./index.html";
+//           location.href = "http://localhost/medic/index";
 //         }
 //       });
 //   });
@@ -211,8 +211,8 @@ const namespaceManager = () => {
         case "list-college":
             {
                 loader.load();
-                sidemenu.active("college");
-                header.update("college", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("colleges");
+                header.update("colleges", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
             }
             break;

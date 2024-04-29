@@ -5,7 +5,7 @@ class DocumentUploader
     private $allowedExtensions = ['jpeg', 'jpg', 'png', 'webp', 'pdf', 'exel'];
     private $maxSize           = 10 * 1024 * 1024; // 10MB (10 megabytes)
 
-    public function uploadDocument($file, $path = './docs/'): string
+    public function uploadDocument($file, $path = 'http://localhost/medic/docs/'): string
     {
         $documentName = $file['name'];
         $extension    = pathinfo($documentName, PATHINFO_EXTENSION);

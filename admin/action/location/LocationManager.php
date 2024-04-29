@@ -12,6 +12,7 @@ class LocationManager
           {
                     include './action/modules/documentUploader.php';
                     $currentDateTime = date('Y-m-d H:i:s');
+                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
 
                     $image = '';
                     if (isset($data['image'])) {
@@ -20,9 +21,9 @@ class LocationManager
                               $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "INSERT INTO location (title,`image`,created_at) VALUES (?,?,?)";
+                    $query = "INSERT INTO location (title,slug,`image`,created_at) VALUES (?,?,?,?)";
                     $sql   = $this->conn->prepare($query);
-                    $sql->bind_param('sss', $data['title'], $image, $currentDateTime);
+                    $sql->bind_param('ssss', $data['title'], $slug, $image, $currentDateTime);
                     return $sql->execute();
           }
 
@@ -35,13 +36,13 @@ class LocationManager
                               $path = __DIR__ . '/docs/';
                               $image    = $uploader->uploadDocument($data['image'], $path);
                     }
-
-                    $query = "UPDATE location SET title = ? " . (!empty($image) ? ",`image` = ?" : "") . " WHERE id = ?";
+                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
+                    $query = "UPDATE location SET title = ?, slug=? " . (!empty($image) ? ",`image` = ?" : "") . " WHERE id = ?";
                     $sql   = $this->conn->prepare($query);
                     if (!empty($image)) {
-                              $sql->bind_param('ssi', $data['title'], $image, $data['id']);
+                              $sql->bind_param('sssi', $data['title'], $slug, $image, $data['id']);
                     } else {
-                              $sql->bind_param('si', $data['title'], $data['id']);
+                              $sql->bind_param('ssi', $data['title'], $slug, $data['id']);
                     }
                     return $sql->execute();
           }

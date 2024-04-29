@@ -1,10 +1,7 @@
 <?php
-include '../_class/dbConfig.php';
-$conn = (new dbConfig)->getConnection();
-
-function fetchAllCourses($conn)
+function fetchAllCourses(mysqli $conn)
 {
-          $query = "SELECT * FROM courses";
+          $query = "SELECT * FROM course";
           $result = $conn->prepare($query);
           $result->execute();
           $data = $result->get_result()->fetch_all(MYSQLI_ASSOC);

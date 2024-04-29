@@ -12,10 +12,11 @@ class CollegeManager
     {
         $currentDateTime = date('Y-m-d H:i:s');
         include './action/modules/documentUploader.php';
+        $slug = strtolower(str_replace(' ', '-', $data['title']));
 
-        $query = "INSERT INTO college (title,about,location_id,yt_url,direct,featured,created_at) VALUES (?,?,?,?,?,?,?)";
+        $query = "INSERT INTO college (title,slug,about,location_id,yt_url,direct,featured,created_at) VALUES (?,?,?,?,?,?,?,?)";
         $sql   = $this->conn->prepare($query);
-        $sql->bind_param('ssisiis', $data['title'], $data['about'], $data['location'], $data['youtubeLink'], $data['isDirectCollege'], $data['isFeatured'], $currentDateTime);
+        $sql->bind_param('sssisiis', $data['title'], $slug, $data['about'], $data['location'], $data['youtubeLink'], $data['isDirectCollege'], $data['isFeatured'], $currentDateTime);
         if ($sql->execute()) {
             $collegeId = $sql->insert_id;
 
@@ -66,10 +67,11 @@ class CollegeManager
     public function edit($data)
     {
         include './action/modules/documentUploader.php';
+        $slug = strtolower(str_replace(' ', '-', $data['title']));
 
-        $query = "UPDATE college SET title=?, about=?, location_id=?, direct=?, featured=? WHERE id=?";
+        $query = "UPDATE college SET title=?, slug=?, about=?, location_id=?, direct=?, featured=? WHERE id=?";
         $sql   = $this->conn->prepare($query);
-        $sql->bind_param('ssiiii', $data['title'], $data['about'], $data['location'], $data['isDirectCollege'], $data['isFeatured'], $data['collgeId']);
+        $sql->bind_param('sssiiii', $data['title'], $slug, $data['about'], $data['location'], $data['isDirectCollege'], $data['isFeatured'], $data['collgeId']);
         if ($sql->execute()) {
             $collegeId = $data['collgeId'];
 

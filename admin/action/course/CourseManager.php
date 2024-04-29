@@ -20,9 +20,11 @@ class CourseManager
                               $image    = $uploader->uploadDocument($data['bannerImage'], $path);
                     }
 
-                    $query = "INSERT INTO course (category_id,title,duration,eligibility,minimum_age,minimum_percentage,about,job_opportunity,banner_image,created_at) VALUES (?,?,?,?,?,?,?,?,?,?)";
+                    $slug = strtolower(str_replace(' ', '_', $data['title']));
+
+                    $query = "INSERT INTO course (category_id,title,slug,duration,eligibility,minimum_age,minimum_percentage,about,job_opportunity,banner_image,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
                     $sql   = $this->conn->prepare($query);
-                    $sql->bind_param('isssssssss', $data['categoryId'], $data['title'], $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $currentDateTime);
+                    $sql->bind_param('issssssssss', $data['categoryId'], $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $currentDateTime);
                     return $sql->execute();
           }
 
@@ -35,12 +37,14 @@ class CourseManager
                               $image    = $uploader->uploadDocument($data);
                     }
 
-                    $query = "UPDATE course SET title = ?, duration = ?, eligibility = ?, minimum_age = ?, minimum_percentage = ?, about = ?, job_opportunity = ?" . (!empty($image) ? ",banner_image = ?" : "") . " WHERE id = ?";
+                    $slug = strtolower(str_replace(' ', '_', $data['title']));
+
+                    $query = "UPDATE course SET title = ?,slug = ?, duration = ?, eligibility = ?, minimum_age = ?, minimum_percentage = ?, about = ?, job_opportunity = ?" . (!empty($image) ? ",banner_image = ?" : "") . " WHERE id = ?";
                     $sql   = $this->conn->prepare($query);
                     if (!empty($image)) {
-                              $sql->bind_param('ssssssssi', $data['title'], $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $data['id']);
+                              $sql->bind_param('ssssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $data['id']);
                     } else {
-                              $sql->bind_param('sssssssi', $data['title'], $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $data['id']);
+                              $sql->bind_param('ssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $data['id']);
                     }
                     $result = $sql->execute();
                     return $result;
@@ -58,7 +62,6 @@ class CourseManager
 
           public function delete($id)
           {
-
                     $query = "DELETE FROM course WHERE id = ?";
                     $sql   = $this->conn->prepare($query);
                     $sql->bind_param('i', $id);

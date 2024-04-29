@@ -138,7 +138,7 @@ p {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 40px;
-  // background-image: url(../assets/images/Vector\ 1.svg);
+  // background-image: url(.http://localhost/medic/assets/images/Vector\ 1.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -968,7 +968,7 @@ header {
 
 /* home page */
 .banner {
-  background-image: url(../assets/images/banner-bg.svg);
+  background-image: url(http://localhost/medic/assets/images/banner-bg.svg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2892,7 +2892,7 @@ header {
 .addmission-form {
   margin-bottom: 50px;
 
-  h2{
+  h2 {
     text-align: center !important;
     margin-bottom: 30px;
     margin-top: 30px;
@@ -2919,15 +2919,17 @@ header {
     cursor: pointer;
 
   }
-.book-now-form{
-margin: 0 auto;
 
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 #00000017, 0 6px 20px 0 #00000013;
-  border-radius: 28px;
-  width: 70%;
-  padding: 20px;
-}
+  .book-now-form {
+    margin: 0 auto;
+
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 #00000017, 0 6px 20px 0 #00000013;
+    border-radius: 28px;
+    width: 70%;
+    padding: 20px;
+  }
+
   .input-field {
     display: flex;
     justify-content: space-between;
@@ -2984,14 +2986,17 @@ margin: 0 auto;
 
     .message {
       width: 100%;
-     
+
     }
   }
+
   @media (max-width:599px) {
+
     // padding: 2px;
-.book-now-form{
-  width: 100%;
-}
+    .book-now-form {
+      width: 100%;
+    }
+
     button {
       width: 100% !important;
     }

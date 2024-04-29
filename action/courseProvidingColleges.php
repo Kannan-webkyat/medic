@@ -1,14 +1,9 @@
 <?php
-include '../_class/dbConfig.php';
-$conn = (new dbConfig)->getConnection();
-
-function fetchCollegesUnderCourse($conn, $courseId)
+function fetchCollegesUnderCourse(mysqli $conn, $slug)
 {
-          $query = "SELECT *
-          FROM college
-          WHERE course_id = ?";
+          $query = "SELECT * FROM college WHERE slug = ?";
           $result = $conn->prepare($query);
-          $result->bind_param('i', $courseId);
+          $result->bind_param('s', $slug);
           $result->execute();
           $data = $result->get_result()->fetch_all(MYSQLI_ASSOC);
           return $data;

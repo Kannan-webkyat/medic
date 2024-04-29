@@ -24,7 +24,6 @@ $shadow-color: #36363615;
 @import url('../../src/component/assing-menu/Assign-menu.css');
 @import url('../../src/component/remark/style.css');
 
-
 body::-webkit-scrollbar {
     width: 1em;
 }
@@ -43,9 +42,6 @@ body {
     font-family: 'DM Sans', sans-serif;
     user-select: none;
 }
-
-
-
 
 .login-container {
     width: 100%;
@@ -1321,7 +1317,8 @@ main {
 .mb-0 {
     margin-bottom: 0px !important;
 }
-.input-holder{
+
+.input-holder {
     width: calc(100%/4 - 20px);
     margin-right: 20px;
 }
