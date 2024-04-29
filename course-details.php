@@ -159,7 +159,7 @@
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <h4><?php echo htmlspecialchars($courseData['job_opportunity']) ?></h4>
+                                    <h4><?php echo htmlspecialchars_decode($courseData['job_opportunity']); ?></h4>
                                 </div>
                             </li>
                         </ul>
@@ -318,8 +318,6 @@
                                             </h4>
                                         </div>
                                     </li>
-
-
                                 </ul>
                             </div>
                             <!-- sub -->
@@ -350,8 +348,6 @@
                                             </h4>
                                         </div>
                                     </li>
-
-
                                 </ul>
                             </div>
                             <!-- sub -->
@@ -390,8 +386,6 @@
                                             </h4>
                                         </div>
                                     </li>
-
-
                                 </ul>
                             </div>
                         </div>
@@ -402,81 +396,28 @@
                 <!-- colleges -->
                 <?php
                 include './action/courseProvidingColleges.php';
-                $providingColleges = fetchCollegesUnderCourse($conn, $slug);
-                echo "<pre>";
-                print_r($providingColleges);
-                echo "</pre>";
+                $providingColleges = fetchCollegesOfferingCourse($conn, $slug);
                 ?>
                 <div class="colleges des-colleges">
                     <h2>Colleges</h2>
                     <div class="card-wrapper">
-                        <!-- 1st card -->
-                        <a href="college-details" class="cards">
-                            <img src="http://localhost/medic/assets/images/card-img.svg" alt="Christian Medical College">
-                            <div class="content">
-                                <h4>Christian Medical College</h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5>Yelahanka, Bengaluru, Karnataka</h5>
+                        <?php foreach ($providingColleges as $providingCollege) : ?>
+                            <a href="college-details" class="cards">
+                                <img src="http://localhost/medic/admin/action/college/docs/<?php echo $providingCollege['image'] ?>" alt="Christian Medical College">
+                                <div class="content">
+                                    <h4></h4>
+                                    <h4><?php echo $providingCollege['college_name'] ?></h4>
+                                    <div class="location">
+                                        <img src="http://localhost/medic/assets/icons/location.png" alt="">
+                                        <h5><?php echo $providingCollege['location'] ?></h5>
+                                    </div>
+                                    <div class="approval">
+                                        <img src="http://localhost/medic/assets/icons/approval.png" alt="">
+                                        <h5>MCI, UGC Approved</h5>
+                                    </div>
                                 </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5>MCI, UGC Approved</h5>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end of 1st card -->
-
-                        <!-- 2nd card -->
-                        <a href="#" class="cards">
-                            <img src="http://localhost/medic/assets/images/card2.svg" alt="Christian Medical College">
-                            <div class="content">
-                                <h4>Christian Medical College</h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                                </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5>MCI, UGC Approved</h5>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end of 2nd card  -->
-
-                        <!-- 3rd card -->
-                        <a href="#" class="cards">
-                            <img src="http://localhost/medic/assets/images/card3.svg" alt="Christian Medical College">
-                            <div class="content">
-                                <h4>Christian Medical College</h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                                </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5>YMCI, UGC Approved</h5>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end of 3rd card -->
-
-                        <!-- 4th card  -->
-                        <a href="#" class="cards">
-                            <img src="http://localhost/medic/assets/images/card4.svg" alt="Christian Medical College">
-                            <div class="content">
-                                <h4>Christian Medical College</h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                                </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5>MCI, UGC Approved</h5>
-                                </div>
-                            </div>
-                        </a>
-                        <!-- end of 4th card -->
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!--end of colleges -->

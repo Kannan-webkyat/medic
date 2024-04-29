@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 </head>
 
 <main id="swup" class="transition-fade">
@@ -17,7 +15,6 @@
     <!-- loader -->
     <div class="loader-container">
         <div class="loader">
-
         </div>
     </div>
     <!-- header -->
@@ -25,8 +22,6 @@
         <ul>
             <li>
                 <a href="index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
-
-
             </li>
             <li>
                 <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
@@ -38,7 +33,6 @@
     </div>
     <!-- sticky cta -->
     <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
-
     <header>
         <div class="container">
             <a href="http://localhost/medic/index" class="logo">
@@ -77,6 +71,14 @@
     </header>
     <!-- end of header -->
 
+    <?php
+    include './_class/dbConfig.php';
+    include './action/locations.php';
+    $conn = (new dbConfig)->getConnection();
+
+    $locations = getAllLocations($conn);
+    ?>
+
 
     <!-- main section -->
     <div class="container">
@@ -86,39 +88,9 @@
                 <div class="tab">
                     <ul>
                         <li><a href="">All</a></li>
-                        <li><a class="activer" href="">B.Sc. Nursing</a></li>
-                        <li><a href="">MBBS</a></li>
-                        <li><a href="">BCA</a></li>
-                        <li><a href="">Diploma in Radiology</a></li>
-                        <li><a href="">Engineering</a></li>
-                        <li><a href="">B Pharm </a></li>
-                        <li><a href="">Diploma in Radiology</a></li>
-                        <li><a href="">Occupational Therapy</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
-                        <li><a href="">bsc</a></li>
+                        <?php foreach ($locations as $location) : ?>
+                            <li><a href=""><?php echo $location['title']; ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
                 <!-- end of tab -->
