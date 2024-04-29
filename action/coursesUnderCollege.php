@@ -1,7 +1,4 @@
 <?php
-include '../_class/dbConfig.php';
-$conn = (new dbConfig)->getConnection();
-
 function fetchCollegeCourses($conn, $collegeId)
 {
           $query = "SELECT c.*,cc.course_id

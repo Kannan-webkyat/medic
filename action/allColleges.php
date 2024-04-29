@@ -1,7 +1,4 @@
 <?php
-include '../_class/dbConfig.php';
-$conn = (new dbConfig)->getConnection();
-
 $courseFilter = $_GET['courseFilter'] ?? ''; // by default pass empty (in all coures)
 $locationFilter = $_GET['locationFilter'] ?? ''; // pass empty for all location
 
