@@ -74,9 +74,11 @@
     <?php
     include './_class/dbConfig.php';
     include './action/locations.php';
+    include './action/allCourses.php';
     $conn = (new dbConfig)->getConnection();
 
     $locations = getAllLocations($conn);
+    $courses = fetchAllCourses($conn);
     ?>
 
 
@@ -88,8 +90,8 @@
                 <div class="tab">
                     <ul>
                         <li><a href="">All</a></li>
-                        <?php foreach ($locations as $location) : ?>
-                            <li><a href=""><?php echo $location['title']; ?></a></li>
+                        <?php foreach ($courses as $course) : ?>
+                            <li><a href=""><?php echo $course['title']; ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -97,24 +99,19 @@
                 <div class="head">
                     <div class="heading">
                         <h2>Explore the Leading Nursing Colleges</h2>
-
                     </div>
                     <div class="filter">
                         <div class="input select-holder">
                             <select id="filter-field" name="course" required>
                                 <option value=" ">Location</option>
-                                <option value="location1">Kerala</option>
-                                <option value="location2">Bangalore</option>
-                                <option value="location3">Chennai</option>
-                                <!-- Add more locations as needed -->
+
                             </select>
                         </div>
                         <div class="input select-holder ">
                             <select class="activer" id="filter-field" name="course" required>
-                                <option value=" Approval">Approval</option>
-                                <option value="Approval1">UGC</option>
-                                <option value="Approval2">MCI</option>
-                                <option value="Approval3">YMCI</option>
+                                <?php foreach ($locations as $location) : ?>
+                                    <option value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
+                                <?php endforeach; ?>
                                 <!-- Add more approval as needed -->
                             </select>
                         </div>

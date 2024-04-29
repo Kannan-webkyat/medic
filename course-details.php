@@ -55,7 +55,6 @@
                 </ul>
             </nav>
             <a href="http://localhost/medic/book-now" class="booknow-btn desktop-cta">Book Now</a>
-
             <div class="hamburger">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -67,7 +66,6 @@
                     <li><a href="http://localhost/medic/contact-us">Contact Us</a></li>
                     <li><a href="#">Terms & Conditions</a></li>
                     <li><a href="http://localhost/medic/news">News / Articles</a></li>
-
                 </ul>
             </div>
         </div>
@@ -76,9 +74,6 @@
 
     <!-- fetching course details -->
     <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
     include './_class/dbConfig.php';
     include './action/courseDetails.php';
     $conn = (new dbConfig)->getConnection();
@@ -93,7 +88,7 @@
                 <div class="content">
                     <h2><?php echo $courseData['title'] ?></h2>
                     <img class="des-img" src="http://localhost/medic/admin/action/course/docs/<?php echo $courseData['banner_image'] ?>" alt="">
-                    <p class="course-content"><?php echo $courseData['about'] ?></p>
+                    <p class="course-content"><?php echo html_entity_decode($courseData['about']) ?></p>
                     <hr>
 
                     <div class="details">
@@ -109,7 +104,6 @@
                                 <div class="right">
                                     <h4><?php echo $courseData['duration'] ?></h4>
                                 </div>
-
                             </li>
 
                             <li>
@@ -122,7 +116,6 @@
                                 <div class="right">
                                     <h4><?php echo $courseData['eligibility'] ?></h4>
                                 </div>
-
                             </li>
 
                             <li>
@@ -135,7 +128,6 @@
                                 <div class="right">
                                     <h4><?php echo $courseData['minimum_age'] ?></h4>
                                 </div>
-
                             </li>
 
                             <li>
@@ -148,7 +140,6 @@
                                 <div class="right">
                                     <h4><?php echo $courseData['minimum_percentage'] ?></h4>
                                 </div>
-
                             </li>
 
                             <li>
@@ -159,7 +150,7 @@
                                     </div>
                                 </div>
                                 <div class="right">
-                                    <h4><?php echo htmlspecialchars_decode($courseData['job_opportunity']); ?></h4>
+                                    <h4><?php echo $courseData['job_opportunity'] ?></h4>
                                 </div>
                             </li>
                         </ul>
@@ -174,26 +165,19 @@
                                 </div>
                                 <div class="points">
                                     <div class="circle"></div>
-
                                     <p>Candidates must have completed their high school education (or equivalent) with a
                                         background in science subjects such as biology, chemistry, and physics.</p>
-
                                 </div>
                                 <div class="points">
                                     <div class="circle"></div>
-
                                     <p>Candidates must have completed their high school education (or equivalent) with a
                                         background in science subjects such as biology, chemistry, and physics.</p>
-
                                 </div>
                                 <div class="points">
                                     <div class="circle"></div>
-
                                     <p>Candidates must have completed their high school education (or equivalent) with a
                                         background in science subjects such as biology, chemistry, and physics.</p>
-
                                 </div>
-
                             </li>
                             <li>
                                 <div class="heading">
@@ -201,28 +185,20 @@
                                 </div>
                                 <div class="points">
                                     <div class="circle"></div>
-
                                     <p>Candidates must have completed their high school education (or equivalent) with a
                                         background in science subjects such as biology, chemistry, and physics.</p>
-
                                 </div>
                                 <div class="points">
                                     <div class="circle"></div>
-
                                     <p>Candidates must have completed their high school education (or equivalent) with a
                                         background in science subjects such as biology, chemistry, and physics.</p>
-
                                 </div>
                                 <div class="points">
                                     <div class="circle"></div>
-
                                     <p>Candidates must have completed their high school education (or equivalent) with a
                                         background in science subjects such as biology, chemistry, and physics.</p>
-
                                 </div>
-
                             </li>
-
                         </ul>
                     </div>
                     <hr>
@@ -344,7 +320,6 @@
                                     <li>
                                         <div class="content">
                                             <h4>Medical- Surgical Nursing (Adult including Geriatrics)
-
                                             </h4>
                                         </div>
                                     </li>
@@ -369,7 +344,6 @@
                                     <li>
                                         <div class="content">
                                             <h4>Nursing Research & Statistics
-
                                             </h4>
                                         </div>
                                     </li>
@@ -382,7 +356,6 @@
                                     <li>
                                         <div class="content">
                                             <h4>Integrated Practice
-
                                             </h4>
                                         </div>
                                     </li>
@@ -391,7 +364,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <!-- colleges -->
                 <?php
