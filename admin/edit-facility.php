@@ -36,7 +36,8 @@
             $data = [
                 'id' => $id,
                 'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
-                'image' => $_FILES['facility-icon'] ?? []
+                'image' => $_FILES['facility-icon'] ?? [],
+                'description' => filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS)
             ];
 
             if ($crud->edit($data)) {
@@ -64,6 +65,13 @@
                             <input id="facility-icon" type="file" name="facility-icon" />
                         </div>
                         <!-- end of facility icon  -->
+
+                        <!-- description -->
+                        <div class="input-holder split-4">
+                            <label for="">Description</label>
+                            <textarea id="description" name="description"><?php echo $facility['description']; ?></textarea>
+                        </div>
+                        <!-- end of description -->
 
                         <!-- Display current image -->
                         <div class="input-holder split-4">

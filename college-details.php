@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
 <body>
@@ -17,7 +16,6 @@
         <!-- loader -->
         <div class="loader-container">
             <div class="loader">
-
             </div>
         </div>
         <!-- header -->
@@ -38,7 +36,6 @@
 
         <!-- sticky cta -->
         <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
-
         <header>
             <div class="container">
                 <a href="http://localhost/medic/index" class="logo">
@@ -47,7 +44,7 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
+                            <a href="http://localhost/medic/index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
                         </li>
                         <li>
                             <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
@@ -58,7 +55,6 @@
                     </ul>
                 </nav>
                 <a href="http://localhost/medic/book-now" class="booknow-btn desktop-cta">Book Now</a>
-
                 <div class="hamburger">
                     <div class="bar"></div>
                     <div class="bar"></div>
@@ -104,73 +100,23 @@
                                 <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
                             </div>
                         </div>
-                        <!-- end of hero section -->
-
-
                     </div>
-                    <!-- end of hero section -->
+
+                    <?php
+                    include './_class/dbConfig.php';
+                    include './action/collegeDetails.php';
+                    $conn = (new dbConfig)->getConnection();
+                    $collegeDetails = fetchCollegeDetails($conn, $_GET['id']);
+                    ?>
+
                     <!-- content section -->
                     <div class="info">
-
                         <div class="content">
                             <!-- details -->
                             <div class="details">
                                 <div class="about">
-                                    <h2>Christian Medical College</h2>
-                                    <p>Established in 1942, Christian Medical College, Vellore stands as a beacon of
-                                        medical
-                                        education
-                                        within
-                                        the private sector, guided by the Christian Community's ethos. Endowed with
-                                        the
-                                        recognition of the
-                                        Medical Council of India (MCI), CMC Vellore proudly operates across two
-                                        campuses.
-                                        The primary
-                                        campus,
-                                        nestled in the serene environs of Vellore, serves as the epicenter of
-                                        academic
-                                        excellence, while the
-                                        secondary campus, located in Bagayam city, extends the institution's reach 7
-                                        kilometers away. Across
-                                        these campuses, a rich tapestry of educational offerings unfolds,
-                                        encompassing
-                                        undergraduate,
-                                        postgraduate, doctoral, diploma, and fellowship programs spanning the realms
-                                        of
-                                        Medicine, Allied
-                                        Health
-                                        Sciences, Nursing, and Hospital Management. Admission into these prestigious
-                                        programs hinges solely
-                                        on
-                                        merit, with candidates evaluated through rigorous entrance examinations.
-                                        <br>
-                                        <br>
-
-
-                                        Surging ahead with a commitment to excellence, Christian Medical College,
-                                        Vellore,
-                                        etches its mark
-                                        prominently in the annals of medical education. Bolstered by its illustrious
-                                        history
-                                        and unwavering
-                                        dedication to fostering healthcare professionals of tomorrow, the
-                                        institution stands
-                                        as a testament
-                                        to
-                                        the transformative power of education. This dedication to academic prowess
-                                        and
-                                        holistic development
-                                        reflects in its recent accolade, securing the esteemed 3rd position in the
-                                        medical
-                                        category as per
-                                        the
-                                        National Institutional Ranking Framework (NIRF) of 2023, further solidifying
-                                        its
-                                        standing as a
-                                        paragon
-                                        of medical education in India.
-                                    </p>
+                                    <h2><?php echo $collegeDetails['title'] ?></h2>
+                                    <p><?php echo html_entity_decode($collegeDetails['about']) ?></p>
                                 </div>
                                 <hr>
 
@@ -181,39 +127,32 @@
                                             <div class="heading">Established year/Ownership</div>
                                             <div class="content">1942 | Private</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Affiliated with</div>
                                             <div class="content">Dr. MGR University</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Approved by</div>
                                             <div class="content">1MCI</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Application Mode</div>
                                             <div class="content">Online</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Campus Size</div>
                                             <div class="content">19 Acre</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Course Offered</div>
                                             <div class="content">B.Sc, MBBS, BDS, BPT, MD, MS, M.Sc, Certificate
                                                 Courses,
                                                 Diploma, Fellowship, PhD.</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Admission Criteria</div>
                                             <div class="content">Merit-Based and Entrance Exam</div>
                                         </li>
-
                                         <li>
                                             <div class="heading">Facilities Available</div>
                                             <div class="content">Library, Sports, Canteen, Laboratory, Hostel</div>
@@ -221,64 +160,22 @@
                                     </ul>
                                 </div>
                                 <div class="vdo">
-                                    <iframe width="800" height="300" src="https://www.youtube.com/embed/tgbNymZ7vqYhttps://www.youtube.com/watch?v=TYCFxvU-Lzgx">
-
+                                    <iframe width="800" height="300" src="<?php echo $collegeDetails['yt_url'] ?>">
                                     </iframe>
                                 </div>
                                 <div class="facilities">
-                                    <h3>CMC Vellore Facilities</h3>
-                                    <div class="box">
-                                        <div class="heading">
-                                            <img src="http://localhost/medic/assets/icons/Library.png" alt="Library-icon">
-                                            <h4>Library </h4>
+                                    <h3><?php echo $collegeDetails['title'] ?> Facilities</h3>
+                                    <?php foreach ($collegeDetails['facilities'] as $facility) : ?>
+                                        <div class="box">
+                                            <div class="heading">
+                                                <img src="http://localhost/medic/admin/action/facility/docs/<?php echo $facility['image'] ?>" alt="<?php echo $facility['facility_name'] ?>-icon">
+                                                <h4><?php echo $facility['facility_name'] ?> </h4>
+                                            </div>
+                                            <div class="content">
+                                                <p><?php echo $facility['description'] ?></p>
+                                            </div>
                                         </div>
-                                        <div class="content">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry.
-                                                Lorem Ipsum has been the industry's
-                                                standard
-                                                dummy text ever since the 1500s,</p>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="heading">
-                                            <img src="http://localhost/medic/assets/icons/Laboratory.png" alt="Laboratory-icon">
-                                            <h4>Laboratory </h4>
-                                        </div>
-                                        <div class="content">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry.
-                                                Lorem Ipsum has been the industry's
-                                                standard
-                                                dummy text ever since the 1500s,</p>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="heading">
-                                            <img src="http://localhost/medic/assets/icons/sports.png" alt="Sports-icon">
-                                            <h4>Sports </h4>
-                                        </div>
-                                        <div class="content">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry.
-                                                Lorem Ipsum has been the industry's
-                                                standard
-                                                dummy text ever since the 1500s,</p>
-                                        </div>
-                                    </div>
-                                    <div class="box">
-                                        <div class="heading">
-                                            <img src="http://localhost/medic/assets/icons/Canteen.png" alt="Canteen-icon">
-                                            <h4>Canteen </h4>
-                                        </div>
-                                        <div class="content">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry.
-                                                Lorem Ipsum has been the industry's
-                                                standard
-                                                dummy text ever since the 1500s,</p>
-                                        </div>
-                                    </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                             <!-- end of details -->

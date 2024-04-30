@@ -76,11 +76,9 @@
     include './action/locations.php';
     include './action/allCourses.php';
     $conn = (new dbConfig)->getConnection();
-
     $locations = getAllLocations($conn);
     $courses = fetchAllCourses($conn);
     ?>
-
 
     <!-- main section -->
     <div class="container">
@@ -104,7 +102,6 @@
                         <div class="input select-holder">
                             <select id="filter-field" name="course" required>
                                 <option value=" ">Location</option>
-
                             </select>
                         </div>
                         <div class="input select-holder ">
@@ -117,195 +114,31 @@
                         </div>
                     </div>
                 </div>
+                <?php
+                include './action/allColleges.php';
+                $colleges = fetchAllColleges($conn, '', '');
+                ?>
                 <div class="card-wrapper">
-                    <!-- cards section  -->
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card-img.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
+                    <?php foreach ($colleges as $college) : ?>
+                        <a href="college-details/<?php echo $college['slug']; ?>" class="cards">
+                            <img src="http://localhost/medic/assets/images/card-img.svg" alt="<?php echo $college['title']; ?>">
+                            <div class="content">
+                                <h4><?php echo $college['title']; ?></h4>
+                                <div class="location">
+                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
+                                    <h5><?php echo $college['loaction']; ?></h5>
+                                </div>
+                                <div class="approval">
+                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
+                                    <h5></h5>
+                                </div>
                             </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card2.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card3.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>YMCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card4.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card-img.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card2.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card3.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>YMCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card4.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card-img.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card2.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card3.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>YMCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="college-details" class="cards">
-                        <img src="http://localhost/medic/assets/images/card4.svg" alt="Christian Medical College">
-                        <div class="content">
-                            <h4>Christian Medical College</h4>
-                            <div class="location">
-                                <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                            </div>
-                            <div class="approval">
-                                <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                <h5>MCI, UGC Approved</h5>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- end of cards section  -->
-
+                        </a>
+                    <?php endforeach; ?>
                 </div>
             </div>
-
         </div>
     </div>
-
 </main>
 
 <!-- end of main section -->

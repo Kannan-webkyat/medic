@@ -21,9 +21,9 @@ class FacilityManager
                               $image    = $uploader->uploadDocument($data['image'], $path);
                     }
 
-                    $query = "INSERT INTO facility (title,slug,`image`,created_at) VALUES (?,?,?,?)";
+                    $query = "INSERT INTO facility (title,slug,`image`,description,created_at) VALUES (?,?,?,?,?)";
                     $sql   = $this->conn->prepare($query);
-                    $sql->bind_param('ssss', $data['title'], $slug, $image, $currentDateTime);
+                    $sql->bind_param('sssss', $data['title'], $slug, $image, $data['description'], $currentDateTime);
                     return $sql->execute();
           }
 
@@ -38,13 +38,13 @@ class FacilityManager
                     }
                     $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
                     if (!empty($image)) {
-                              $query = "UPDATE facility SET title = ?, slug=?, `image` = ? WHERE id = ?";
+                              $query = "UPDATE facility SET title = ?, slug=?, `image` = ?, `description` = ? WHERE id = ?";
                               $sql   = $this->conn->prepare($query);
-                              $sql->bind_param('sssi', $data['title'], $slug, $image, $data['id']);
+                              $sql->bind_param('ssssi', $data['title'], $slug, $image, $data['description'], $data['id']);
                     } else {
-                              $query = "UPDATE facility SET title = ? WHERE id = ?";
+                              $query = "UPDATE facility SET title = ?, slug=?,`description` = ? WHERE id = ?";
                               $sql   = $this->conn->prepare($query);
-                              $sql->bind_param('ssi', $data['title'], $slug, $data['id']);
+                              $sql->bind_param('sssi', $data['title'], $slug, $data['description'], $data['id']);
                     }
                     return $sql->execute();
           }

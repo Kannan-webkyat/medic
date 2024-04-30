@@ -44,7 +44,7 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
+                        <a href="http://localhost/medic/index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
                     </li>
                     <li>
                         <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
