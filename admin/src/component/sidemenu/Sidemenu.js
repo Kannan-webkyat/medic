@@ -13,8 +13,8 @@ class Sidemenu {
             let template = `
             <nav class="sidemenu">
                 <div class="header">
-                <div class="logo" style="width:100px; display:flex; align-items:center; justify-content:center;">
-                        <img style="width:100%;" src="http://localhost/medic/assets/images/logo/logo.png" alt="">
+                <div class="logo" style="width:200px; filter :brightness(100%); display:flex; align-items:center; justify-content:center;">
+                        <img style="width:100%;" src="http://localhost/medic/assets/images/logo.png" alt="">
                     </div>
                 </div>
                 <div class="navigation">

@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Edit College</title>
     <!-- main style -->
-    <link rel="stylesheet" href="libs/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="libs/css/style.css" />
+
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -52,94 +54,96 @@
         ?>
         <section class="details">
             <div class="box-section">
-                <form action="" method="POST" enctype="multipart/form-data" id="add-college">
-                    <div class="flex">
+                <div class="form-feild">
+                    <form action="" method="POST" enctype="multipart/form-data" id="add-college">
+                        <div class="flex form-group">
 
-                        <div class="input-holder split-4">
-                            <label for="">Title</label>
-                            <input id="title" value="<?php echo $college['title'] ?>" required name="title" />
-                        </div>
+                            <div class="input-holder split-4">
+                                <label for="">Title</label>
+                                <input id="title" value="<?php echo $college['title'] ?>" required name="title" />
+                            </div>
 
-                        <div class="input-holder split-4">
-                            <label for="">College Images</label>
-                            <input id="images" name="images[]" multiple type="file" accept="image/*" />
-                        </div>
-                        <!-- fetching locations -->
-                        <?php
-                        include './action/location/LocationManager.php';
-                        $locationObj = new LocationManager($conn);
-                        $loactions = $locationObj->list();
-                        ?>
-                        <div class="input-holder split-4">
-                            <label for="">Location</label>
-                            <select name="location" id="location" required>
-                                <option value="">Select Location</option>
-                                <?php foreach ($loactions as $location) : ?>
-                                    <option <?php echo $college['location_id'] === $location['id'] ? 'selected' : '' ?> value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="input-holder" style="width: 100%;">
-                            <label for="">About College</label>
-                            <textarea name="about" class="tiny" id="about"> <?php echo $college['about'] ?></textarea>
-                        </div>
-
-                        <div class="input-holder" style="width: 100%;">
-                            <label for="">Youtube Link</label>
-                            <textarea name="youtube-link" id="youtube-link"><?php echo $college['yt_url'] ?></textarea>
-                        </div>
-
-                        <div class="input-holder split-4">
-                            <label for="">Choose facility </label>
-                            <select name="facility[]" id="facility" multiple required>
-                                <option value="">Select Facility</option>
-                                <?php
-                                include './action/facility/FacilityManager.php';
-                                $facilityManager = new FacilityManager($conn);
-                                $facilities = $facilityManager->list();
-                                foreach ($facilities as $facility) : ?>
-                                    <option <?php echo in_array($facility['id'], array_column($college['facilities'], 'facility_id')) ? 'selected' : '' ?> value="<?php echo $facility['id']; ?>"><?php echo $facility['title']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="input-holder split-4">
-                            <label for="">Pick Courses Provided by the college </label>
-                            <select name="courses[]" id="courses" multiple required>
-                                <option value="">Select Course</option>
-                                <?php
-                                include './action/course/CourseManager.php';
-                                $courseManager = new CourseManager($conn);
-                                $courses = $courseManager->list();
-                                foreach ($courses as $course) : ?>
-                                    <option <?php echo in_array($course['id'], array_column($college['courses'], 'course_id')) ? 'selected' : '' ?> value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <div class="input-holder split-4">
-                            <label for="">is Direct College?</label>
-                            <input id="direct-college" <?php echo $college['direct'] ? 'checked' : '' ?> name="direct-college" type="checkbox" />
-                        </div>
-
-                        <div class="input-holder split-4">
-                            <label for="">Featured </label>
-                            <input id="featured" <?php echo $college['featured'] ? 'checked' : '' ?> name="featured" type="checkbox" />
-                        </div>
-
-                        <div class="input-holder" style="width: 100%;">
-                            <label for="">College Images</label>
+                            <div class="input-holder split-4">
+                                <label for="">College Images</label>
+                                <input id="images" name="images[]" multiple type="file" accept="image/*" />
+                            </div>
+                            <!-- fetching locations -->
                             <?php
-                            foreach ($college['images'] as $image) : ?>
-                                <div class="image-holder">
-                                    <img width="250" src="./action/college/docs/<?php echo $image['image']; ?>" alt="">
-                                </div>
-                            <?php endforeach; ?>
+                            include './action/location/LocationManager.php';
+                            $locationObj = new LocationManager($conn);
+                            $loactions = $locationObj->list();
+                            ?>
+                            <div class="input-holder split-4">
+                                <label for="">Location</label>
+                                <select name="location" id="location" required>
+                                    <option value="">Select Location</option>
+                                    <?php foreach ($loactions as $location) : ?>
+                                        <option <?php echo $college['location_id'] === $location['id'] ? 'selected' : '' ?> value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="input-holder" style="width: 100%;">
+                                <label for="">About College</label>
+                                <textarea name="about" class="tiny" id="about"> <?php echo $college['about'] ?></textarea>
+                            </div>
+
+                            <div class="input-holder" style="width: 100%;">
+                                <label for="">Youtube Link</label>
+                                <textarea name="youtube-link" id="youtube-link"><?php echo $college['yt_url'] ?></textarea>
+                            </div>
+
+                            <div class="input-holder split-4">
+                                <label for="">Choose facility </label>
+                                <select name="facility[]" id="facility" multiple required>
+                                    <option value="">Select Facility</option>
+                                    <?php
+                                    include './action/facility/FacilityManager.php';
+                                    $facilityManager = new FacilityManager($conn);
+                                    $facilities = $facilityManager->list();
+                                    foreach ($facilities as $facility) : ?>
+                                        <option <?php echo in_array($facility['id'], array_column($college['facilities'], 'facility_id')) ? 'selected' : '' ?> value="<?php echo $facility['id']; ?>"><?php echo $facility['title']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="input-holder split-4">
+                                <label for="">Pick Courses Provided by the college </label>
+                                <select name="courses[]" id="courses" multiple required>
+                                    <option value="">Select Course</option>
+                                    <?php
+                                    include './action/course/CourseManager.php';
+                                    $courseManager = new CourseManager($conn);
+                                    $courses = $courseManager->list();
+                                    foreach ($courses as $course) : ?>
+                                        <option <?php echo in_array($course['id'], array_column($college['courses'], 'course_id')) ? 'selected' : '' ?> value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <div class="input-holder split-4">
+                                <label for="">is Direct College?</label>
+                                <input id="direct-college" <?php echo $college['direct'] ? 'checked' : '' ?> name="direct-college" type="checkbox" />
+                            </div>
+
+                            <div class="input-holder split-4">
+                                <label for="">Featured </label>
+                                <input id="featured" <?php echo $college['featured'] ? 'checked' : '' ?> name="featured" type="checkbox" />
+                            </div>
+
+                            <div class="input-holder" style="width: 100%;">
+                                <label for="">College Images</label>
+                                <?php
+                                foreach ($college['images'] as $image) : ?>
+                                    <div class="image-holder">
+                                        <img width="250" src="./action/college/docs/<?php echo $image['image']; ?>" alt="">
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
                         </div>
-                    </div>
-                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-                </form>
+                        <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
@@ -152,6 +156,7 @@
 <!-- tiny editor -->
 <script src="https://cdn.tiny.cloud/1/43aunf39f890dvkf0odugutyswrwof33rftvvs52jrl27zli/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- app js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="module" src="src/app.js"></script>
 
 </html>

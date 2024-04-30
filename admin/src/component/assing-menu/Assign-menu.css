@@ -7,83 +7,58 @@
   background: white;
   z-index: 100;
   padding: 20px;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
 .assign-menu h2 {
   margin: 30px 0px;
 }
-
 .assign-menu .assign-container {
   height: calc(100% - 120px);
   width: 100%;
   overflow-y: scroll;
   padding-bottom: 30px;
 }
-
 .assign-menu .assign-container ul li {
   list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 0px;
-  border-bottom: 1px solid #36363623;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.137254902);
 }
-
 .assign-menu .assign-container ul li input {
   height: 25px;
   width: 25px;
 }
-
 .assign-menu .assign-container ul li span {
   display: block;
   width: calc(100% - 50px);
   font-size: 16px;
   font-weight: 500;
 }
-
 .assign-menu .footer {
-  width: calc(100%);
+  width: 100%;
   height: 60px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
   position: absolute;
   bottom: 0;
   left: 0;
   background: #eee;
   padding: 10px;
 }
-
 .assign-menu .footer button {
-  width: calc(45%);
+  width: 45%;
   height: 100%;
   font-size: 14px;
   font-weight: 500;
   background: none;
   border: 1px solid #2f1c6a;
   color: #2f1c6a;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-
 .assign-menu .footer .assign {
   background: #2f1c6a;
   color: white;
@@ -92,7 +67,5 @@
 
 .assign-menu-active {
   right: 0;
-  -webkit-transition: 0.3s;
   transition: 0.3s;
-}
-/*# sourceMappingURL=Assign-menu.css.map */
+}/*# sourceMappingURL=Assign-menu.css.map */
