@@ -81,33 +81,28 @@
         <div class="container">
             <div class="body-bg">
                 <div class="college-details">
-                    <!-- hero section -->
-                    <div class="college-img">
-                        <div class="left-img">
-                            <img src="http://localhost/medic/assets/images/big-img.svg" alt="college-image">
-                        </div>
-                        <div class="right-img">
-                            <div class="box">
-                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
-                            </div>
-                            <div class="box">
-                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
-                            </div>
-                            <div class="box">
-                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
-                            </div>
-                            <div class="box">
-                                <img src="http://localhost/medic/assets/images/right-img1.svg" alt="college-image">
-                            </div>
-                        </div>
-                    </div>
-
                     <?php
                     include './_class/dbConfig.php';
                     include './action/collegeDetails.php';
                     $conn = (new dbConfig)->getConnection();
-                    $collegeDetails = fetchCollegeDetails($conn, $_GET['id']);
+                    $slug = $_GET['id'];
+                    $collegeDetails = fetchCollegeDetails($conn, $slug);
+                    $collegeImagePath = "http://localhost/medic/admin/action/college/docs/";
                     ?>
+                    <!-- hero section -->
+                    <div class="college-img">
+                        <div class="left-img">
+                            <img src="<?= $collegeImagePath . $collegeDetails['images'][0]['image'] ?>" alt="college-image">
+                        </div>
+                        <div class="right-img">
+                            <?php foreach ($collegeDetails['images'] as $index => $image) : ?>
+                                <?php if ($index == 0) continue; ?>
+                                <div class="box">
+                                    <img src="<?= $collegeImagePath . $image['image'] ?>" alt="college-image">
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
 
                     <!-- content section -->
                     <div class="info">
@@ -115,8 +110,8 @@
                             <!-- details -->
                             <div class="details">
                                 <div class="about">
-                                    <h2><?php echo $collegeDetails['title'] ?></h2>
-                                    <p><?php echo html_entity_decode($collegeDetails['about']) ?></p>
+                                    <h2><?= $collegeDetails['title'] ?></h2>
+                                    <p><?= html_entity_decode($collegeDetails['about']) ?></p>
                                 </div>
                                 <hr>
 
@@ -182,79 +177,31 @@
                             <!-- courses -->
                             <hr>
                             <div id="courses">
-                                <h3>Courses provided by Christian Medical College.</h3>
+                                <h3>Courses provided by <?= $collegeDetails['title']; ?>.</h3>
                                 <div class="card-wrapper ">
-                                    <a href="http://localhost/medic/course-details" class="card">
-                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
-                                        <div class="content">
-                                            <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
-                                            <div class="sub-content">
-                                                <div class="years">
-                                                    <h5>5 years </h5>
-                                                </div>
-                                                <div class="circle"></div>
-                                                <div class="approve">
-                                                    <h5>NEET</h5>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </a>
-
-                                    <a href="http://localhost/medic/course-details" class="card">
-                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
-                                        <div class="content">
-                                            <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
-                                            <div class="sub-content">
-                                                <div class="years">
-                                                    <h5>5 years </h5>
-                                                </div>
-                                                <div class="circle"></div>
-                                                <div class="approve">
-                                                    <h5>NEET</h5>
+                                    <!-- college providing courses -->
+                                    <?php
+                                    include './action/coursesUnderCollege.php';
+                                    $coursesUnderCollege = fetchCollegeCourses($conn, $slug);
+                                    ?>
+                                    <?php foreach ($coursesUnderCollege as $course) : ?>
+                                        <a href="http://localhost/medic/course-details/<?= $course['slug'] ?>" class="card">
+                                            <img src="http://localhost/medic/admin/action/course/docs/<?= $course['banner_image'] ?>" alt="">
+                                            <div class="content">
+                                                <h4><?php echo $course['title']; ?></h4>
+                                                <div class="sub-content">
+                                                    <div class="years">
+                                                        <h5><?php echo $course['duration']; ?></h5>
+                                                    </div>
+                                                    <div class="circle"></div>
+                                                    <div class="approve">
+                                                        <h5>NEET</h5>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                        </div>
-                                    </a>
-
-                                    <a href="http://localhost/medic/course-details" class="card">
-                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
-                                        <div class="content">
-                                            <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
-                                            <div class="sub-content">
-                                                <div class="years">
-                                                    <h5>5 years </h5>
-                                                </div>
-                                                <div class="circle"></div>
-                                                <div class="approve">
-                                                    <h5>NEET</h5>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </a>
-
-                                    <a href="http://localhost/medic/course-details" class="card">
-                                        <img src="http://localhost/medic/assets/images/course-img.svg" alt="">
-                                        <div class="content">
-                                            <h4>Bachelor of Medicine & Bachelor of Surgery(MBBS)</h4>
-                                            <div class="sub-content">
-                                                <div class="years">
-                                                    <h5>5 years </h5>
-                                                </div>
-                                                <div class="circle"></div>
-                                                <div class="approve">
-                                                    <h5>NEET</h5>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </a>
+                                        </a>
+                                    <?php endforeach; ?>
                                 </div>
-
-
-
                             </div>
                             <!-- end of courses -->
                             <hr>

@@ -174,11 +174,12 @@
                             <li><a href="">BCA</a></li>
                             <li><a href="">Diploma in Radiology</a></li>
                             <li><a href="">Engineering</a></li>
-                            <li><a href="">B Pharm </a></li>
+                            <li><a href="">B Pharm</a></li>
                             <li><a href="">Diploma in Radiology</a></li>
                             <li><a href="">Occupational Therapy</a></li>
                         </ul>
                     </div>
+
                     <!-- college section -->
                     <div id="colleges">
                         <div class="heading">
@@ -218,7 +219,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <!-- end of 2nd card  -->
+                            <!-- end of 2nd card -->
 
                             <!-- 3rd card -->
                             <a href="college-details" class="cards">
@@ -253,25 +254,7 @@
                                 </div>
                             </a>
                             <!-- end of 4th card -->
-
-                            <!-- 5th card -->
-                            <!-- <a href="#" class="cards">
-                            <img src="http://localhost/medic/assets/images/card5.svg" alt="Christian Medical College">
-                            <div class="content">
-                                <h4>Christian Medical College</h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                                </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5>MCI, UGC Approved</h5>
-                                </div>
-                            </div>
-                        </a> -->
-                            <!-- end of 5th card -->
                         </div>
-
                         <!-- 2nd college section -->
                         <div class="heading common ">
                             <h2>Top-Ranked Engineering Colleges</h2>

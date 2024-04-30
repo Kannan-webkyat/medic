@@ -121,7 +121,7 @@
                 <div class="card-wrapper">
                     <?php foreach ($colleges as $college) : ?>
                         <a href="college-details/<?php echo $college['slug']; ?>" class="cards">
-                            <img src="http://localhost/medic/assets/images/card-img.svg" alt="<?php echo $college['title']; ?>">
+                            <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
                             <div class="content">
                                 <h4><?php echo $college['title']; ?></h4>
                                 <div class="location">
