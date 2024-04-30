@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-
 <body>
     <main id="swup" class="transition-fade">
         <div data-swup-name="home"></div>
+        <?php
+        include './_class/dbConfig.php';
+        $conn = (new dbConfig)->getConnection();
+        ?>
         <!-- loader -->
         <div class="loader-container">
             <div class="loader">
@@ -73,7 +76,6 @@
         </header>
         <!-- end of header -->
 
-
         <!-- main section -->
         <div class="container">
             <div class="body-bg">
@@ -84,7 +86,6 @@
                             <div class="icon">
                                 <img src="http://localhost/medic/assets/icons/search-icon.png" alt="">
                             </div>
-
                             <input type="text" placeholder="Search College or  Course ...">
                         </div>
                         <button class="search-cta">search</button>
@@ -142,54 +143,25 @@
     </div> -->
                 <!-- end of collections -->
                 <!-- locations -->
+                <?php
+                include './action/allLocations.php';
+                $locations = fetchAllLocations($conn);
+                ?>
                 <div id="location">
                     <h2>Explore by Locations</h2>
                     <div class="destination">
-                        <a href="#" class="location-image">
-                            <img class="thumbnail" src="http://localhost/medic/assets/images/location-img.svg" alt="locattion img">
-                            <div class="no-of-college">
-                                <h4>15 Colleges</h4>
-
-                            </div>
-                            <div class="place">
-                                <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
-                                <h3>Bengaluru</h3>
-                            </div>
-                        </a>
-                        <a href="#" class="location-image">
-                            <img class="thumbnail" src="http://localhost/medic/assets/images/location-img.svg" alt="locattion img">
-                            <div class="no-of-college">
-                                <h4>15 Colleges</h4>
-
-                            </div>
-                            <div class="place">
-                                <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
-                                <h3>Bengaluru</h3>
-                            </div>
-                        </a>
-                        <a href="#" class="location-image">
-                            <img class="thumbnail" src="http://localhost/medic/assets/images/location-img.svg" alt="locattion img">
-                            <div class="no-of-college">
-                                <h4>15 Colleges</h4>
-
-                            </div>
-                            <div class="place">
-                                <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
-                                <h3>Bengaluru</h3>
-                            </div>
-                        </a>
-                        <a href="#" class="location-image">
-                            <img class="thumbnail" src="http://localhost/medic/assets/images/location-img.svg" alt="locattion img">
-                            <div class="no-of-college">
-                                <h4>15 Colleges</h4>
-
-                            </div>
-                            <div class="place">
-                                <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
-                                <h3>Bengaluru</h3>
-                            </div>
-                        </a>
-
+                        <?php foreach ($locations as $location) : ?>
+                            <a href="#" class="location-image">
+                                <img class="thumbnail" src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image'] ?>" alt="location img">
+                                <div class="no-of-college">
+                                    <h4><?php echo $location['total_colleges']; ?> Colleges</h4>
+                                </div>
+                                <div class="place">
+                                    <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
+                                    <h3><?php echo $location['title']; ?></h3>
+                                </div>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
                 <!-- end of locations -->
@@ -202,11 +174,12 @@
                             <li><a href="">BCA</a></li>
                             <li><a href="">Diploma in Radiology</a></li>
                             <li><a href="">Engineering</a></li>
-                            <li><a href="">B Pharm </a></li>
+                            <li><a href="">B Pharm</a></li>
                             <li><a href="">Diploma in Radiology</a></li>
                             <li><a href="">Occupational Therapy</a></li>
                         </ul>
                     </div>
+
                     <!-- college section -->
                     <div id="colleges">
                         <div class="heading">
@@ -246,7 +219,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <!-- end of 2nd card  -->
+                            <!-- end of 2nd card -->
 
                             <!-- 3rd card -->
                             <a href="college-details" class="cards">
@@ -281,25 +254,7 @@
                                 </div>
                             </a>
                             <!-- end of 4th card -->
-
-                            <!-- 5th card -->
-                            <!-- <a href="#" class="cards">
-                            <img src="http://localhost/medic/assets/images/card5.svg" alt="Christian Medical College">
-                            <div class="content">
-                                <h4>Christian Medical College</h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5>Yelahanka, Bengaluru, Karnataka</h5>
-                                </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5>MCI, UGC Approved</h5>
-                                </div>
-                            </div>
-                        </a> -->
-                            <!-- end of 5th card -->
                         </div>
-
                         <!-- 2nd college section -->
                         <div class="heading common ">
                             <h2>Top-Ranked Engineering Colleges</h2>

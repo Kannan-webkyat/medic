@@ -41,10 +41,16 @@
                             </div>
                             <!-- end of facility icon  -->
 
+                        <!-- description -->
+                        <div class="input-holder split-4">
+                            <label for="">Description</label>
+                            <textarea id="description" name="description"></textarea>
                         </div>
-                        <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-                    </form>
-                </div>
+                        <!-- end of description -->
+
+                    </div>
+                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                </form>
             </div>
         </section>
 
@@ -55,12 +61,10 @@
         $conn = (new dbConfig)->getConnection();
         $crud = new FacilityManager($conn);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $title = filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS);
-            $facilityIcon = $_FILES['facility-icon'];
-
             $data = [
-                'title' => $title,
-                'facilityIcon' => $facilityIcon,
+                'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+                'facilityIcon' => $_FILES['facility-icon'],
+                'description' => filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS),
             ];
 
             if ($crud->add($data)) {

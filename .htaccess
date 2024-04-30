@@ -4,10 +4,10 @@ RewriteBase /medic/
 # Exclude /medic/admin from rewriting
 RewriteRule ^admin($|/) - [L]
 
-# Rewrite URLs from /course-details/1 to /course-details.php?id=1
+# Rewrite URLs from /course-details/123 to /course-details.php?id=123
 RewriteRule ^course-details/([^/]+)$ course-details.php?id=$1 [QSA,NC,L]
 
-# Rewrite URLs from /college-details/1 to /college-details.php?id=1
+# Rewrite URLs from /college-details/123 to /college-details.php?id=123
 RewriteRule ^college-details/([^/]+)$ college-details.php?id=$1 [QSA,NC,L]
 
 # Rewrite URLs to add .php extension

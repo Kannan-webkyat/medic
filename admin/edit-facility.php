@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Edit Facility</title>
     <!-- main style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="libs/css/style.css" />
-    
+    <link rel="stylesheet" href="libs/css/style.css">
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -38,7 +36,8 @@
             $data = [
                 'id' => $id,
                 'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
-                'image' => $_FILES['facility-icon'] ?? []
+                'image' => $_FILES['facility-icon'] ?? [],
+                'description' => filter_var($_POST['description'], FILTER_SANITIZE_SPECIAL_CHARS)
             ];
 
             if ($crud->edit($data)) {
@@ -61,22 +60,28 @@
                                 <input id="title" name="title" value="<?php echo $facility['title']; ?>" />
                             </div>
 
-                            <!-- facility icon -->
-                            <div class="input-holder split-4">
-                                <label for="">Facility Icon</label>
-                                <input id="facility-icon" type="file" name="facility-icon" />
-                            </div>
-                            <!-- end of facility icon  -->
-
-                            <!-- Display current image -->
-                            <div class="input-holder split-4">
-                                <label for="">Current Icon</label>
-                                <img width="250" src="./action/facility/docs/<?php echo $facility['image']; ?>" alt="Current Image">
-                            </div>
+                        <!-- facility icon -->
+                        <div class="input-holder split-4">
+                            <label for="">Facility Icon</label>
+                            <input id="facility-icon" type="file" name="facility-icon" />
                         </div>
-                        <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-                    </form>
-                </div>
+                        <!-- end of facility icon  -->
+
+                        <!-- description -->
+                        <div class="input-holder split-4">
+                            <label for="">Description</label>
+                            <textarea id="description" name="description"><?php echo $facility['description']; ?></textarea>
+                        </div>
+                        <!-- end of description -->
+
+                        <!-- Display current image -->
+                        <div class="input-holder split-4">
+                            <label for="">Current Icon</label>
+                            <img width="250" src="./action/facility/docs/<?php echo $facility['image']; ?>" alt="Current Image">
+                        </div>
+                    </div>
+                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                </form>
             </div>
         </section>
     </main>
