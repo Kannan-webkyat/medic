@@ -1,36 +1,84 @@
 <?php
-$courseFilter = $_GET['courseFilter'] ?? ''; // by default pass empty (in all coures)
-$locationFilter = $_GET['locationFilter'] ?? ''; // pass empty for all location
-
-function fetchAllColleges($conn, $courseFilter, $locationFilter)
+function fetchAllColleges($conn, $filter1, $filter2)
 {
+          $courseFilter = '';
+          $locationFilter = '';
+
+          // Function to parse filter
+          function parseFilter($filter)
+          {
+                    if (!empty($filter)) {
+                              list($type, $value) = explode(':', $filter);
+                              return [$type, $value];
+                    }
+                    return [null, null];
+          }
+
+          // Parse both filters
+          list($type1, $value1) = parseFilter($filter1);
+          list($type2, $value2) = parseFilter($filter2);
+
+          // Assign filters based on type
+          if ($type1 === 'location') {
+                    $locationFilter = $value1;
+          } elseif ($type1 === 'course') {
+                    $courseFilter = $value1;
+          }
+
+          if ($type2 === 'location') {
+                    $locationFilter = $value2;
+          } elseif ($type2 === 'course') {
+                    $courseFilter = $value2;
+          }
+
           $where = "";
-          $params = array();
+          $params = [];
+          $types = "";
+
+          // Helper function to prepare and execute SQL
+          function prepareAndExecute($conn, $sql, $type, $param)
+          {
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bind_param($type, $param);
+                    $stmt->execute();
+                    $result = $stmt->get_result()->fetch_assoc();
+                    if ($result) {
+                              return $result['id'];
+                    }
+          }
+
           if (!empty($courseFilter)) {
-                    $where .= !empty($where) ? " AND c.course_id = ?" : " WHERE c.course_id = ?";
+                    $courseFilter = prepareAndExecute($conn, "SELECT id FROM course WHERE slug = ?", 's', $courseFilter);
+                    $where .= !empty($where) ? " AND cc.course_id = ?" : " WHERE cc.course_id = ?";
                     $params[] = $courseFilter;
+                    $types .= 'i';
           }
 
           if (!empty($locationFilter)) {
-                    $where .= !empty($where) ? " AND c.loaction_id = ?" : " WHERE c.location_id = ?";
+                    $locationFilter = prepareAndExecute($conn, "SELECT id FROM location WHERE slug = ?", 's', $locationFilter);
+                    $where .= !empty($where) ? " AND c.location_id = ?" : " WHERE c.location_id = ?";
                     $params[] = $locationFilter;
+                    $types .= 'i';
           }
 
-          $query = "SELECT c.*,l.title AS loaction FROM college c JOIN location l ON c.location_id = l.id $where";
-          $result = $conn->prepare($query);
+          $query = "SELECT DISTINCT c.*, l.title AS `location` 
+                    FROM college c 
+                    JOIN `location` l ON c.location_id = l.id 
+                    JOIN college_courses cc ON c.id = cc.college_id
+                    $where";
+          $stmt = $conn->prepare($query);
           if (!empty($params)) {
-                    $result->bind_param(str_repeat('i', count($params)), ...$params);
+                    $stmt->bind_param($types, ...$params);
           }
-          $result->execute();
-          $data = $result->get_result()->fetch_all(MYSQLI_ASSOC);
+          $stmt->execute();
+          $data = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
-          //  fetch all college images
+          // Fetch all college images
           foreach ($data as &$college) {
                     $collegeImages = $conn->prepare("SELECT image FROM college_images WHERE college_id = ?");
                     $collegeImages->bind_param('i', $college['id']);
                     $collegeImages->execute();
-                    $collegeImages = $collegeImages->get_result();
-                    $college['images'] = $collegeImages->fetch_all(MYSQLI_ASSOC);
+                    $college['images'] = $collegeImages->get_result()->fetch_all(MYSQLI_ASSOC);
           }
 
           return $data;
