@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Add Category</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="libs/css/style.css" />
     <!-- main style -->
     <link rel="stylesheet" href="./libs/css/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -20,20 +22,22 @@
 
         <section class="details">
             <div class="box-section">
-                <form action="" method="POST" enctype="multipart/form-data" id="add-category">
-                    <div class="flex">
+                <div class="form-feild">
+                    <form action="" method="POST" enctype="multipart/form-data" id="add-category">
+                        <div class="flex form-group">
 
-                        <div class="input-holder split-4">
-                            <label for="">Title</label>
-                            <input id="title" required name="title" />
+                            <div class="input-holder split-4">
+                                <label for="">Title</label>
+                                <input id="title" required name="title" />
+                            </div>
+                            <div class="input-holder split-4">
+                                <label for="">Category Image</label>
+                                <input id="category-image" required name="category-image" type="file" />
+                            </div>
                         </div>
-                        <div class="input-holder split-4">
-                            <label for="">Category Image</label>
-                            <input id="category-image" required name="category-image" type="file" />
-                        </div>
-                    </div>
-                    <button id="save_btn" type="submit">Create &nbsp; <img src="./assets/icons/arrow-right.png" alt=""></button>
-                </form>
+                        <button id="save_btn" type="submit">Create &nbsp; <img src="./assets/icons/arrow-right.png" alt=""></button>
+                    </form>
+                </div>
             </div>
         </section>
 

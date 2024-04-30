@@ -154,6 +154,18 @@ const loader = new Loader();
 // }
 
 function initTiny() {
+    // Remove all editors bound to divs
+
+    tinymce.remove("div");
+
+    // Remove all editors bound to textareas
+    tinymce.remove("textarea");
+
+    // Remove all editors
+    tinymce.remove();
+
+    // Remove specific instance by id
+    tinymce.remove("#id");
     tinymce.init({
         selector: "textarea.tiny",
         plugins:
@@ -206,6 +218,7 @@ const namespaceManager = () => {
                 sidemenu.active("course");
                 header.update("course", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
+                initTiny();
             }
             break;
         case "list-college":
@@ -219,17 +232,18 @@ const namespaceManager = () => {
         case "add-college":
             {
                 loader.load();
-                sidemenu.active("college");
-                header.update("college", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("colleges");
+                header.update("colleges", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
+                $("select").select2();
             }
             break;
         case "edit-college":
             {
                 loader.load();
-                sidemenu.active("college");
-                header.update("college", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("colleges");
+                header.update("colleges", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
             }
             break;

@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>Edit Course</title>
     <!-- main style -->
-    <link rel="stylesheet" href="libs/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="libs/css/style.css" />
+
 
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -55,87 +57,89 @@
                     }
                 }
                 ?>
-                <form action="" method="POST" enctype="multipart/form-data" id="edit-course">
-                    <div class="flex">
-                        <!-- title -->
-                        <div class="input-holder split-4">
-                            <label for="">Title</label>
-                            <input id="title" name="title" value="<?php echo $course['title']; ?>" />
+                <div class="form-feild">
+                    <form action="" method="POST" enctype="multipart/form-data" id="edit-course">
+                        <div class="flex form-group">
+                            <!-- title -->
+                            <div class="input-holder split-4">
+                                <label for="">Title</label>
+                                <input id="title" name="title" value="<?php echo $course['title']; ?>" />
+                            </div>
+
+                            <!-- main banner image -->
+                            <div class="input-holder split-4">
+                                <label for="">Main Banner Image</label>
+                                <input id="banner-images" name="image" type="file" />
+                            </div>
+                            <!-- end of main banner image -->
+
+                            <?php
+                            include './action/course-category/courseCategoryManager.php';
+                            $categoryObj = new CouresCategoryManager($conn);
+                            $categories = $categoryObj->list();
+                            ?>
+                            <div class="input-holder split-4">
+                                <label for="">Course Category</label>
+                                <select name="category" id="category" required>
+                                    <option value="">Select category</option>
+                                    <?php foreach ($categories as $category) : ?>
+                                        <option <?php echo $course['category_id'] === $category['id'] ? "selected" : "" ?> value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+
+                            <!-- about course -->
+                            <div class="input-holder" style="width: 100%;">
+                                <label for="">About Course</label>
+                                <textarea name="about" class="tiny" id="about-course"><?php echo $course['about']; ?></textarea>
+                            </div>
+                            <!--end of about course -->
+
+                            <!-- duration -->
+                            <div class="input-holder split-4">
+                                <label for="">Duration</label>
+                                <input type="text" id="duration" name="duration" value="<?php echo $course['duration']; ?>" />
+                            </div>
+                            <!-- end of duration -->
+
+                            <!-- duration -->
+                            <div class="input-holder split-4" style="width: 100%;">
+                                <label for=""> Elegibitliy</label>
+                                <input type="text" id="elegibitliy" name="elegibitliy" value="<?php echo $course['eligibility']; ?>" />
+                            </div>
+                            <!-- end of duration -->
+
+
+                            <!-- Minimum age -->
+                            <div class="input-holder split-4">
+                                <label for="">Minimum Age</label>
+                                <input type="text" id="minimum-age" name="minimum-age" value="<?php echo $course['minimum_age']; ?>" />
+                            </div>
+                            <!-- end of Minimum age -->
+
+                            <!-- Minimum Percentage -->
+                            <div class="input-holder split-4">
+                                <label for="">Minimum Percentage</label>
+                                <input type="text" id="minimum-percentage" name="minimum-percentage" value="<?php echo $course['minimum_percentage']; ?>" />
+                            </div>
+                            <!-- end of Minimum Percentage -->
+
+                            <!-- Job Opertunity -->
+                            <div class="input-holder split-4">
+                                <label for="">Job Opertunity </label>
+                                <input type="text" id="job-opertunity " name="job-opertunity" value="<?php echo $course['job_opportunity']; ?>" />
+                            </div>
+
+                            <!-- Display current banner image -->
+                            <div class="input-holder split-4">
+                                <label for="">Current Banner Image</label>
+                                <img width="250" src="./action/course/docs/<?php echo $course['banner_image']; ?>" alt="Current Banner Image">
+                            </div>
+
                         </div>
-
-                        <!-- main banner image -->
-                        <div class="input-holder split-4">
-                            <label for="">Main Banner Image</label>
-                            <input id="banner-images" name="image" type="file" />
-                        </div>
-                        <!-- end of main banner image -->
-
-                        <?php
-                        include './action/course-category/courseCategoryManager.php';
-                        $categoryObj = new CouresCategoryManager($conn);
-                        $categories = $categoryObj->list();
-                        ?>
-                        <div class="input-holder split-4">
-                            <label for="">Course Category</label>
-                            <select name="category" id="category" required>
-                                <option value="">Select category</option>
-                                <?php foreach ($categories as $category) : ?>
-                                    <option <?php echo $course['category_id'] === $category['id'] ? "selected" : "" ?> value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-
-                        <!-- about course -->
-                        <div class="input-holder" style="width: 100%;">
-                            <label for="">About Course</label>
-                            <textarea name="about" class="tiny" id="about-course"><?php echo $course['about']; ?></textarea>
-                        </div>
-                        <!--end of about course -->
-
-                        <!-- duration -->
-                        <div class="input-holder split-4">
-                            <label for="">Duration</label>
-                            <input type="text" id="duration" name="duration" value="<?php echo $course['duration']; ?>" />
-                        </div>
-                        <!-- end of duration -->
-
-                        <!-- duration -->
-                        <div class="input-holder split-4" style="width: 100%;">
-                            <label for=""> Elegibitliy</label>
-                            <input type="text" id="elegibitliy" name="elegibitliy" value="<?php echo $course['eligibility']; ?>" />
-                        </div>
-                        <!-- end of duration -->
-
-
-                        <!-- Minimum age -->
-                        <div class="input-holder split-4">
-                            <label for="">Minimum Age</label>
-                            <input type="text" id="minimum-age" name="minimum-age" value="<?php echo $course['minimum_age']; ?>" />
-                        </div>
-                        <!-- end of Minimum age -->
-
-                        <!-- Minimum Percentage -->
-                        <div class="input-holder split-4">
-                            <label for="">Minimum Percentage</label>
-                            <input type="text" id="minimum-percentage" name="minimum-percentage" value="<?php echo $course['minimum_percentage']; ?>" />
-                        </div>
-                        <!-- end of Minimum Percentage -->
-
-                        <!-- Job Opertunity -->
-                        <div class="input-holder split-4">
-                            <label for="">Job Opertunity </label>
-                            <input type="text" id="job-opertunity " name="job-opertunity" value="<?php echo $course['job_opportunity']; ?>" />
-                        </div>
-
-                        <!-- Display current banner image -->
-                        <div class="input-holder split-4">
-                            <label for="">Current Banner Image</label>
-                            <img width="250" src="./action/course/docs/<?php echo $course['banner_image']; ?>" alt="Current Banner Image">
-                        </div>
-
-                    </div>
-                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-                </form>
+                        <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
@@ -147,6 +151,7 @@
 <!-- tiny editor -->
 <script src="https://cdn.tiny.cloud/1/43aunf39f890dvkf0odugutyswrwof33rftvvs52jrl27zli/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <!-- app js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="module" src="src/app.js"></script>
 
 </html>

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>All Category</title>
     <!-- main style -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./libs/css/style.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
 </head>
@@ -53,13 +54,13 @@
                             <tr>
                                 <td scope="col"><?php echo $index + 1 ?></td>
                                 <td scope="col"><?php echo $data['title'] ?></td>
-                                <td>
+                                <td class="button-group">
                                     <a href="edit-category.php?id=<?php echo $data['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
                                     <form action="" method="POST">
                                         <input type="text" name="id" value="<?php echo $data['id'] ?>" hidden>
-                                        <button type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this category?');">
+                                        <a type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this category?');">
                                             <ion-icon name="trash-outline"></ion-icon>Delete
-                                        </button>
+                                        </a>
                                     </form>
                                 </td>
                             </tr>
@@ -92,6 +93,7 @@
 <!-- app js -->
 <!-- tiny editor -->
 <script src="https://cdn.tiny.cloud/1/43aunf39f890dvkf0odugutyswrwof33rftvvs52jrl27zli/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="module" src="src/app.js"></script>
 
 </html>
