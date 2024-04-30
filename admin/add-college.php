@@ -62,12 +62,11 @@
             <div class="box-section">
                 <form action="" method="POST" enctype="multipart/form-data" id="add-college">
                     <div class="flex">
-
                         <div class="input-holder split-4">
                             <label for="">Title</label>
                             <input id="title" required name="title" />
-
                         </div>
+
                         <div class="input-holder split-4">
                             <label for="">College Images</label>
                             <input id="images" required name="images[]" multiple type="file" accept="image/*" />

@@ -172,7 +172,6 @@ function initTiny() {
 }
 
 // hideloader
-
 const swup = new Swup({
     plugins: [new SwupProgressPlugin()],
 });
@@ -219,8 +218,8 @@ const namespaceManager = () => {
         case "add-college":
             {
                 loader.load();
-                sidemenu.active("college");
-                header.update("college", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("colleges");
+                header.update("colleges", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
             }
@@ -228,8 +227,8 @@ const namespaceManager = () => {
         case "edit-college":
             {
                 loader.load();
-                sidemenu.active("college");
-                header.update("college", sidemenu.current().find("i")[0].outerHTML);
+                sidemenu.active("colleges");
+                header.update("colleges", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
             }
             break;
