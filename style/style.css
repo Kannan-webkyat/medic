@@ -359,6 +359,45 @@ p {
   border: 1px solid rgba(28, 99, 242, 0.3411764706);
 }
 
+.body-bg .com-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.body-bg .com-table table tr {
+  border-bottom: 1px solid #a6a6a6;
+}
+.body-bg .com-table table td,
+.body-bg .com-table table th {
+  padding: 8px;
+  text-align: left;
+  color: #1f2a37;
+  font-size: 15px;
+}
+.body-bg .com-table table th {
+  background-color: #eaf1ff;
+}
+.body-bg .com-table table th p {
+  font-weight: 600;
+}
+.body-bg .com-ul ul li {
+  list-style: none;
+  position: relative;
+  padding: 5px 0px 5px 15px;
+  font-size: 15px;
+  color: #1f2a37;
+  line-height: 180%;
+}
+.body-bg .com-ul ul li::after {
+  width: 7px;
+  height: 7px;
+  border-radius: 50px;
+  background: #faca15;
+  position: absolute;
+  left: 0;
+  top: 14px;
+  content: "";
+}
+
 #fixed-menu {
   z-index: 5000;
   background-color: white;

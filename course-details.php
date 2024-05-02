@@ -88,7 +88,9 @@
                 <div class="content">
                     <h2><?php echo $courseData['title'] ?></h2>
                     <img class="des-img" src="http://localhost/medic/admin/action/course/docs/<?php echo $courseData['banner_image'] ?>" alt="">
-                    <p class="course-content"><?php echo html_entity_decode($courseData['about']) ?></p>
+                    <div class="sub-content com-table com-ul">
+                        <p class="course-content"><?php echo html_entity_decode($courseData['about']) ?></p>
+                    </div>
                     <hr>
 
                     <div class="details">

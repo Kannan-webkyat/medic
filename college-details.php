@@ -80,7 +80,7 @@
         <!-- main section -->
         <div class="container">
             <div class="body-bg">
-                <div class="college-details">
+                <div class="college-details com-table com-ul">
                     <?php
                     include './_class/dbConfig.php';
                     include './action/collegeDetails.php';

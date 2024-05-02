@@ -480,6 +480,78 @@ p {
 // COMPONENTS
 // header
 
+// Define styles for the table
+.body-bg {
+.com-table{
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    // Define styles for table rows
+    tr {
+      border-bottom: 1px solid #a6a6a6;
+    }
+
+    // Define styles for table cells
+    td,
+    th {
+      padding: 8px;
+      text-align: left;
+      color: $fontcolor;
+      font-size: 15px;
+    }
+
+    // Define styles for table header cells
+    th {
+      background-color: #eaf1ff;
+
+      p {
+        font-weight: 600;
+      }
+
+    }
+  }
+}
+.com-ul{
+ // for points
+ ul {
+
+
+  li {
+    list-style: none;
+    position: relative;
+    padding: 5px 0px 5px 15px;
+    font-size: 15px;
+    color: $fontcolor;
+    line-height: 180%;
+
+
+
+    &::after {
+      width: 7px;
+      height: 7px;
+      border-radius: 50px;
+      background: #faca15;
+      position: absolute;
+      left: 0;
+      top: 14px;
+      content: '';
+    }
+
+  }
+}
+
+}
+
+
+ 
+}
+
+
+
+
+
+
 // fixed menu
 
 #fixed-menu {

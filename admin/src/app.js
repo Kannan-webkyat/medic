@@ -245,6 +245,7 @@ const namespaceManager = () => {
                 sidemenu.active("colleges");
                 header.update("colleges", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
+                initTiny();
             }
             break;
         case "list-category":
@@ -270,6 +271,8 @@ const namespaceManager = () => {
                 sidemenu.active("category");
                 header.update("category", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
+                initTiny();
+                
             }
             break;
         case "list-location":
@@ -320,6 +323,7 @@ const namespaceManager = () => {
             sidemenu.active("facility");
             header.update("facility", sidemenu.current().find("i")[0].outerHTML);
             loader.stop();
+            initTiny();
         }
         case "list-course-collection":
             {
@@ -344,6 +348,8 @@ const namespaceManager = () => {
                 sidemenu.active("course-collection");
                 header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
+                initTiny();
+
             }
             break;
         case "list-college-collection":
@@ -369,6 +375,8 @@ const namespaceManager = () => {
                 sidemenu.active("college-collection");
                 header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
+                initTiny();
+
             }
             break;
     }
