@@ -49,12 +49,12 @@
                         $facilities = $crud->list();
                         ?>
 
-                        <?php foreach ($facilities as $facility) : ?>
+                        <?php foreach ($facilities as $index => $facility) : ?>
                             <tr>
-                                <td><?php echo $facility['id']; ?></td>
-                                <td><?php echo $facility['title']; ?></td>
+                                <td><?= $index + 1 ?></td>
+                                <td><?= $facility['title']; ?></td>
                                 <td class="button-group">
-                                    <a href="edit-facility.php?id=<?php echo $facility['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
+                                    <a href="edit-facility.php?id=<?= $facility['id']; ?>" class="edit_button"><ion-icon name="create-outline"></ion-icon>Edit</a>
                                     <form action="" method="POST">
                                         <input type="text" name="id" value="<?php echo $facility['id'] ?>" hidden>
                                         <a type="submit" name="delete" onclick="return confirm('Are you sure you want to delete this category?');">

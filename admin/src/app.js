@@ -184,7 +184,6 @@ function initTiny() {
 }
 
 // hideloader
-
 const swup = new Swup({
     plugins: [new SwupProgressPlugin()],
 });

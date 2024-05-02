@@ -99,42 +99,54 @@
                         <h2>Explore the Leading Nursing Colleges</h2>
                     </div>
                     <div class="filter">
-                        <div class="input select-holder">
-                            <select id="filter-field" name="course" required>
-                                <option value=" ">Location</option>
-                            </select>
-                        </div>
-                        <div class="input select-holder ">
-                            <select class="activer" id="filter-field" name="course" required>
-                                <?php foreach ($locations as $location) : ?>
-                                    <option value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
-                                <?php endforeach; ?>
-                                <!-- Add more approval as needed -->
-                            </select>
-                        </div>
+                        <form action="" method="POST">
+                            <div class="input select-holder">
+                                <select id="filter-field" name="type" required>
+                                    <option value="location">Location</option>
+                                    <option value="course">Course</option>
+                                </select>
+                            </div>
+                            <div class="input select-holder ">
+                                <select class="activer" id="filter-field" name="type-data" required>
+                                    <option value="">Select</option>
+                                    <?php foreach ($locations as $location) : ?>
+                                        <option value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
+                                    <?php endforeach; ?>
+                                    <!-- Add more approval as needed -->
+                                </select>
+                            </div>
+                            <button type="submit">Search</button>
+                        </form>
                     </div>
                 </div>
                 <?php
                 include './action/allColleges.php';
-                $colleges = fetchAllColleges($conn, '', '');
+                $filter1 = isset($_GET['filter1']) ? $_GET['filter1'] : '';
+                $filter2 = isset($_GET['filter2']) ? $_GET['filter2'] : '';
+                $courseFilter = '';
+                $colleges = fetchAllColleges($conn, $filter1, $filter2);
                 ?>
                 <div class="card-wrapper">
-                    <?php foreach ($colleges as $college) : ?>
-                        <a href="college-details/<?php echo $college['slug']; ?>" class="cards">
-                            <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
-                            <div class="content">
-                                <h4><?php echo $college['title']; ?></h4>
-                                <div class="location">
-                                    <img src="http://localhost/medic/assets/icons/location.png" alt="">
-                                    <h5><?php echo $college['loaction']; ?></h5>
+                    <?php if (count($colleges)) : ?>
+                        <?php foreach ($colleges as $college) : ?>
+                            <a href="college-details/<?= $college['slug']; ?>" class="cards">
+                                <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
+                                <div class="content">
+                                    <h4><?php echo $college['title']; ?></h4>
+                                    <div class="location">
+                                        <img src="http://localhost/medic/assets/icons/location.png" alt="">
+                                        <h5><?php echo $college['location']; ?></h5>
+                                    </div>
+                                    <div class="approval">
+                                        <img src="http://localhost/medic/assets/icons/approval.png" alt="">
+                                        <h5></h5>
+                                    </div>
                                 </div>
-                                <div class="approval">
-                                    <img src="http://localhost/medic/assets/icons/approval.png" alt="">
-                                    <h5></h5>
-                                </div>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
+                            </a>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <h1>No Colleges Found.</h1>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

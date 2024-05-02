@@ -66,7 +66,6 @@
                         <li><a href="http://localhost/medic/contact-us">Contact Us</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
                         <li><a href="http://localhost/medic/news">News / Articles</a></li>
-
                     </ul>
                 </div>
             </div>
@@ -277,7 +276,7 @@
                         <!-- form -->
                         <div class="form">
                             <h3>Book Your Addmission</h3>
-                            <form action="#" method="post">
+                            <form action="" method="post">
                                 <div class="input-field">
                                     <label for="name">Name</label>
                                     <div class="field">
@@ -343,10 +342,12 @@
                                             <div class="input select-holder">
                                                 <select id="course" name="course" required>
                                                     <option value=" select-course">Select Course</option>
-                                                    <option value="course1">MBBS</option>
-                                                    <option value="course2">Nursing</option>
-                                                    <option value="course3">Bca</option>
-                                                    <!-- Add more courses as needed -->
+                                                    <?php
+                                                    include './action/allCourses.php';
+                                                    $courses = fetchAllCourses($conn);
+                                                    foreach ($courses as $course) : ?>
+                                                        <option value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <!-- <div class="x-icon">
@@ -355,21 +356,30 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- cta -->
                                 <button type="submit">Apply Now</button>
-
-
                             </form>
                         </div>
                         <!-- end of form -->
 
+                        <!-- submit form -->
+                        <?php
+                        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                            $query = "INSERT INTO leads (`name`,phone,email,course_id) VALUES(?,?,?,?)";
+                            $sql = $conn->prepare($query);
+                            $sql->bind_param('sssi', $_POST['name'], $_POST['phone'], $_POST['email'], $_POST['course_id'], $_POST['read_status']);
+                            if ($sql->execute()) {
+                                // success message
+                            } else {
+                                // error message
+                            }
+                        }
+                        ?>
                         <!-- end of content section -->
                     </div>
                 </div>
             </div>
         </div>
-
     </main>
     <!-- end of main section -->
     <script src="https://unpkg.com/swup@4"></script>
@@ -379,8 +389,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://localhost/medic/src/App.js"></script>
-
-
 </body>
 
 </html>
