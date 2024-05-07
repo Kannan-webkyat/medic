@@ -532,7 +532,7 @@ p {
           width: 7px;
           height: 7px;
           border-radius: 50px;
-          background: #faca15;
+          background: black;
           position: absolute;
           left: 0;
           top: 14px;
@@ -881,7 +881,7 @@ header {
 
   margin-top: 20px;
 
-  // display: flex;
+  display: flex;
   // justify-content: space-between;
 
   img {
@@ -1373,9 +1373,6 @@ header {
 .card-wrapper {
   margin-top: 20px;
 
-  display: flex;
-  justify-content: space-between;
-
   img {
     width: 100%;
     border-radius: 10px;
@@ -1523,74 +1520,33 @@ header {
 }
 
 .info {
-  margin-top: 70px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 
   .content {
-    width: 70%;
+    width: 60%;
+
 
     .details {
       .about {
-        margin-bottom: 50px;
 
-        h2 {
+
+        h1 {
           color: $fontcolor;
-          font-weight: 500;
+          font-weight: 600;
           margin-bottom: 20px;
+          font-size: 35px;
         }
       }
 
-      .highlights {
-        h3 {
-          margin-top: 50px;
-          color: $fontcolor;
-          font-weight: 500;
-          margin-bottom: 30px;
-        }
-
-        ul {
-          border-left: 1px solid #1e429f;
-
-          li {
-            display: flex;
-            padding-left: 10px;
-            position: relative;
-            margin-bottom: 20px;
-
-            &::after {
-              content: "";
-              background: #faca15;
-              width: 7px;
-              height: 7px;
-              position: absolute;
-              left: -9px;
-              border-radius: 10px;
-              border: 5px solid white;
-            }
-
-            .heading {
-              //   margin-right: 50px;
-              width: 30%;
-              color: #4b5563;
-              font-weight: 500;
-              font-size: 15px;
-              margin-bottom: 1px;
-            }
-
-            .content {
-              color: #4b5563;
-              font-weight: 400;
-              font-size: 15px;
-            }
-          }
-        }
-
+      h2 {
+        font-size: 20px;
       }
 
       .vdo {
-        margin-top: 50px;
+
         width: 100%;
 
         iframe {
@@ -1616,13 +1572,8 @@ header {
             align-items: center;
             justify-content: flex-start;
 
-            img {
-              width: 23px;
-              height: 23px;
-            }
-
             h4 {
-              margin-left: 10px;
+              font-weight: 500;
               color: #1e429f;
             }
           }
@@ -1646,7 +1597,7 @@ header {
       .card-wrapper {
         margin-top: 20px;
         display: flex;
-        justify-content: space-between;
+
 
         .card {
           width: calc(100% / 5 - 15px);
@@ -2935,31 +2886,6 @@ header {
 
   }
 
-  .card-wrapper {
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    @media (max-width:425px) {
-      flex-direction: column;
-    }
-
-    .cards {
-      width: calc(100% / 5 - 15px) !important;
-      margin-bottom: 30px;
-
-      @media (max-width:768px) {
-        width: calc(100% / 3 - 15px) !important;
-      }
-
-      @media (max-width:581px) {
-        width: calc(100% / 2 - 15px) !important;
-      }
-
-      @media (max-width:425px) {
-        width: 100% !important;
-      }
-    }
-  }
 }
 
 // END OF COLLEGE PAGE STYLE
@@ -3112,7 +3038,7 @@ header {
 
 .side-bar {
   width: 400px;
-  height: calc(100%);
+  height: calc(100% - 80px);
   background: white;
   position: fixed;
 
@@ -3124,7 +3050,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0px 0px 10px #3636364a;
+  // box-shadow: 0px 0px 10px #3636364a;
   z-index: 100;
 
   .head {

@@ -89,19 +89,22 @@
                     $collegeImagePath = "http://localhost/medic/admin/action/college/docs/";
                     ?>
                     <!-- hero section -->
-                    <div class="college-img">
-                        <div class="left-img">
-                            <img src="<?= $collegeImagePath . $collegeDetails['images'][0]['image'] ?>" alt="college-image">
+
+
+
+
+                    <section class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <?php foreach ($collegeDetails['images'] as $index => $image) : ?>
+                                    <?php if ($index == 0) continue; ?>
+                                    <div class="box splide__slide">
+                                        <img width="100%" src="<?= $collegeImagePath . $image['image'] ?>" alt="college-image">
+                                    </div>
+                                <?php endforeach; ?>
                         </div>
-                        <div class="right-img">
-                            <?php foreach ($collegeDetails['images'] as $index => $image) : ?>
-                                <?php if ($index == 0) continue; ?>
-                                <div class="box">
-                                    <img src="<?= $collegeImagePath . $image['image'] ?>" alt="college-image">
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
+                    </section>
+
 
                     <!-- content section -->
                     <div class="info">
@@ -109,50 +112,12 @@
                             <!-- details -->
                             <div class="details">
                                 <div class="about">
-                                    <h2><?= $collegeDetails['title'] ?></h2>
+                                    <h1><?= $collegeDetails['title'] ?></h1>
                                     <p><?= html_entity_decode($collegeDetails['about']) ?></p>
                                 </div>
-                                <hr>
 
-                                <div class="highlights">
-                                    <h3>Highlights of CMS College of Nursing</h3>
-                                    <ul>
-                                        <li>
-                                            <div class="heading">Established year/Ownership</div>
-                                            <div class="content">1942 | Private</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Affiliated with</div>
-                                            <div class="content">Dr. MGR University</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Approved by</div>
-                                            <div class="content">1MCI</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Application Mode</div>
-                                            <div class="content">Online</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Campus Size</div>
-                                            <div class="content">19 Acre</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Course Offered</div>
-                                            <div class="content">B.Sc, MBBS, BDS, BPT, MD, MS, M.Sc, Certificate
-                                                Courses,
-                                                Diploma, Fellowship, PhD.</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Admission Criteria</div>
-                                            <div class="content">Merit-Based and Entrance Exam</div>
-                                        </li>
-                                        <li>
-                                            <div class="heading">Facilities Available</div>
-                                            <div class="content">Library, Sports, Canteen, Laboratory, Hostel</div>
-                                        </li>
-                                    </ul>
-                                </div>
+
+
                                 <div class="vdo">
                                     <iframe width="800" height="300" src="<?php echo $collegeDetails['yt_url'] ?>">
                                     </iframe>
@@ -162,7 +127,6 @@
                                     <?php foreach ($collegeDetails['facilities'] as $facility) : ?>
                                         <div class="box">
                                             <div class="heading">
-                                                <img src="http://localhost/medic/admin/action/facility/docs/<?php echo $facility['image'] ?>" alt="<?php echo $facility['facility_name'] ?>-icon">
                                                 <h4><?php echo $facility['facility_name'] ?> </h4>
                                             </div>
                                             <div class="content">
@@ -174,7 +138,7 @@
                             </div>
                             <!-- end of details -->
                             <!-- courses -->
-                            <hr>
+
                             <div id="courses">
                                 <h3>Courses provided by <?= $collegeDetails['title']; ?>.</h3>
                                 <div class="card-wrapper ">
@@ -387,8 +351,19 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="http://localhost/medic/src/splide.min.css"></script>
+    <script src="http://localhost/medic/src/splide.min.js"></script>
     <script src="http://localhost/medic/src/App.js"></script>
+
+    <script>
+        new Splide(".splide", {
+            type: 'loop',
+            perPage: 3,
+            gap: 10,
+            nav: false,
+            pagination: false,
+
+        }).mount();
+    </script>
 </body>
 
 </html>

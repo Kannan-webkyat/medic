@@ -12,27 +12,7 @@ const namespaceManager = () => {
     switch (currentNamespace) {
         case "home":
             {
-                // alert();
                 basic();
-                $(".slides").owlCarousel({
-                    loop: true,
-                    margin: 13,
-                    responsiveClass: true,
-                    nav: false,
-                    dots: false,
-                    stagePadding: 20,
-                    responsive: {
-                        0: {
-                            items: 1,
-                        },
-                        600: {
-                            items: 3,
-                        },
-                        1000: {
-                            items: 4,
-                        },
-                    },
-                });
             }
             break;
         case "about":
@@ -83,13 +63,14 @@ const namespaceManager = () => {
 namespaceManager();
 
 function basic() {
-    $(".loader-container").fadeOut(1000);
-    $("html, body").scrollTop(0);
-
     // trigger sidebar
+
     const sidebar = document.querySelector(".side-bar");
     const shimmer = document.querySelector(".shimmer");
+
     sidebar.classList.add("side-bar-active");
+    shimmer.style.display = "block";
+
     // close
     const closeSidebar = sidebar.querySelector(".close");
     closeSidebar.addEventListener("click", function () {

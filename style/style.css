@@ -390,7 +390,7 @@ p {
   width: 7px;
   height: 7px;
   border-radius: 50px;
-  background: #faca15;
+  background: black;
   position: absolute;
   left: 0;
   top: 14px;
@@ -646,6 +646,7 @@ header .container .sidemenu ul li a:hover {
 
 .card-wrapper {
   margin-top: 20px;
+  display: flex;
 }
 .card-wrapper img {
   width: 100%;
@@ -1010,8 +1011,6 @@ header .container .sidemenu ul li a:hover {
 
 .card-wrapper {
   margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
 }
 .card-wrapper img {
   width: 100%;
@@ -1114,61 +1113,24 @@ header .container .sidemenu ul li a:hover {
 }
 
 .info {
-  margin-top: 70px;
+  margin-top: 30px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 }
 .info .content {
-  width: 70%;
+  width: 60%;
 }
-.info .content .details .about {
-  margin-bottom: 50px;
-}
-.info .content .details .about h2 {
+.info .content .details .about h1 {
   color: #1f2a37;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 20px;
+  font-size: 35px;
 }
-.info .content .details .highlights h3 {
-  margin-top: 50px;
-  color: #1f2a37;
-  font-weight: 500;
-  margin-bottom: 30px;
-}
-.info .content .details .highlights ul {
-  border-left: 1px solid #1e429f;
-}
-.info .content .details .highlights ul li {
-  display: flex;
-  padding-left: 10px;
-  position: relative;
-  margin-bottom: 20px;
-}
-.info .content .details .highlights ul li::after {
-  content: "";
-  background: #faca15;
-  width: 7px;
-  height: 7px;
-  position: absolute;
-  left: -9px;
-  border-radius: 10px;
-  border: 5px solid white;
-}
-.info .content .details .highlights ul li .heading {
-  width: 30%;
-  color: #4b5563;
-  font-weight: 500;
-  font-size: 15px;
-  margin-bottom: 1px;
-}
-.info .content .details .highlights ul li .content {
-  color: #4b5563;
-  font-weight: 400;
-  font-size: 15px;
+.info .content .details h2 {
+  font-size: 20px;
 }
 .info .content .details .vdo {
-  margin-top: 50px;
   width: 100%;
 }
 .info .content .details .vdo iframe {
@@ -1189,12 +1151,8 @@ header .container .sidemenu ul li a:hover {
   align-items: center;
   justify-content: flex-start;
 }
-.info .content .details .facilities .box .heading img {
-  width: 23px;
-  height: 23px;
-}
 .info .content .details .facilities .box .heading h4 {
-  margin-left: 10px;
+  font-weight: 500;
   color: #1e429f;
 }
 .info .content .details .facilities .box .content {
@@ -1210,7 +1168,6 @@ header .container .sidemenu ul li a:hover {
 .info .content #courses .card-wrapper {
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
 }
 .info .content #courses .card-wrapper .card {
   width: calc(20% - 15px);
@@ -2137,34 +2094,6 @@ header .container .sidemenu ul li a:hover {
     margin-top: 11px;
   }
 }
-#college-section .card-wrapper {
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-@media (max-width: 425px) {
-  #college-section .card-wrapper {
-    flex-direction: column;
-  }
-}
-#college-section .card-wrapper .cards {
-  width: calc(20% - 15px) !important;
-  margin-bottom: 30px;
-}
-@media (max-width: 768px) {
-  #college-section .card-wrapper .cards {
-    width: calc(33.3333333333% - 15px) !important;
-  }
-}
-@media (max-width: 581px) {
-  #college-section .card-wrapper .cards {
-    width: calc(50% - 15px) !important;
-  }
-}
-@media (max-width: 425px) {
-  #college-section .card-wrapper .cards {
-    width: 100% !important;
-  }
-}
 
 .addmission-form {
   margin-bottom: 50px;
@@ -2265,7 +2194,7 @@ header .container .sidemenu ul li a:hover {
 
 .side-bar {
   width: 400px;
-  height: 100%;
+  height: calc(100% - 80px);
   background: white;
   position: fixed;
   bottom: 0;
@@ -2276,7 +2205,6 @@ header .container .sidemenu ul li a:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.2901960784);
   z-index: 100;
 }
 .side-bar .head {
