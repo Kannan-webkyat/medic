@@ -6,16 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medic Guidance</title>
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" integrity="sha512-OTcub78R3msOCtY3Tc6FzeDJ8N9qvQn1Ph49ou13xgA9VsH9+LRxoFU6EqLhW4+PKRfU+/HReXmSZXHEkpYoOA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <main id="swup" class="transition-fade">
         <div data-swup-name="home"></div>
+
+
+
         <?php
         include './_class/dbConfig.php';
+        include './action/locations.php';
+        include './action/allCourses.php';
         $conn = (new dbConfig)->getConnection();
+        $locations = getAllLocations($conn);
+        $courses = fetchAllCourses($conn);
         ?>
         <!-- loader -->
         <div class="loader-container">
@@ -40,41 +45,36 @@
         <!-- sticky cta -->
         <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
         <header>
-            <div class="container">
-                <a href="http://localhost/medic/index" class="logo">
-                    <img src="http://localhost/medic/assets/images/logo.png" alt="medic guidence logo">
-                </a>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="index" class="active"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost/medic/colleges"><img src="http://localhost/medic/assets/icons/college.png" />Colleges</a>
-                        </li>
-                    </ul>
 
-                </nav>
-                <a href="http://localhost/medic/book-now" class="booknow-btn desktop-cta">Book Now</a>
-                <div class="hamburger">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <div class="sidemenu">
-                    <ul>
-                        <li><a href="http://localhost/medic/about">About</a></li>
-                        <li><a href="http://localhost/medic/contact-us">Contact Us</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="http://localhost/medic/news">News / Articles</a></li>
-                    </ul>
-                </div>
-            </div>
         </header>
         <!-- end of header -->
+
+        <!-- shimmer -->
+        <div class="shimmer"></div>
+        <!-- sidebar -->
+
+        <div class="side-bar side-bar-active">
+            <div class="head">
+                <div class="heading">
+                    <h3>All Courses</h3>
+                    <div class="close"><ion-icon name="close-outline"></ion-icon></div>
+                </div>
+                <div class="search">
+                    <input type="text" placeholder="Search College">
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <a href="http://localhost/medic/colleges">All</a>
+                </li>
+                <?php foreach ($courses as $course) :  ?>
+                    <li>
+                        <a href="http://localhost/medic/colleges/course:<?php echo $course['slug'] ?>"><?php echo $course['title']; ?></a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
 
         <!-- main section -->
         <div class="container">
@@ -114,35 +114,7 @@
                     </div>
 
                 </div>
-                <!-- collections -->
-                <!-- <div id="collections">
-        <div class="course one">
-            <h3>Bachelor of Medicine & Bachelor of Surgery(MBBS) Colleges</h3>
-            <h5>No. of colleges - 105</h5>
-            <button>Explore</button>
-            <div class="icon"><img src="http://localhost/medic/assets/icons/mbbs.png" alt=""></div>
-        </div>
-        <div class="course two ">
-            <h3>Bachelor of Medicine & Bachelor of Surgery(MBBS) Colleges</h3>
-            <h5>No. of colleges - 105</h5>
-            <button>Explore</button>
-            <div class="icon"><img src="http://localhost/medic/assets/icons/mbbs.png" alt=""></div>
-        </div>
-        <div class="course three">
-            <h3>Bachelor of Medicine & Bachelor of Surgery(MBBS) Colleges</h3>
-            <h5>No. of colleges - 105</h5>
-            <button>Explore</button>
-            <div class="icon"><img src="http://localhost/medic/assets/icons/mbbs.png" alt=""></div>
-        </div>
-        <div class="course four ">
-            <h3>Bachelor of Medicine & Bachelor of Surgery(MBBS) Colleges</h3>
-            <h5>No. of colleges - 105</h5>
-            <button>Explore</button>
-            <div class="icon"><img src="http://localhost/medic/assets/icons/mbbs.png" alt=""></div>
-        </div>
-    </div> -->
-                <!-- end of collections -->
-                <!-- locations -->
+
                 <?php
                 include './action/allLocations.php';
                 $locations = fetchAllLocations($conn);
@@ -151,7 +123,7 @@
                     <h2>Explore by Locations</h2>
                     <div class="destination">
                         <?php foreach ($locations as $location) : ?>
-                            <a href="#" class="location-image">
+                            <a href="http://localhost/medic/colleges/location:<?php echo $location['slug']; ?>" class="location-image">
                                 <img class="thumbnail" src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image'] ?>" alt="location img">
                                 <div class="no-of-college">
                                     <h4><?php echo $location['total_colleges']; ?> Colleges</h4>
@@ -166,20 +138,6 @@
                 </div>
                 <!-- end of locations -->
                 <div class="bg">
-                    <div class="tab">
-                        <ul>
-                            <li><a href="">All</a></li>
-                            <li><a href="">B.Sc. Nursing</a></li>
-                            <li><a href="">MBBS</a></li>
-                            <li><a href="">BCA</a></li>
-                            <li><a href="">Diploma in Radiology</a></li>
-                            <li><a href="">Engineering</a></li>
-                            <li><a href="">B Pharm</a></li>
-                            <li><a href="">Diploma in Radiology</a></li>
-                            <li><a href="">Occupational Therapy</a></li>
-                        </ul>
-                    </div>
-
                     <!-- college section -->
                     <div id="colleges">
                         <div class="heading">
@@ -575,12 +533,8 @@
     </main>
     <script src="https://unpkg.com/swup@4"></script>
     <script src="https://unpkg.com/@swup/progress-plugin@3"></script>
-    <!-- end of main section -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://localhost/medic/src/App.js"></script>
 </body>
 

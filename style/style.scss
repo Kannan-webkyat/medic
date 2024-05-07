@@ -16,14 +16,13 @@ $commoncolor: #eaf1ff;
 
 // common
 .container {
-  max-width: 1200px;
+  max-width: 95%;
   margin: 0 auto;
-  padding: 0px 10px;
+  padding: 0px 20px;
 
 }
 
 // sticky cta style
-
 
 
 
@@ -71,7 +70,7 @@ $commoncolor: #eaf1ff;
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: $commoncolor;
+  // background-color: $commoncolor;
   padding-bottom: 70px;
 }
 
@@ -482,69 +481,71 @@ p {
 
 // Define styles for the table
 .body-bg {
-.com-table{
-  table {
-    width: 100%;
-    border-collapse: collapse;
+  .com-table {
+    table {
+      width: 100%;
+      border-collapse: collapse;
 
-    // Define styles for table rows
-    tr {
-      border-bottom: 1px solid #a6a6a6;
-    }
-
-    // Define styles for table cells
-    td,
-    th {
-      padding: 8px;
-      text-align: left;
-      color: $fontcolor;
-      font-size: 15px;
-    }
-
-    // Define styles for table header cells
-    th {
-      background-color: #eaf1ff;
-
-      p {
-        font-weight: 600;
+      // Define styles for table rows
+      tr {
+        border-bottom: 1px solid #a6a6a6;
       }
 
+      // Define styles for table cells
+      td,
+      th {
+        padding: 8px;
+        text-align: left;
+        color: $fontcolor;
+        font-size: 15px;
+      }
+
+      // Define styles for table header cells
+      th {
+        background-color: #eaf1ff;
+
+        p {
+          font-weight: 600;
+        }
+
+      }
     }
   }
-}
-.com-ul{
- // for points
- ul {
+
+  .com-ul {
+
+    // for points
+    ul {
 
 
-  li {
-    list-style: none;
-    position: relative;
-    padding: 5px 0px 5px 15px;
-    font-size: 15px;
-    color: $fontcolor;
-    line-height: 180%;
+      li {
+        list-style: none;
+        position: relative;
+        padding: 5px 0px 5px 15px;
+        font-size: 15px;
+        color: $fontcolor;
+        line-height: 180%;
 
 
 
-    &::after {
-      width: 7px;
-      height: 7px;
-      border-radius: 50px;
-      background: #faca15;
-      position: absolute;
-      left: 0;
-      top: 14px;
-      content: '';
+        &::after {
+          width: 7px;
+          height: 7px;
+          border-radius: 50px;
+          background: #faca15;
+          position: absolute;
+          left: 0;
+          top: 14px;
+          content: '';
+        }
+
+      }
     }
 
   }
-}
-
-}
 
 
- 
+
 }
 
 
@@ -909,9 +910,9 @@ header {
 
       h5 {
         color: #4b5563;
-        font-weight: 400;
-        padding-left: 5px;
-        font-weight: 400;
+        font-weight: 600;
+        // padding-left: 5px;
+        margin-bottom: 5px;
       }
 
       .location {
@@ -941,11 +942,11 @@ header {
 
 /* body bg */
 .body-bg {
-  background: white;
+  // background: white;
   margin-top: 80px;
   //   height: 500px;
   border-radius: 46px;
-  padding: 15px;
+  // padding: 15px;
 
   @media (max-width:425px) {
     border-radius: 30px;
@@ -954,9 +955,8 @@ header {
   }
 
   .bg {
-    background-color: #f0f0f0;
-    padding: 15px;
-    border-radius: 46px;
+
+
     margin-top: 60px;
 
     .tab {
@@ -1353,6 +1353,7 @@ header {
 
   h2 {
     font-weight: 500;
+    font-size: 35px;
   }
 
   a {
@@ -1391,24 +1392,23 @@ header {
 
       h4 {
         color: $fontcolor;
-        font-weight: 400;
+        font-weight: 600;
+        font-size: 18px;
       }
 
       h5 {
         color: #4b5563;
         font-weight: 400;
-        padding-left: 5px;
+        // padding-left: 5px;
         font-weight: 400;
+        font-size: 16px;
       }
 
       .location {
         display: flex;
-        margin-top: 12px;
 
-        img {
-          width: 13px;
-          height: 13px;
-        }
+
+
       }
 
       .approval {
@@ -1495,7 +1495,7 @@ header {
   justify-content: space-between;
 
   .left-img {
-    width: 60%;
+    width: calc(100% / 4);
 
     // background: blue;
     img {
@@ -1649,7 +1649,7 @@ header {
         justify-content: space-between;
 
         .card {
-          width: calc(100% / 4 - 15px);
+          width: calc(100% / 5 - 15px);
 
           @media (max-width:635px) {
             width: calc(100% / 3 - 15px) !important;
@@ -2815,6 +2815,9 @@ header {
 
 // COLLEGE PAGE STYLE
 #college-section {
+
+  margin-top: 150px;
+
   .tab {
     overflow-x: auto;
     white-space: nowrap;
@@ -2941,7 +2944,7 @@ header {
     }
 
     .cards {
-      width: calc(100% / 4 - 15px) !important;
+      width: calc(100% / 5 - 15px) !important;
       margin-bottom: 30px;
 
       @media (max-width:768px) {
@@ -3104,3 +3107,90 @@ header {
 }
 
 // END OF BOOK NOW PAGE STYLE
+
+
+
+.side-bar {
+  width: 400px;
+  height: calc(100%);
+  background: white;
+  position: fixed;
+
+  bottom: 0;
+  transition: 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  left: -100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 0px 10px #3636364a;
+  z-index: 100;
+
+  .head {
+    height: 100px;
+    // background: #eee;
+    padding: 10px;
+
+    .heading {
+      // background: blue;
+      margin-bottom: 10px;
+
+      ion-icon {
+        font-size: 25px;
+      }
+    }
+
+    input {
+      height: 45px;
+      width: 100%;
+      border: none;
+      padding-left: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      outline: none;
+      background: #eee;
+    }
+  }
+
+  ul {
+    height: calc(100% - 100px);
+    overflow-y: scroll;
+
+    li {
+      a {
+        padding: 13px;
+        display: block;
+        border-bottom: 1px solid #e6e6e6;
+        text-decoration: none;
+        color: $fontcolor;
+        display: flex;
+        justify-content: space-between;
+
+
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
+  }
+}
+
+.side-bar-active {
+  transition: 0.3s;
+  opacity: 1;
+  visibility: visible;
+  left: 0;
+}
+
+// shimmer
+.shimmer {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.212);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  display: none;
+}
