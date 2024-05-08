@@ -5,14 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College-Details - Medic Guidance</title>
-    <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
+    <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
+
+
+
+
 
 </head>
 
 <body>
     <main id="swup" class="transition-fade">
         <div data-swup-name="college-details"></div>
+        <!-- header -->
+        <?php
+        include './ui/Header.php';
+        pageHeader();
+        ?>
         <!-- loader -->
         <div class="loader-container">
             <div class="loader">
@@ -36,41 +45,6 @@
 
         <!-- sticky cta -->
         <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
-        <header>
-            <div class="container">
-                <a href="http://localhost/medic/index" class="logo">
-                    <img src="http://localhost/medic/assets/images/logo.png" alt="medic guidence logo">
-                </a>
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="http://localhost/medic/index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
-                        </li>
-                        <li>
-                            <a href="http://localhost/medic/colleges"><img src="http://localhost/medic/assets/icons/college.png" />Colleges</a>
-                        </li>
-                    </ul>
-                </nav>
-                <a href="http://localhost/medic/book-now" class="booknow-btn desktop-cta">Book Now</a>
-                <div class="hamburger">
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                    <div class="bar"></div>
-                </div>
-                <div class="sidemenu">
-                    <ul>
-                        <li><a href="http://localhost/medic/about">About</a></li>
-                        <li><a href="http://localhost/medic/contact-us">Contact Us</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
-                        <li><a href="http://localhost/medic/news">News / Articles</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
-        <!-- end of header -->
 
         <!-- fixed cta -->
         <div id="fixed-cta">
@@ -116,12 +90,6 @@
                                     <p><?= html_entity_decode($collegeDetails['about']) ?></p>
                                 </div>
 
-
-
-                                <div class="vdo">
-                                    <iframe width="800" height="300" src="<?php echo $collegeDetails['yt_url'] ?>">
-                                    </iframe>
-                                </div>
                                 <div class="facilities">
                                     <h3><?php echo $collegeDetails['title'] ?> Facilities</h3>
                                     <?php foreach ($collegeDetails['facilities'] as $facility) : ?>
@@ -139,10 +107,9 @@
                             <!-- end of details -->
                             <!-- courses -->
 
-                            <div id="courses">
+                            <!-- <div id="courses">
                                 <h3>Courses provided by <?= $collegeDetails['title']; ?>.</h3>
                                 <div class="card-wrapper ">
-                                    <!-- college providing courses -->
                                     <?php
                                     include './action/coursesUnderCollege.php';
                                     $coursesUnderCollege = fetchCollegeCourses($conn, $slug);
@@ -165,82 +132,16 @@
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- end of courses -->
-                            <hr>
-                            <!-- gallery -->
-                            <div class="gallery">
-                                <div class="h3">
-                                    <h3>Gallery</h3>
-                                    <div class="gallery-img">
-                                        <div class="image">
-                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
-                                        </div>
-                                        <div class="image">
-                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
-                                        </div>
-                                        <div class="image">
-                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
-                                        </div>
-                                        <div class="image">
-                                            <img src="http://localhost/medic/assets/images/gallery-img.svg" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- end of gallery -->
-                            <hr>
-                            <!-- news / articles -->
-                            <div class="news">
-                                <h3>News / Articles</h3>
-                                <a href="http://localhost/medic/news" class="content">
-                                    <div class="date">
-                                        <img src="http://localhost/medic/assets/icons/calendar-con.png" alt="">
-                                        <h5>Mar 10, 2024</h5>
-                                    </div>
-                                    <div class="discription">
-                                        <h3>NEET 2024 Cut off for AFMC Pune and Selection Process</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur. Vitae massa posuere in iaculis in
-                                            quisque
-                                            tellus. Morbi magna euismod sed risus
-                                            mi ut. Feugiat risus dignissim facilisi vitae placerat nunc velit. Amet
-                                            faucibus
-                                            in facilisi sit egestas. Lorem ipsum
-                                            dolor sit amet consectetur. Vitae massa posuere in iaculis in quisque
-                                            tellus.
-                                        </p>
-                                        <span class="cta">Read More</span>
 
-                                    </div>
-                                </a>
-                                <a href="http://localhost/medic/news" class="content">
-                                    <div class="date">
-                                        <img src="http://localhost/medic/assets/icons/calendar-con.png" alt="">
-                                        <h5>Mar 10, 2024</h5>
-                                    </div>
-                                    <div class="discription">
-                                        <h3>NEET 2024 Cut off for AFMC Pune and Selection Process</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur. Vitae massa posuere in iaculis in
-                                            quisque
-                                            tellus. Morbi magna euismod sed risus
-                                            mi ut. Feugiat risus dignissim facilisi vitae placerat nunc velit. Amet
-                                            faucibus
-                                            in facilisi sit egestas. Lorem ipsum
-                                            dolor sit amet consectetur. Vitae massa posuere in iaculis in quisque
-                                            tellus.
-                                        </p>
-                                        <span class="cta">Read More</span>
-                                    </div>
-                                </a>
-
-                            </div>
-                            <!-- end of news / articles  -->
 
                         </div>
                         <!-- form -->
                         <div class="form">
-                            <h3>Book Your Addmission</h3>
+
                             <form action="" method="post">
+                                <h3>Book Your Addmission</h3>
                                 <div class="input-field">
                                     <label for="name">Name</label>
                                     <div class="field">
@@ -355,14 +256,7 @@
     <script src="http://localhost/medic/src/App.js"></script>
 
     <script>
-        new Splide(".splide", {
-            type: 'loop',
-            perPage: 3,
-            gap: 10,
-            nav: false,
-            pagination: false,
 
-        }).mount();
     </script>
 </body>
 

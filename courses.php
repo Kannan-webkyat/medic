@@ -6,10 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses - Medic Guidance</title>
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
+    <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
+
+
 </head>
 
 <main id="swup" class="transition-fade">
     <div data-swup-name="courses"></div>
+    <!-- header -->
+    <?php
+    include './ui/Header.php';
+    pageHeader();
+    ?>
     <!-- loader -->
     <div class="loader-container">
         <div class="loader">
@@ -34,43 +42,6 @@
     <!-- sticky cta -->
     <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
 
-    <header>
-        <div class="container">
-            <a href="http://localhost/medic/index" class="logo">
-                <img src="http://localhost/medic/assets/images/logo.png" alt="medic guidence logo">
-            </a>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/medic/courses" class="active"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
-                    </li>
-                    <li>
-                        <a href="http://localhost/medic/colleges"><img src="http://localhost/medic/assets/icons/college.png" />Colleges</a>
-                    </li>
-                </ul>
-            </nav>
-            <a href="http://localhost/medic/book-now" class="booknow-btn desktop-cta">Book Now</a>
-
-            <div class="hamburger">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-            <div class="sidemenu">
-                <ul>
-                    <li><a href="http://localhost/medic/about">About</a></li>
-                    <li><a href="http://localhost/medic/contact-us">Contact Us</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="http://localhost/medic/news">News / Articles</a></li>
-
-                </ul>
-            </div>
-        </div>
-    </header>
-    <!-- end of header -->
 
     <!-- main section -->
     <div class="container">
@@ -113,6 +84,7 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="http://localhost/medic/src/splide.min.js"></script>
 <script src="http://localhost/medic/src/App.js"></script>
 </body>
 

@@ -43,6 +43,7 @@
             $location = $_POST['location'];
             $collegeImages = $_FILES['images'] ?? [];
 
+
             $datas = compact('collgeId', 'title', 'about', 'youtubeLink', 'facility', 'courses', 'isDirectCollege', 'isFeatured', 'location', 'collegeImages');
 
             if ($collegeManager->edit($datas)) {

@@ -69,9 +69,11 @@ class CollegeManager
         include './action/modules/documentUploader.php';
         $slug = strtolower(str_replace(' ', '-', $data['title']));
 
-        $query = "UPDATE college SET title=?, slug=?, about=?, location_id=?, direct=?, featured=? WHERE id=?";
+        $query = "UPDATE college SET title=?, slug=?, about=?, location_id=?, yt_url=?, direct=?, featured=? WHERE id=?";
+
         $sql   = $this->conn->prepare($query);
-        $sql->bind_param('sssiiii', $data['title'], $slug, $data['about'], $data['location'], $data['isDirectCollege'], $data['isFeatured'], $data['collgeId']);
+
+        $sql->bind_param('sssssiii', $data['title'], $slug, $data['about'], $data['location'], $data['youtubeLink'], $data['isDirectCollege'], $data['isFeatured'], $data['collgeId']);
         if ($sql->execute()) {
             $collegeId = $data['collgeId'];
 

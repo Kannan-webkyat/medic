@@ -28,6 +28,19 @@ $commoncolor: #eaf1ff;
 
 
 
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
 
 
 
@@ -383,7 +396,7 @@ p {
 .field {
   background-color: #f9fafb;
   border: 1px solid #d1d5db;
-  padding: 16px 12px;
+  padding: 0px 12px;
   border-radius: 8px;
   width: 100%;
   margin-top: 8px;
@@ -421,6 +434,8 @@ p {
       }
 
 
+      input {}
+
 
       input[type="text"]::placeholder,
       input[type="email"]::placeholder,
@@ -429,6 +444,7 @@ p {
         font-weight: 400;
         font-size: 14px;
         font-family: "Roboto", sans-serif;
+
 
       }
 
@@ -770,20 +786,9 @@ header {
     }
 
     .booknow-btn {
-      width: 138px;
-      height: 44px;
+      background: $secondarycolor;
+      color: white;
       cursor: pointer;
-      color: #ffffff;
-      font-size: 17px;
-      background-color: $secondarycolor;
-      border: none;
-      border-radius: 60px;
-      padding: 13px;
-      text-align: center;
-
-      @media (max-width:900px) {
-        display: none;
-      }
     }
 
     .hamburger {
@@ -875,23 +880,147 @@ header {
   }
 }
 
+
+input,
+select {
+  height: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 5px;
+
+}
+
+input {
+  padding-left: 10px;
+
+}
+
+button {
+  // height: 40px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background: none;
+  border: 1px solid rgb(204, 204, 204);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+
+  ion-icon {
+    font-size: 18px;
+  }
+
+}
+
+.switch {
+  display: inline-block;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch label {
+  display: block;
+  width: 45px;
+  height: 25px;
+  padding: 3px;
+  border-radius: 15px;
+  border: 2px solid $secondarycolor;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.switch label::after {
+  content: "";
+  display: inherit;
+  width: 15px;
+  height: 15px;
+  border-radius: 12px;
+  background: $secondarycolor;
+  transition: 0.3s;
+}
+
+.switch input:checked~label {
+  border-color: $primarycolor // background: $primarycolor;
+}
+
+.switch input:checked~label::after {
+  translate: 20px 0;
+  background: $primarycolor;
+}
+
+.switch input:disabled~label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+.head {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  .heading {
+    h1 {
+      font-size: 30px;
+      font-weight: 600;
+    }
+  }
+
+  .filter {
+    form {
+      display: flex;
+
+      .triggers {
+        height: 40px;
+        padding: 0px 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        color: $fontcolor;
+        margin-right: 10px;
+        border: 1px solid rgb(204, 204, 204);
+        cursor: pointer;
+
+      }
+
+      .clear {
+        background: #eee;
+
+        &:hover {
+
+          color: $primarycolor;
+        }
+
+
+      }
+
+      .trigger-active {
+        background: $primarycolor;
+        color: white;
+      }
+
+      select {
+        margin-right: 5px;
+        min-width: 150px;
+        border-radius: 5px;
+        padding-left: 10px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 // card wrapper style
 
 .card-wrapper {
 
-  margin-top: 20px;
+
 
   display: flex;
-  // justify-content: space-between;
 
-  img {
-    width: 100%;
-    border-radius: 10px;
-  }
 
-  a {
-    text-decoration: none;
-  }
 
   .cards {
     // width: calc(100% / 5 - 15px);
@@ -899,39 +1028,92 @@ header {
 
     width: 100%;
     display: block;
+    text-decoration: none;
+    color: $fontcolor;
+
+    .thumbnail {
+      img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      position: relative;
+
+      .college-logo {
+        width: 75px;
+        height: 75px;
+        background: white;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-top-left-radius: 8px;
+        padding: 10px;
+
+        img {
+          width: 100%;
+
+        }
+
+      }
+    }
 
     .content {
       margin-top: 10px;
 
       h4 {
         color: $fontcolor;
-        font-weight: 400;
+        font-weight: 600;
+        font-size: 18px;
+        margin: 5px 0px;
       }
 
-      h5 {
-        color: #4b5563;
-        font-weight: 600;
-        // padding-left: 5px;
-        margin-bottom: 5px;
-      }
 
       .location {
         display: flex;
         margin-top: 12px;
+        font-size: 14px;
 
-        img {
-          width: 13px;
-          height: 13px;
+        span {
+          margin-right: 10px;
+
+          &:nth-child(1) {
+            color: blue;
+          }
         }
+
       }
 
       .approval {
         display: flex;
-        margin-top: 9px;
+        // margin-top: 9px;
+        font-size: 14px;
+        align-items: center;
 
-        img {
-          width: 13px;
-          height: 13px;
+        ion-icon {
+          position: relative;
+          top: 2px;
+          color: green;
+        }
+      }
+
+      .buttons {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+
+        button {
+          padding: 8px 12px;
+          background: none;
+          border: 1px solid #E0EBFF;
+          cursor: pointer;
+          border-radius: 5px;
+
+          &:nth-child(1) {
+            background: $primarycolor;
+            color: white;
+            margin-right: 5px;
+          }
+
         }
       }
     }
@@ -1370,56 +1552,7 @@ header {
   }
 }
 
-.card-wrapper {
-  margin-top: 20px;
 
-  img {
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  a {
-    text-decoration: none;
-  }
-
-  .cards {
-    .content {
-      margin-top: 10px;
-      width: 100%;
-
-      h4 {
-        color: $fontcolor;
-        font-weight: 600;
-        font-size: 18px;
-      }
-
-      h5 {
-        color: #4b5563;
-        font-weight: 400;
-        // padding-left: 5px;
-        font-weight: 400;
-        font-size: 16px;
-      }
-
-      .location {
-        display: flex;
-
-
-
-      }
-
-      .approval {
-        display: flex;
-        margin-top: 9px;
-
-        img {
-          width: 13px;
-          height: 13px;
-        }
-      }
-    }
-  }
-}
 
 .common {
   margin-top: 60px;
@@ -1459,30 +1592,6 @@ header {
 
   }
 
-  .card-wrapper {
-    .cards {
-      .content {
-        h4 {
-          font-size: 17px;
-          font-weight: 600;
-        }
-
-        h5 {
-          font-size: 15px;
-          font-weight: 400;
-        }
-
-        .location,
-        .approval {
-          img {
-            width: 15px;
-            height: 15px;
-          }
-        }
-      }
-
-    }
-  }
 }
 
 
@@ -1528,6 +1637,11 @@ header {
   .content {
     width: 60%;
 
+    iframe {
+      border-radius: 10px;
+      overflow: hidden;
+      width: 100% !important;
+    }
 
     .details {
       .about {
@@ -1594,59 +1708,6 @@ header {
         text-decoration: none;
       }
 
-      .card-wrapper {
-        margin-top: 20px;
-        display: flex;
-
-
-        .card {
-          width: calc(100% / 5 - 15px);
-
-          @media (max-width:635px) {
-            width: calc(100% / 3 - 15px) !important;
-          }
-
-          @media (max-width:521px) {
-            width: calc(100% / 2 - 10px) !important;
-
-          }
-
-
-          img {
-            width: 100%;
-            border-radius: 10px;
-          }
-
-          .content {
-            width: 100%;
-
-            h4 {
-              color: $fontcolor;
-              line-height: 140%;
-            }
-
-            .sub-content {
-              display: flex;
-              align-items: center;
-              margin-top: 8px;
-
-              h5 {
-                color: #4b5563;
-                font-weight: 400;
-              }
-
-              .circle {
-                width: 5px;
-                height: 5px;
-                background-color: $primarycolor;
-                border-radius: 10px;
-                margin-right: 10px;
-                margin-left: 10px;
-              }
-            }
-          }
-        }
-      }
 
     }
 
@@ -1806,19 +1867,7 @@ header {
     .content {
       width: 100%;
 
-      .card-wrapper {
-        .card {
-          width: calc(100% / 4 - 10px) !important;
 
-          .content {
-            h4 {
-              font-size: 14px;
-            }
-
-          }
-
-        }
-      }
     }
   }
 
@@ -1860,25 +1909,7 @@ header {
         }
       }
 
-      #courses {
-        .card-wrapper {
-          flex-direction: column;
-
-          .card {
-            width: 100% !important;
-            margin-bottom: 30px;
-
-            h4 {
-              font-size: 17px;
-
-            }
-
-            h5 {
-              font-size: 15px;
-            }
-          }
-        }
-      }
+      #courses {}
 
       .gallery {
         .gallery-img {
@@ -2514,24 +2545,6 @@ header {
     // height: 200px;
 
 
-    .card-wrapper {
-
-      display: flex;
-      flex-direction: column;
-
-
-      .cards {
-        margin-bottom: 30px !important;
-      }
-
-      .content {
-        width: 100%;
-
-        img {
-          margin: 0;
-        }
-      }
-    }
 
   }
 
@@ -2670,95 +2683,9 @@ header {
     text-decoration: none;
   }
 
-  .card-wrapper {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    .card {
-      width: calc(100% / 4 - 15px);
-      margin-bottom: 30px;
-
-      &:last-child {
-        margin: 0;
-      }
 
 
 
-      img {
-        width: 100%;
-        border-radius: 10px;
-      }
-
-      .content {
-        width: 100%;
-
-        h4 {
-          color: $fontcolor;
-          line-height: 140%;
-        }
-
-        .sub-content {
-          display: flex;
-          align-items: center;
-          margin-top: 8px;
-
-          h5 {
-            color: #4b5563;
-            font-weight: 400;
-          }
-
-          .circle {
-            width: 5px;
-            height: 5px;
-            background-color: $primarycolor;
-            border-radius: 10px;
-            margin-right: 10px;
-            margin-left: 10px;
-          }
-        }
-      }
-    }
-  }
-
-  @media (max-width:648px) {
-    .card-wrapper {
-      .card {
-        width: calc(100% / 3 - 15px);
-      }
-    }
-  }
-
-  @media (max-width:539px) {
-    .card-wrapper {
-      .card {
-        width: calc(100% / 2 - 10px);
-      }
-    }
-  }
-
-  @media (max-width:425px) {
-
-    padding: 0;
-
-    .card-wrapper {
-      justify-content: center;
-      flex-direction: column;
-
-      .card {
-        width: 100%;
-
-        h4 {
-          font-size: 16px;
-        }
-
-        h5 {
-          font-size: 15px;
-        }
-      }
-    }
-  }
 }
 
 // END OF COURSE PAGE STYLE
@@ -2841,45 +2768,6 @@ header {
     }
   }
 
-  .head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .filter {
-      border-radius: 100px;
-      background-color: #dfdfdf;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px;
-
-      .select-holder {
-        color: $fontcolor;
-
-        #filter-field {
-          // background-color: #ffffff;
-          background: none;
-          border: none;
-          padding: 0px;
-          font-size: 14px;
-          font-weight: 400;
-          color: $fontcolor;
-
-
-          // border-radius:;
-        }
-
-        .activer {
-          color: $primarycolor !important;
-          background-color: white !important;
-          padding: 10px 20px !important;
-          border-radius: 50px;
-        }
-
-      }
-    }
-  }
 
   @media (max-width:425px) {
     margin-top: 11px;
@@ -3035,67 +2923,70 @@ header {
 // END OF BOOK NOW PAGE STYLE
 
 
-
-.side-bar {
-  width: 400px;
-  height: calc(100% - 80px);
-  background: white;
+.side-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.425);
   position: fixed;
-
-  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
   transition: 0.3s;
   opacity: 0;
   visibility: hidden;
-  left: -100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  // box-shadow: 0px 0px 10px #3636364a;
-  z-index: 100;
 
-  .head {
-    height: 100px;
-    // background: #eee;
+
+
+  .side-bar {
+    width: 600px;
+    min-height: 60%;
+    background: white;
     padding: 10px;
+    border-radius: 5px;
 
-    .heading {
-      // background: blue;
-      margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: space-between;
+
+    // box-shadow: 0px 0px 10px #3636364a;
+    .header {
+      height: 100px;
+
+
+      input {
+        width: 100%;
+        margin-top: 20px;
+      }
 
       ion-icon {
         font-size: 25px;
+        cursor: pointer;
       }
     }
 
-    input {
-      height: 45px;
-      width: 100%;
-      border: none;
-      padding-left: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      outline: none;
-      background: #eee;
-    }
-  }
-
-  ul {
-    height: calc(100% - 100px);
-    overflow-y: scroll;
-
-    li {
-      a {
-        padding: 13px;
-        display: block;
-        border-bottom: 1px solid #e6e6e6;
-        text-decoration: none;
-        color: $fontcolor;
-        display: flex;
-        justify-content: space-between;
+    ul {
+      height: calc(100% - 100px);
+      overflow-y: scroll;
 
 
-        &:hover {
-          background: #eee;
+      li {
+        a {
+          padding: 10px;
+          display: block;
+          border-bottom: 1px solid #e6e6e6;
+          text-decoration: none;
+          color: $fontcolor;
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+
+          &:hover {
+            background: $primarycolor;
+            color: white;
+          }
         }
       }
     }
@@ -3106,17 +2997,107 @@ header {
   transition: 0.3s;
   opacity: 1;
   visibility: visible;
-  left: 0;
+
 }
 
-// shimmer
-.shimmer {
+
+
+.college-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+
+  .cards {
+    margin-right: 20px;
+    width: calc(100% / 5 - 20px);
+  }
+}
+
+.popup {
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.212);
+  background: rgba(0, 0, 0, 0.726);
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
   left: 0;
   top: 0;
-  z-index: 5;
   display: none;
+
+  form {
+    width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+
+    .close {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+
+      ion-icon {
+        font-size: 25px;
+        cursor: pointer;
+      }
+    }
+
+    h3 {
+      margin-bottom: 30px;
+    }
+
+    .input-holder {
+      width: 100%;
+      margin-bottom: 20px;
+
+      input {
+        width: 100%;
+
+      }
+    }
+
+    .number-holder {
+      display: flex;
+
+      input {
+        &:nth-child(1) {
+          width: 60px;
+          margin-right: 5px;
+        }
+      }
+    }
+
+    .toggle {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+
+      .text {
+        padding-left: 10px;
+        font-size: 14px !important;
+      }
+    }
+
+    button {
+      width: 100%;
+      background: $primarycolor;
+      color: white;
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    p {
+      width: 75%;
+      text-align: center;
+      line-height: 18px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.popup-active {
+  display: block;
 }

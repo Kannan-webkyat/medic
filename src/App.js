@@ -12,6 +12,13 @@ const namespaceManager = () => {
     switch (currentNamespace) {
         case "home":
             {
+                new Splide(".splide", {
+                    type: "loop",
+                    perPage: 4,
+                    gap: 10,
+                    nav: false,
+                    pagination: false,
+                }).mount();
                 basic();
             }
             break;
@@ -23,17 +30,35 @@ const namespaceManager = () => {
             break;
         case "colleges":
             {
+                courseBar();
+                const apply = document.querySelectorAll(".apply-trigger");
+                apply.forEach((button) => {
+                    button.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        showPopup("apply");
+                        return false;
+                    });
+                });
                 basic();
             }
             break;
         case "college-details":
             {
+                new Splide(".splide", {
+                    type: "loop",
+                    perPage: 3,
+                    gap: 10,
+                    nav: false,
+                    pagination: false,
+                }).mount();
                 basic();
             }
             break;
         case "courses":
             {
                 basic();
+                // when click apply now show popup
             }
             break;
         case "course-details":
@@ -64,20 +89,51 @@ namespaceManager();
 
 function basic() {
     // trigger sidebar
+}
 
-    const sidebar = document.querySelector(".side-bar");
-    const shimmer = document.querySelector(".shimmer");
+swup.hooks.on("page:view", (event) => {
+    namespaceManager();
+});
 
-    sidebar.classList.add("side-bar-active");
-    shimmer.style.display = "block";
+// show popup
+function showPopup(prop) {
+    const popup = document.querySelector(".popup");
+    popup.style.display = "flex";
 
     // close
+    popup.querySelector(".close").addEventListener("click", function () {
+        popup.style.display = "none";
+    });
+}
+
+function courseBar() {
+    const changeTrigger = document.querySelectorAll(".change-course-trigger");
+    const sidebar = document.querySelector(".side-bar-container");
+    const searchCourse = sidebar.querySelector(".search-course");
+    changeTrigger.forEach((button) => {
+        button.addEventListener("click", function () {
+            sidebar.classList.add("side-bar-active");
+        });
+    });
     const closeSidebar = sidebar.querySelector(".close");
     closeSidebar.addEventListener("click", function () {
         sidebar.classList.remove("side-bar-active");
         shimmer.style.display = "none";
     });
+
+    console.log(searchCourse);
+    // search
+    searchCourse.addEventListener("input", function () {
+        var filter = this.value.toLowerCase();
+        var list = sidebar.querySelector("ul");
+        var items = list.querySelectorAll("li");
+        Array.from(items).forEach(function (item) {
+            var text = item.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                item.style.display = "block";
+            } else {
+                item.style.display = "none";
+            }
+        });
+    });
 }
-swup.hooks.on("page:view", (event) => {
-    namespaceManager();
-});
