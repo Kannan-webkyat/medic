@@ -12,6 +12,16 @@ const namespaceManager = () => {
     switch (currentNamespace) {
         case "home":
             {
+                const goalTrigger = document.querySelector(".goal-trigger");
+                goalTrigger.addEventListener("click", function () {
+                    const element = document.querySelector("#goal");
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - 100;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth",
+                    });
+                });
                 const apply = document.querySelectorAll(".apply-trigger");
                 apply.forEach((button) => {
                     button.addEventListener("click", function (e) {
@@ -66,6 +76,20 @@ const namespaceManager = () => {
                     nav: false,
                     pagination: false,
                 }).mount();
+
+                // while window on scroll form fixed
+                const form = document.querySelector(".form");
+
+                window.addEventListener("scroll", function () {
+                    const scrolled = window.scrollY; // Use window.scrollY for broader compatibility
+
+                    if (scrolled > 350) {
+                        form.classList.add("form-active");
+                    } else {
+                        form.classList.remove("form-active");
+                    }
+                });
+
                 basic();
             }
             break;
@@ -102,7 +126,19 @@ const namespaceManager = () => {
 namespaceManager();
 
 function basic() {
-    // trigger sidebar
+    const header = document.querySelector("header");
+    const mega = header.querySelector(".mega-menu");
+    const lists = mega.querySelectorAll(".left ul li");
+    const subContainer = mega.querySelector(".right");
+
+    lists.forEach((list) => {
+        list.addEventListener("click", function () {
+            if (this.classList.contains("has-sub")) {
+                lists.forEach((list) => list.classList.remove("li-active"));
+                this.classList.add("li-active");
+            }
+        });
+    });
 }
 
 swup.hooks.on("page:view", (event) => {

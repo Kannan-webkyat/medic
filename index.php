@@ -93,13 +93,13 @@
         <div class="banner">
             <div class="container">
                 <div class="left">
-                    <h1>The easiest way to find your college</h1>
+                    <h1>The <span>easiest way</span> to find your college</h1>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis minus quod aliquid incidunt!</p>
                     <div class="button-holder">
-                        <button>
+                        <button class="goal-trigger">
                             <ion-icon name="apps-outline"></ion-icon> &nbsp; Choose a Goal
                         </button>
-                        <button>Book Admission &nbsp; <ion-icon name="arrow-forward-outline"></ion-icon></button>
+                        <button class="apply-trigger">Book Admission &nbsp; <ion-icon name="arrow-forward-outline"></ion-icon></button>
                     </div>
                 </div>
                 <div class="right">
@@ -262,7 +262,7 @@
                         <div class="collection">
                             <div class="heading">
                                 <h2 class="section-heading"><?php echo $collection['title']; ?></h2>
-                                <a href="http://localhost/medic/colleges">View All</a>
+
                             </div>
                             <div class="card-wrapper splide">
                                 <div class="splide__track">

@@ -599,45 +599,87 @@ header .container .hamburger .bar {
 header .container .hamburger .bar:nth-child(3) {
   margin: 0;
 }
-header .container .sidemenu {
+header .mega-menu {
+  width: 40%;
   position: absolute;
-  right: 12px;
-  top: 55px;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.062745098), 0 6px 20px 0 rgba(0, 0, 0, 0.0549019608);
-  border-radius: 10px;
+  top: 85px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.2901960784);
+}
+header .mega-menu a {
+  color: #1f2a37;
+}
+header .mega-menu .heading {
+  font-weight: 600;
+  padding-left: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  color: white;
+}
+header .mega-menu .left {
   width: 200px;
-  z-index: 10;
-  overflow: hidden;
+  height: 100%;
+  background: #111928;
+  padding: 10px;
+}
+header .mega-menu .left ul {
+  padding: 10px;
+}
+header .mega-menu .left ul li {
+  padding: 8px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+}
+header .mega-menu .left ul li ul {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  width: calc(100% - 200px);
+  right: 0;
+  top: 0;
   display: none;
 }
-header .container .sidemenu .active {
-  color: rgb(5, 9, 59);
-  background-color: #cddeff;
-}
-header .container .sidemenu ul li {
+header .mega-menu .left ul li ul li {
   list-style: none;
+  width: 33.3333333333%;
+  display: block;
+  height: 30px;
 }
-header .container .sidemenu ul li:last-child {
-  margin-bottom: 0;
-  border: none;
+header .mega-menu .left ul li ul li:hover {
+  background: none;
 }
-header .container .sidemenu ul li:hover {
-  background-color: #eaf1ff;
-}
-header .container .sidemenu ul li a {
+header .mega-menu .left ul li ul li a {
   text-decoration: none;
-  font-size: 17px;
-  color: #1f2a37;
-  font-weight: 500;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 15px 15px;
+  display: block;
 }
-header .container .sidemenu ul li a:hover {
+header .mega-menu .left ul li ul li a:hover {
+  background: none;
   color: rgb(5, 9, 59);
-  cursor: pointer;
+}
+header .mega-menu .left ul li:hover {
+  background: #090e16;
+}
+header .mega-menu .left ul li ion-icon {
+  color: white;
+}
+header .mega-menu .left ul .li-active {
+  background: #090e16;
+}
+header .mega-menu .left ul .li-active ul {
+  display: flex;
+}
+header .mega-menu .right {
+  height: 100%;
+  width: calc(100% - 200px);
+  padding: 10px;
 }
 @media (max-width: 768px) {
   header {
@@ -938,6 +980,9 @@ button ion-icon {
   margin-bottom: 20px;
   font-weight: 500;
 }
+.banner .container .left h1 span {
+  font-weight: 600;
+}
 .banner .container .left p {
   font-size: 18px;
   color: white;
@@ -1100,7 +1145,7 @@ button ion-icon {
   align-items: flex-start;
 }
 .info .content {
-  width: 60%;
+  width: calc(100% - 500px);
 }
 .info .content iframe {
   border-radius: 10px;
@@ -1115,6 +1160,10 @@ button ion-icon {
 }
 .info .content .details h2 {
   font-size: 20px;
+  font-weight: 600;
+}
+.info .content .details h3 {
+  font-weight: 600;
 }
 .info .content .details .vdo {
   width: 100%;
@@ -1238,7 +1287,7 @@ button ion-icon {
 .info .form {
   background-color: #eee;
   border-radius: 5px;
-  width: calc(35% - 30px);
+  width: 400px;
   padding: 20px;
 }
 .info .form button {
@@ -1263,6 +1312,12 @@ button ion-icon {
   color: #111928;
   font-size: 14px;
   font-weight: 500;
+}
+.info .form-active {
+  position: fixed;
+  right: 19.62%;
+  transition: 0.5s;
+  top: 10%;
 }
 @media (max-width: 768px) {
   .info .form {
