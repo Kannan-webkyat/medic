@@ -142,6 +142,9 @@
 
                             <form action="" method="post">
                                 <h3>Book Your Addmission</h3>
+                                <div class="direct-college">
+                                    <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission Available
+                                </div>
                                 <div class="input-field">
                                     <label for="name">Name</label>
                                     <div class="field">

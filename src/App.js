@@ -12,13 +12,27 @@ const namespaceManager = () => {
     switch (currentNamespace) {
         case "home":
             {
-                new Splide(".splide", {
-                    type: "loop",
-                    perPage: 4,
-                    gap: 10,
-                    nav: false,
-                    pagination: false,
-                }).mount();
+                const apply = document.querySelectorAll(".apply-trigger");
+                apply.forEach((button) => {
+                    button.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        showPopup("apply");
+                        return false;
+                    });
+                });
+
+                let splides = document.querySelectorAll(".splide");
+                splides.forEach((splide) => {
+                    new Splide(splide, {
+                        type: "loop",
+                        perPage: 4,
+                        gap: 10,
+                        nav: false,
+                        pagination: false,
+                    }).mount();
+                });
+
                 basic();
             }
             break;

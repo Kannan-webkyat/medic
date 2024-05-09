@@ -37,7 +37,7 @@
         <div class="side-bar">
             <div class="header">
                 <div class="heading">
-                    <h3>All Courses</h3>
+                    <h3><ion-icon name="search"></ion-icon> &nbsp; All Courses</h3>
                     <div class="close"><ion-icon name="close-outline"></ion-icon></div>
                 </div>
                 <div class="search">
@@ -140,7 +140,9 @@
                 <div class="head">
                     <div class="heading">
                         <h1>Explore <?php echo $colleges[0]['course_name'] ?> Colleges</h1>
+
                     </div>
+                    <span class="result">1201 Result Found</span>
                     <div class="filter">
                         <form action="" method="POST">
                             <div class="input select-holder">
@@ -175,6 +177,15 @@
                                     <div class="college-logo">
                                         <img src="https://png.pngtree.com/png-clipart/20230403/original/pngtree-education-and-college-logo-design-template-png-image_9022986.png" alt="">
                                     </div>
+                                    <?php
+                                    if ($college['direct'] == 1) {
+                                    ?>
+                                        <div class="direct-college">
+                                            <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission
+                                        </div>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
                                 <div class="content">
                                     <div class="location">

@@ -29,6 +29,42 @@
         ?>
 
 
+        <!-- popup -->
+        <div class="popup">
+            <form action="">
+                <div class="close">
+                    <ion-icon name="close-outline"></ion-icon>
+                </div>
+                <h3>Looking for admission at the college. Give us your details and we will help you </h3>
+                <div class="input-holder">
+                    <input required type="text" placeholder="Name">
+                </div>
+                <div class="input-holder">
+                    <input requiredtype="email" placeholder="Email">
+                </div>
+                <div class="input-holder number-holder">
+                    <input type="text" disabled value="+91">
+                    <input required type="number" placeholder="Enter you 10 digit phone number">
+                </div>
+                <div class="toggle">
+                    <span class="switch">
+                        <input id="switch-rounded" checked type="checkbox" />
+                        <label for="switch-rounded"></label>
+                    </span>
+                    <div class="text">
+                        Enable update and important notication on whatsapp
+                    </div>
+                </div>
+                <button>
+                    Apply Now
+                </button>
+                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus </p> -->
+            </form>
+
+
+
+        </div>
+
         <!-- loader -->
         <div class="loader-container">
             <div class="loader">
@@ -54,51 +90,148 @@
 
 
 
+        <div class="banner">
+            <div class="container">
+                <div class="left">
+                    <h1>The easiest way to find your college</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis minus quod aliquid incidunt!</p>
+                    <div class="button-holder">
+                        <button>
+                            <ion-icon name="apps-outline"></ion-icon> &nbsp; Choose a Goal
+                        </button>
+                        <button>Book Admission &nbsp; <ion-icon name="arrow-forward-outline"></ion-icon></button>
+                    </div>
+                </div>
+                <div class="right">
+                    <img src="https://www.creativefabrica.com/wp-content/uploads/2022/05/10/Happy-students-jumping-illustration-Graphics-30297058-1-580x386.png" alt="">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container">
+            <section id="goal">
+                <h2 class="section-heading">Choose your Goal</h2>
+                <div class="goal-container">
+                    <a href="http://localhost/medic/colleges" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+                    <a href="" class="goal-card">
+                        <div class="icon">
+                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
+                        </div>
+                        <div class="content">
+                            <h3>Nursing</h3>
+                            <span>470 Colleges</span>
+                        </div>
+                        <div class="arrow">
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </div>
+                    </a>
+
+
+                </div>
+            </section>
+        </div>
+
 
         <!-- main section -->
         <div class="container">
             <div class="body-bg">
-                <div class="banner" style="display: none;">
-                    <h1>Find your dream college in just One click</h1>
-                    <div class="search">
-                        <div class="input-holder">
-                            <div class="icon">
-                                <img src="http://localhost/medic/assets/icons/search-icon.png" alt="">
-                            </div>
-                            <input type="text" placeholder="Search College or  Course ...">
-                        </div>
-                        <button class="search-cta">search</button>
-                        <button class="res-search">
-                            <ion-icon name="search-outline"></ion-icon>
-                        </button>
-                        <div class="suggestions suggestions-active">
-                            <ul>
-                                <li>
-                                    <a href="#">Chaithanya Nursing College</a>
-                                </li>
-                                <li>
-                                    <a href="#">Chaithanya Nursing College</a>
-                                </li>
-                                <li>
-                                    <a href="#">Chaithanya Nursing College</a>
-                                </li>
-                                <li>
-                                    <a href="#">Chaithanya Nursing College</a>
-                                </li>
-                                <li>
-                                    <a href="#">Chaithanya Nursing College</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
 
-                </div>
 
                 <?php
                 include './action/allLocations.php';
                 $locations = fetchAllLocations($conn);
                 ?>
-                <div id="location">
+                <div id="location" style="display: none;">
                     <h2>Explore by Locations</h2>
                     <div class="destination">
                         <?php foreach ($locations as $location) : ?>
@@ -110,158 +243,218 @@
                                 <div class="place">
                                     <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
                                     <h3><?php echo $location['title']; ?></h3>
+                                    choose-
                                 </div>
                             </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
+
+                <?php
+                include './action/collegeCollections.php';
+                $collections = fetchAllCollegeCollections($conn);
+
+                ?>
                 <!-- end of locations -->
                 <div class="bg">
-                    <div id="colleges">
-                        <div class="heading">
-                            <h2>Explore the Leading Nursing Colleges</h2>
-                            <a href="http://localhost/medic/colleges">View All</a>
-                        </div>
-                        <div class="card-wrapper slides splide">
-                            <div class="splide__track">
-                                <div class="splide__list">
 
+                    <?php foreach ($collections as $collection) : ?>
+                        <div class="collection">
+                            <div class="heading">
+                                <h2 class="section-heading"><?php echo $collection['title']; ?></h2>
+                                <a href="http://localhost/medic/colleges">View All</a>
+                            </div>
+                            <div class="card-wrapper splide">
+                                <div class="splide__track">
+                                    <div class="splide__list">
+                                        <?php
+                                        $colleges = $collection['colleges'];
+                                        foreach ($colleges as $college) {
 
+                                        ?>
+                                            <a href="http://localhost/medic/college-details/<?= $college['slug']; ?>" class="cards splide__slide">
+                                                <div class="thumbnail">
+                                                    <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
+                                                    <div class="college-logo">
+                                                        <img src="https://png.pngtree.com/png-clipart/20230403/original/pngtree-education-and-college-logo-design-template-png-image_9022986.png" alt="">
+                                                    </div>
+                                                    <?php
+                                                    if ($college['direct'] == 1) {
+                                                    ?>
+                                                        <div class="direct-college">
+                                                            <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission
+                                                        </div>
+                                                    <?php
+                                                    }
+                                                    ?>
+
+                                                </div>
+                                                <div class="content">
+                                                    <div class="location">
+                                                        <!-- <span><?php echo $college['location']; ?></span> -->
+                                                        <span>Bangalore</span>
+                                                        <span>Private</span>
+
+                                                    </div>
+                                                    <h4><?php echo $college['title']; ?></h4>
+
+                                                    <div class="approval">
+                                                        <div>Approved by INC</div>
+                                                    </div>
+
+                                                    <div class="buttons">
+                                                        <button class="apply-trigger">Apply Now</button>
+                                                        <button class="couselling-trigger">Get Free Counselling</button>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        <?php
+                                        }
+                                        ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php
+                    endforeach;  ?>
+
+
+
 
 
                     <!-- footersection  -->
-                    <div id="footer">
-                        <div class="footer-content">
-                            <div class="logo">
-                                <img src="http://localhost/medic/assets/images/logo.png" alt="">
-                            </div>
-                            <div class="footer-about">
-                                <h4>At Medic Guidance, we understand that choosing the right college and course is a
-                                    crucial
-                                    step in shaping your future. </h4>
-                            </div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="footer-links-section">
-                            <div class="links">
-                                <h3>Top Colleges</h3>
-                                <ul>
-                                    <li>
-                                        <a href="#">Nursing Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Nursing Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Nursing Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                </ul>
-                            </div>
 
-                            <div class="links">
-                                <h3>Top Courses</h3>
-                                <ul>
-                                    <li>
-                                        <a href="#">Nursing Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Nursing Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Nursing Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Engineering Colleges</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="links">
-                                <h3>Other Links</h3>
-                                <ul>
-                                    <li>
-                                        <a href="http://localhost/medic/courses">Courses</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/medic/colleges">Colleges</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/medic/about">About</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/medic/news">News / Articles</a>
-                                    </li>
-                                    <li>
-                                        <a href="http://localhost/medic/contact-us">Contact Us</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Terms & Conditions</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="links">
-                                <h3>Connect Us</h3>
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            13rd Floor, Perimbilly Building, Mahatma Gandhi Rd, Shenoys,
-                                            Ernakulam</a>
-                                    </li>
-                                    <li>
-                                        <a href="tel:9632587412">9632587412, </a>
-                                        <a href="tel:8965745213">8965745213</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:mediguidance@gmail.com">mediguidance@gmail.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="line"></div>
-                        <div class="copyright">
-                            <div class="content">
-                                <h4>Copyright © 2024 Medic Guidance | All Rights Reserved | Designed & Developed by <a href="https://webkyat.com/">webkyat</a></h4>
-                            </div>
-                            <div class="social">
-                                <ul>
-                                    <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/facebook.png" alt=""></a>
-                                    </li>
-                                    <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/instagram.png" alt=""></a>
-                                    </li>
-                                    <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/twitter.png" alt=""></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     <!-- end of footer section -->
                 </div>
             </div>
         </div>
+
+        <footer id="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="logo">
+                        <img src="http://localhost/medic/assets/images/logo.png" alt="">
+                    </div>
+                    <div class="footer-about">
+                        <h4>At Medic Guidance, we understand that choosing the right college and course is a
+                            crucial
+                            step in shaping your future. </h4>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="footer-links-section">
+                    <div class="links">
+                        <h3>Top Colleges</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Nursing Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Nursing Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Nursing Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="links">
+                        <h3>Top Courses</h3>
+                        <ul>
+                            <li>
+                                <a href="#">Nursing Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Nursing Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Nursing Colleges</a>
+                            </li>
+                            <li>
+                                <a href="#">Engineering Colleges</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="links">
+                        <h3>Other Links</h3>
+                        <ul>
+                            <li>
+                                <a href="http://localhost/medic/courses">Courses</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/medic/colleges">Colleges</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/medic/about">About</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/medic/news">News / Articles</a>
+                            </li>
+                            <li>
+                                <a href="http://localhost/medic/contact-us">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="#">Terms & Conditions</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="links">
+                        <h3>Connect Us</h3>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    13rd Floor, Perimbilly Building, Mahatma Gandhi Rd, Shenoys,
+                                    Ernakulam</a>
+                            </li>
+                            <li>
+                                <a href="tel:9632587412">9632587412, </a>
+                                <a href="tel:8965745213">8965745213</a>
+                            </li>
+                            <li>
+                                <a href="mailto:mediguidance@gmail.com">mediguidance@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="line"></div>
+                <div class="copyright">
+                    <div class="content">
+                        <h4>Copyright © 2024 Medic Guidance | All Rights Reserved | Designed & Developed by <a href="https://webkyat.com/">webkyat</a></h4>
+                    </div>
+                    <div class="social">
+                        <ul>
+                            <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/facebook.png" alt=""></a>
+                            </li>
+                            <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/instagram.png" alt=""></a>
+                            </li>
+                            <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/twitter.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
     <script src="https://unpkg.com/swup@4"></script>
     <script src="https://unpkg.com/@swup/progress-plugin@3"></script>
