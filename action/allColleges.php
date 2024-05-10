@@ -1,14 +1,4 @@
 <?php
-// Function to parse filter
-function parseFilter($filter)
-{
-    if (!empty($filter)) {
-        list($type, $value) = explode(':', $filter);
-        return [$type, $value];
-    }
-    return [null, null];
-}
-
 // Function to prepare and execute SQL
 function prepareAndExecute($conn, $sql, $type, $param)
 {
@@ -21,38 +11,28 @@ function prepareAndExecute($conn, $sql, $type, $param)
     }
 }
 
-function fetchAllColleges($conn, $filter1, $filter2)
+function fetchAllColleges($conn, $course, $location, $recommended)
 {
-    // Parse both filters
-    list($type1, $value1) = parseFilter($filter1);
-    list($type2, $value2) = parseFilter($filter2);
-
-    $params = [];
-    $types  = "";
-    $where  = " WHERE 1=1"; // Start with a true condition
-
+    $where = " WHERE 1=1 ";
+    $types = null;
     // Assign filters based on type
-    if ($type1 === 'location' && !empty($value1)) {
-        $locationId = prepareAndExecute($conn, "SELECT id FROM location WHERE slug = ?", 's', $value1);
+    if (!empty($location)) {
+        $locationId = prepareAndExecute($conn, "SELECT id FROM location WHERE slug = ?", 's', $location);
         $where      .= " AND c.location_id = ?";
         $params[]   = $locationId;
         $types      .= 'i';
-    } elseif ($type1 === 'course' && !empty($value1)) {
-        $courseId = prepareAndExecute($conn, "SELECT id FROM course WHERE slug = ?", 's', $value1);
+    }
+
+    if (!empty($course)) {
+        $courseId = prepareAndExecute($conn, "SELECT id FROM course WHERE slug = ?", 's', $course);
         $where    .= " AND cc.course_id = ?";
         $params[] = $courseId;
         $types    .= 'i';
     }
 
-    if ($type2 === 'location' && !empty($value2)) {
-        $locationId = prepareAndExecute($conn, "SELECT id FROM location WHERE slug = ?", 's', $value2);
-        $where      .= " AND c.location_id = ?";
-        $params[]   = $locationId;
-        $types      .= 'i';
-    } elseif ($type2 === 'course' && !empty($value2)) {
-        $courseId = prepareAndExecute($conn, "SELECT id FROM course WHERE slug = ?", 's', $value2);
-        $where    .= " AND cc.course_id = ?";
-        $params[] = $courseId;
+    if (!empty($recommended) && $recommended === 'true') {
+        $where    .= " AND c.featured = ?";
+        $params[] = 1;
         $types    .= 'i';
     }
 
@@ -63,7 +43,6 @@ function fetchAllColleges($conn, $filter1, $filter2)
           JOIN course ON course.id = cc.course_id
           $where
           GROUP BY c.id";
-
 
     $stmt = $conn->prepare($query);
     if (!empty($params)) {
@@ -81,5 +60,3 @@ function fetchAllColleges($conn, $filter1, $filter2)
     }
     return $data;
 }
-
-?>

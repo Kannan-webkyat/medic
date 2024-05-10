@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6d35e1d-8f05-447e-b4d1-1eda5bb1ffbb" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/action/allCategoriesWithCourseName.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/action/allColleges.php" beforeDir="false" afterPath="$PROJECT_DIR$/action/allColleges.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/colleges.php" beforeDir="false" afterPath="$PROJECT_DIR$/colleges.php" afterDir="false" />
@@ -130,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715333179976</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="..">
+      <option name="closed" value="true" />
+      <created>1715335701181</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715335701181</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

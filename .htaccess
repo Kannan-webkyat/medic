@@ -11,10 +11,10 @@ RewriteRule ^course-details/([^/]+)$ course-details.php?id=$1 [QSA,NC,L]
 RewriteRule ^college-details/([^/]+)$ college-details.php?id=$1 [QSA,NC,L]
 
 # Rule when only two parameters are present
-RewriteRule ^colleges/([^/]+)/([^/]+)$ colleges.php?filter1=$1&filter2=$2 [L]
+# RewriteRule ^colleges/([^/]+)/([^/]+)$ colleges.php?filter1=$1&filter2=$2 [L]
 
 # Rule when only one parameter is present
-RewriteRule ^colleges/([^/]+)$ colleges.php?filter1=$1 [L]
+RewriteRule ^colleges/([^/]+)$ colleges.php?$1 [L]
 
 # Rewrite URLs to add .php extension
 RewriteCond %{REQUEST_FILENAME} !-d

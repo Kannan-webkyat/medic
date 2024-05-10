@@ -17,8 +17,8 @@
     include './action/locations.php';
     include './action/allCourses.php';
     include './ui/Popup.php';
-    $conn = (new dbConfig)->getConnection();
-    $courses = fetchAllCourses($conn);
+    $conn      = (new dbConfig)->getConnection();
+    $courses   = fetchAllCourses($conn);
     $locations = getAllLocations($conn);
     include './ui/Header.php';
     pageHeader();
@@ -33,8 +33,12 @@
         <div class="side-bar">
             <div class="header">
                 <div class="heading">
-                    <h3><ion-icon name="search"></ion-icon> &nbsp; All Courses</h3>
-                    <div class="close"><ion-icon name="close-outline"></ion-icon></div>
+                    <h3>
+                        <ion-icon name="search"></ion-icon> &nbsp; All Courses
+                    </h3>
+                    <div class="close">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </div>
                 </div>
                 <div class="search">
                     <input type="text" class="search-course" placeholder="Search Course">
@@ -44,7 +48,7 @@
                 <li>
                     <a href="http://localhost/medic/colleges">All</a>
                 </li>
-                <?php foreach ($courses as $course) :  ?>
+                <?php foreach ($courses as $course) : ?>
                     <li>
                         <a href="http://localhost/medic/colleges/course:<?php echo $course['slug'] ?>"><?php echo $course['title']; ?></a>
                     </li>
@@ -72,7 +76,7 @@
             </div>
             <div class="toggle">
                 <span class="switch">
-                    <input id="switch-rounded" checked type="checkbox" />
+                    <input id="switch-rounded" checked type="checkbox"/>
                     <label for="switch-rounded"></label>
                 </span>
                 <div class="text">
@@ -90,13 +94,13 @@
     <div id="fixed-menu">
         <ul>
             <li>
-                <a href="index"><img src="http://localhost/medic/assets/icons/home.png" />Home</a>
+                <a href="index"><img src="http://localhost/medic/assets/icons/home.png"/>Home</a>
             </li>
             <li>
-                <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png" />Courses</a>
+                <a href="http://localhost/medic/courses"><img src="http://localhost/medic/assets/icons/course.png"/>Courses</a>
             </li>
             <li>
-                <a href="http://localhost/medic/colleges" class="active"><img src="http://localhost/medic/assets/icons/college.png" />Colleges</a>
+                <a href="http://localhost/medic/colleges" class="active"><img src="http://localhost/medic/assets/icons/college.png"/>Colleges</a>
             </li>
         </ul>
     </div>
@@ -109,10 +113,11 @@
         <div class="body-bg">
             <?php
             include './action/allColleges.php';
-            $filter1 = isset($_GET['filter1']) ? $_GET['filter1'] : '';
-            $filter2 = isset($_GET['filter2']) ? $_GET['filter2'] : '';
+            $course       = isset($_GET['course']) ? $_GET['course'] : '';
+            $location     = isset($_GET['location']) ? $_GET['location'] : '';
+            $recommended  = isset($_GET['recommended']) ? $_GET['recommended'] : '';
             $courseFilter = '';
-            $colleges = fetchAllColleges($conn, $filter1, $filter2);
+            $colleges     = fetchAllColleges($conn, $course, $location, $recommended);
             ?>
             <div id="college-section">
                 <!-- tab  -->
@@ -128,16 +133,19 @@
                 <div class="head">
                     <div class="heading">
                         <h1>Explore <?php echo $colleges[0]['course_names'] ?> Colleges</h1>
-
                     </div>
                     <span class="result">1201 Result Found</span>
                     <div class="filter">
                         <form action="" method="POST">
                             <div class="input select-holder">
-                                <div class="triggers trigger-active change-course-trigger"><ion-icon name="book-sharp"></ion-icon> &nbsp; Change Course</div>
+                                <div class="triggers trigger-active change-course-trigger">
+                                    <ion-icon name="book-sharp"></ion-icon> &nbsp; Change Course
+                                </div>
                             </div>
                             <div class="input select-holder">
-                                <div class="triggers"><ion-icon name="star-sharp"></ion-icon> &nbsp; Recommended</div>
+                                <div class="triggers">
+                                    <ion-icon name="star-sharp"></ion-icon> &nbsp; Recommended
+                                </div>
                             </div>
                             <div class="input select-holder ">
                                 <select class="activer" id="location-select" name="type-data" required>
@@ -151,7 +159,9 @@
 
                             </div>
                             <div class="input select-holder">
-                                <div class="triggers clear"><ion-icon name="close-sharp"></ion-icon> &nbsp; Clear</div>
+                                <div class="triggers clear">
+                                    <ion-icon name="close-sharp"></ion-icon> &nbsp; Clear
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -168,11 +178,11 @@
                                     </div>
                                     <?php
                                     if ($college['direct'] == 1) {
-                                    ?>
+                                        ?>
                                         <div class="direct-college">
                                             <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission
                                         </div>
-                                    <?php
+                                        <?php
                                     }
                                     ?>
                                 </div>
@@ -184,9 +194,10 @@
                                     <h4><?php echo $college['title']; ?></h4>
                                     <?php
                                     if (!empty($college['approved'])) {
-                                    ?>
+                                        ?>
                                         <div class="approval">
-                                            <div><ion-icon name="checkmark-circle-sharp"></ion-icon> &nbsp; Approved by <?php echo $college['approved']; ?></div>
+                                            <div>
+                                                <ion-icon name="checkmark-circle-sharp"></ion-icon> &nbsp; Approved by <?php echo $college['approved']; ?></div>
                                         </div>
                                     <?php } ?>
 
