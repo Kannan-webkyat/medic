@@ -127,9 +127,9 @@
                 <!-- <div class="tab">
                     <ul>
                         <li><a href="">All</a></li>
-                        <?php foreach ($courses as $course) : ?>
-                            <li><a href=""><?php echo $course['title']; ?></a></li>
-                        <?php endforeach; ?>
+                        <?php // foreach ($courses as $course) : ?>
+                            <li><a href=""><?php // echo $course['title']; ?></a></li>
+                        <?php // endforeach; ?>
                     </ul>
                 </div> -->
                 <!-- end of tab -->
