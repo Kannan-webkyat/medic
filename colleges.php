@@ -153,13 +153,14 @@
                                 <div class="triggers"><ion-icon name="star-sharp"></ion-icon> &nbsp; Recommended</div>
                             </div>
                             <div class="input select-holder ">
-                                <select class="activer" id="filter-field" name="type-data" required>
+                                <select class="activer" id="location-select" name="type-data" required>
                                     <option value="">Select Location</option>
                                     <?php foreach ($locations as $location) : ?>
-                                        <option value="<?php echo $location['id']; ?>"><?php echo $location['title']; ?></option>
-                                    <?php endforeach; ?>
+                                        <option value="<?php echo $location['slug']; ?>"><?php echo $location['title']; ?></option>
+                                        <?php endforeach; ?>s
 
                                 </select>
+
 
                             </div>
                             <div class="input select-holder">

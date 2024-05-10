@@ -67,6 +67,35 @@ const namespaceManager = () => {
                         return false;
                     });
                 });
+
+                // filters
+
+                // const filter = document.querySelector(".filter");
+                // // clear filter
+                // const clear = filter.querySelector(".clear");
+                // clear.addEventListener("click", function () {
+                //     location.href = "http://localhost/medic/colleges";
+                // });
+                // // on location change
+                // const location = filter.querySelector("#location-select");
+                // location.addEventListener("change", function () {
+                //     const value = this.value;
+                //     if (value != "") {
+                //         window.location.href = `http://localhost/medic/colleges/location:${value}`;
+                //     }
+                // });
+
+                class Filter {
+                    constructor() {
+                        this.filter = null;
+                    }
+                    clear() {}
+                    recommended() {}
+                    location() {}
+                    redirect() {}
+                    events() {}
+                }
+
                 basic();
             }
             break;
