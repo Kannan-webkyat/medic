@@ -7,8 +7,6 @@
     <title>Colleges - Medic Guidance</title>
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
     <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
-
-
 </head>
 
 <main id="swup" class="transition-fade">
@@ -30,9 +28,6 @@
         <div class="loader">
         </div>
     </div>
-
-
-
 
     <div class="side-bar-container">
         <div class="side-bar">
@@ -90,8 +85,6 @@
             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus </p> -->
         </form>
 
-
-
     </div>
     <!-- header -->
     <div id="fixed-menu">
@@ -109,13 +102,7 @@
     </div>
     <!-- sticky cta -->
     <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
-
     <!-- end of header -->
-
-
-
-
-
 
     <!-- main section -->
     <div class="container">
@@ -140,7 +127,7 @@
                 <!-- end of tab -->
                 <div class="head">
                     <div class="heading">
-                        <h1>Explore <?php echo $colleges[0]['course_name'] ?> Colleges</h1>
+                        <h1>Explore <?php echo $colleges[0]['course_names'] ?> Colleges</h1>
 
                     </div>
                     <span class="result">1201 Result Found</span>
@@ -192,11 +179,9 @@
                                 <div class="content">
                                     <div class="location">
                                         <span><?php echo $college['location']; ?></span>
-                                        <span>Private</span>
-
+                                        <span><?= $college['under'] === 'pvt' ? 'Privet' : 'Government' ?></span>
                                     </div>
                                     <h4><?php echo $college['title']; ?></h4>
-
                                     <?php
                                     if (!empty($college['approved'])) {
                                     ?>
@@ -229,7 +214,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="http://localhost/medic/src/splide.min.js"></script>
 <script src="http://localhost/medic/src/App.js"></script>
-
 </body>
 
 </html>
