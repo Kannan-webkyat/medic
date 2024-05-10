@@ -7,17 +7,11 @@
     <title>Medic Guidance</title>
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
     <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
-
-
-
-
 </head>
 
 <body>
     <main id="swup" class="transition-fade">
         <div data-swup-name="home"></div>
-
-
 
         <?php
         include './_class/dbConfig.php';
@@ -56,8 +50,6 @@
         <!-- sticky cta -->
         <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
 
-
-
         <div class="banner">
             <div class="container">
                 <div class="left">
@@ -67,14 +59,15 @@
                         <button class="goal-trigger">
                             <ion-icon name="apps-outline"></ion-icon> &nbsp; Choose a Goal
                         </button>
-                        <button class="apply-trigger">Book Admission &nbsp; <ion-icon name="arrow-forward-outline"></ion-icon></button>
+                        <button class="apply-trigger">Book Admission &nbsp;
+                            <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
                     </div>
                 </div>
                 <div class="right">
                     <img src="https://www.creativefabrica.com/wp-content/uploads/2022/05/10/Happy-students-jumping-illustration-Graphics-30297058-1-580x386.png" alt="">
                 </div>
             </div>
-
         </div>
 
 
@@ -132,7 +125,7 @@
                                                 <div class="thumbnail">
                                                     <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
                                                     <div class="college-logo">
-                                                        <img src="https://png.pngtree.com/png-clipart/20230403/original/pngtree-education-and-college-logo-design-template-png-image_9022986.png" alt="">
+                                                        <img src="./admin/action/college/logos/<?= $college['logo'] ?>" alt="">
                                                     </div>
                                                     <?php
                                                     if ($college['direct'] == 1) {
@@ -147,15 +140,13 @@
                                                 </div>
                                                 <div class="content">
                                                     <div class="location">
-                                                        <!-- <span><?php echo $college['location']; ?></span> -->
-                                                        <span>Bangalore</span>
-                                                        <span>Private</span>
-
+                                                        <span><?= $college['location']; ?></span>
+                                                        <span><?= $college['under'] === 'pvt' ? 'Privet' : 'Government' ?></span>
                                                     </div>
                                                     <h4><?php echo $college['title']; ?></h4>
 
                                                     <div class="approval">
-                                                        <div>Approved by INC</div>
+                                                        <div>Approved by <?php echo $college['approved']; ?></div>
                                                     </div>
 
                                                     <div class="buttons">
@@ -172,14 +163,8 @@
                             </div>
                         </div>
                     <?php
-                    endforeach;  ?>
-
-
-
-
-
-                    <!-- footersection  -->
-
+                    endforeach; ?>
+                    <!-- footer section  -->
                     <!-- end of footer section -->
                 </div>
             </div>
@@ -301,11 +286,11 @@
                     </div>
                     <div class="social">
                         <ul>
-                            <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/facebook.png" alt=""></a>
+                            <li><a href="#"><img class="icon" src="http://localhost/medic/assets/icons/facebook.png" alt=""></a>
                             </li>
-                            <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/instagram.png" alt=""></a>
+                            <li><a href="#"><img class="icon" src="http://localhost/medic/assets/icons/instagram.png" alt=""></a>
                             </li>
-                            <li> <a href="#"><img class="icon" src="http://localhost/medic/assets/icons/twitter.png" alt=""></a></li>
+                            <li><a href="#"><img class="icon" src="http://localhost/medic/assets/icons/twitter.png" alt=""></a></li>
                         </ul>
                     </div>
                 </div>
@@ -319,10 +304,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://localhost/medic/src/splide.min.js"></script>
     <script src="http://localhost/medic/src/App.js"></script>
-
-    <script>
-
-    </script>
 </body>
 
 </html>

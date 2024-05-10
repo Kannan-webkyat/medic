@@ -1,0 +1,611 @@
+Index: admin/edit-course.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0\">\n    <title>Edit Course</title>\n    <!-- main style -->\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css\" integrity=\"sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\" />\n    <link rel=\"stylesheet\" href=\"libs/css/style.css\" />\n\n\n\n    <link rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.3.1/css/all.css\" integrity=\"sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU\" crossorigin=\"anonymous\">\n</head>\n\n<body data-barba=\"wrapper\">\n    <main id=\"swup\" class=\"transition-fade\" page-ref=\"course\">\n        <div data-swup-name=\"edit-course\"></div>\n        <div class=\"page-header\">\n            <h1 class=\"page-title\">Edit Course</h1>\n        </div>\n\n        <section class=\"details\">\n            <div class=\"box-section\">\n                <?php\n                if (isset($_GET['id'])) {\n                    include '../_class/dbConfig.php';\n                    include './action/course/CourseManager.php';\n                    $conn = (new dbConfig)->getConnection();\n                    $courseId = $_GET['id'];\n                    $courseManager = new CourseManager($conn);\n                    $course = $courseManager->fetchEdit($courseId);\n                }\n\n\n                if ($_SERVER['REQUEST_METHOD'] === 'POST') {\n                    $data = [\n                        'id' => $courseId,\n                        'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'about' => filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'duration' => filter_var($_POST['duration'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'elegibitliy' => filter_var($_POST['elegibitliy'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'minimumAge' => filter_var($_POST['minimum-age'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'minimumPercentage' => filter_var($_POST['minimum-percentage'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'jobOpertunity' => filter_var($_POST['job-opertunity'], FILTER_SANITIZE_SPECIAL_CHARS),\n                        'bannerImage' => $_FILES['image'],\n                        'categoryId' => filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT)\n                    ];\n\n                    $result = $courseManager->edit($data);\n                    if ($result) {\n                        header('Location: list-course.php');\n                    } else {\n                        echo '<p class=\"error\">Error updating course</p>';\n                    }\n                }\n                ?>\n                <div class=\"form-feild\">\n                    <form action=\"\" method=\"POST\" enctype=\"multipart/form-data\" id=\"edit-course\">\n                        <div class=\"flex form-group\">\n                            <!-- title -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Title</label>\n                                <input id=\"title\" name=\"title\" value=\"<?php echo $course['title']; ?>\" />\n                            </div>\n\n                            <!-- main banner image -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Main Banner Image</label>\n                                <input id=\"banner-images\" name=\"image\" type=\"file\" />\n                            </div>\n                            <!-- end of main banner image -->\n\n                            <?php\n                            include './action/course-category/courseCategoryManager.php';\n                            $categoryObj = new CouresCategoryManager($conn);\n                            $categories = $categoryObj->list();\n                            ?>\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Course Category</label>\n                                <select name=\"category\" id=\"category\" required>\n                                    <option value=\"\">Select category</option>\n                                    <?php foreach ($categories as $category) : ?>\n                                        <option <?php echo $course['category_id'] === $category['id'] ? \"selected\" : \"\" ?> value=\"<?php echo $category['id']; ?>\"><?php echo $category['title']; ?></option>\n                                    <?php endforeach; ?>\n                                </select>\n                            </div>\n\n                            <!-- about course -->\n                            <div class=\"input-holder\" style=\"width: 100%;\">\n                                <label for=\"\">About Course</label>\n                                <textarea name=\"about\" class=\"tiny\" id=\"about-course\"><?php echo $course['about']; ?></textarea>\n                            </div>\n                            <!--end of about course -->\n\n                            <!-- duration -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Duration</label>\n                                <input type=\"text\" id=\"duration\" name=\"duration\" value=\"<?php echo $course['duration']; ?>\" />\n                            </div>\n                            <!-- end of duration -->\n\n                            <!-- duration -->\n                            <div class=\"input-holder split-4\" style=\"width: 100%;\">\n                                <label for=\"\"> Elegibitliy</label>\n                                <input type=\"text\" id=\"elegibitliy\" name=\"elegibitliy\" value=\"<?php echo $course['eligibility']; ?>\" />\n                            </div>\n                            <!-- end of duration -->\n\n\n                            <!-- Minimum age -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Minimum Age</label>\n                                <input type=\"text\" id=\"minimum-age\" name=\"minimum-age\" value=\"<?php echo $course['minimum_age']; ?>\" />\n                            </div>\n                            <!-- end of Minimum age -->\n\n                            <!-- Minimum Percentage -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Minimum Percentage</label>\n                                <input type=\"text\" id=\"minimum-percentage\" name=\"minimum-percentage\" value=\"<?php echo $course['minimum_percentage']; ?>\" />\n                            </div>\n                            <!-- end of Minimum Percentage -->\n\n                            <!-- Job Opertunity -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Job Opertunity </label>\n                                <input type=\"text\" id=\"job-opertunity \" name=\"job-opertunity\" value=\"<?php echo $course['job_opportunity']; ?>\" />\n                            </div>\n\n                            <!-- Display current banner image -->\n                            <div class=\"input-holder split-4\">\n                                <label for=\"\">Current Banner Image</label>\n                                <img width=\"250\" src=\"./action/course/docs/<?php echo $course['banner_image']; ?>\" alt=\"Current Banner Image\">\n                            </div>\n\n                        </div>\n                        <button id=\"save_btn\" type=\"submit\">Save &nbsp; <img src=\"assets/icons/arrow-right.png\" alt=\"\"></button>\n                    </form>\n                </div>\n            </div>\n        </section>\n    </main>\n</body>\n<script src=\"https://unpkg.com/swup@4\"></script>\n<script src=\"https://unpkg.com/@swup/progress-plugin@3\"></script>\n<!-- global jquery -->\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js\"></script>\n<!-- tiny editor -->\n<script src=\"https://cdn.tiny.cloud/1/43aunf39f890dvkf0odugutyswrwof33rftvvs52jrl27zli/tinymce/7/tinymce.min.js\" referrerpolicy=\"origin\"></script>\n<!-- app js -->\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js\" integrity=\"sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==\" crossorigin=\"anonymous\" referrerpolicy=\"no-referrer\"></script>\n<script type=\"module\" src=\"src/app.js\"></script>\n\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/admin/edit-course.php b/admin/edit-course.php
+--- a/admin/edit-course.php	(revision 7ebd95c76a695e8315804a243f25ccc385ede8b5)
++++ b/admin/edit-course.php	(date 1715078151942)
+@@ -7,142 +7,139 @@
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+     <title>Edit Course</title>
+     <!-- main style -->
+-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+-    <link rel="stylesheet" href="libs/css/style.css" />
+-
+-
+-
++    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
++    <link rel="stylesheet" href="libs/css/style.css"/>
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+ </head>
+ 
+ <body data-barba="wrapper">
+-    <main id="swup" class="transition-fade" page-ref="course">
+-        <div data-swup-name="edit-course"></div>
+-        <div class="page-header">
+-            <h1 class="page-title">Edit Course</h1>
+-        </div>
++<main id="swup" class="transition-fade" page-ref="course">
++    <div data-swup-name="edit-course"></div>
++    <div class="page-header">
++        <h1 class="page-title">Edit Course</h1>
++    </div>
+ 
+-        <section class="details">
+-            <div class="box-section">
+-                <?php
+-                if (isset($_GET['id'])) {
+-                    include '../_class/dbConfig.php';
+-                    include './action/course/CourseManager.php';
+-                    $conn = (new dbConfig)->getConnection();
+-                    $courseId = $_GET['id'];
+-                    $courseManager = new CourseManager($conn);
+-                    $course = $courseManager->fetchEdit($courseId);
+-                }
++    <section class="details">
++        <div class="box-section">
++            <?php
++            if (isset($_GET['id'])) {
++                include '../_class/dbConfig.php';
++                include './action/course/CourseManager.php';
++                $conn          = (new dbConfig)->getConnection();
++                $courseId      = $_GET['id'];
++                $courseManager = new CourseManager($conn);
++                $course        = $courseManager->fetchEdit($courseId);
++            }
+ 
+ 
+-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+-                    $data = [
+-                        'id' => $courseId,
+-                        'title' => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'about' => filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'duration' => filter_var($_POST['duration'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'elegibitliy' => filter_var($_POST['elegibitliy'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'minimumAge' => filter_var($_POST['minimum-age'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'minimumPercentage' => filter_var($_POST['minimum-percentage'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'jobOpertunity' => filter_var($_POST['job-opertunity'], FILTER_SANITIZE_SPECIAL_CHARS),
+-                        'bannerImage' => $_FILES['image'],
+-                        'categoryId' => filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT)
+-                    ];
++            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
++                $data = [
++                    'id'                => $courseId,
++                    'title'             => filter_var($_POST['title'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'about'             => filter_var($_POST['about'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'duration'          => filter_var($_POST['duration'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'elegibitliy'       => filter_var($_POST['elegibitliy'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'minimumAge'        => filter_var($_POST['minimum-age'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'minimumPercentage' => filter_var($_POST['minimum-percentage'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'jobOpertunity'     => filter_var($_POST['job-opertunity'], FILTER_SANITIZE_SPECIAL_CHARS),
++                    'bannerImage'       => $_FILES['image'],
++                    'categoryId'        => filter_var($_POST['category'], FILTER_SANITIZE_NUMBER_INT)
++                ];
+ 
+-                    $result = $courseManager->edit($data);
+-                    if ($result) {
+-                        header('Location: list-course.php');
+-                    } else {
+-                        echo '<p class="error">Error updating course</p>';
+-                    }
+-                }
+-                ?>
+-                <div class="form-feild">
+-                    <form action="" method="POST" enctype="multipart/form-data" id="edit-course">
+-                        <div class="flex form-group">
+-                            <!-- title -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Title</label>
+-                                <input id="title" name="title" value="<?php echo $course['title']; ?>" />
+-                            </div>
++                $result = $courseManager->edit($data);
++                if ($result) {
++                    header('Location: list-course.php');
++                } else {
++                    echo '<p class="error">Error updating course</p>';
++                }
++            }
++            ?>
++            <div class="form-feild">
++                <form action="" method="POST" enctype="multipart/form-data" id="edit-course">
++                    <div class="flex form-group">
++                        <!-- title -->
++                        <div class="input-holder split-4">
++                            <label for="">Title</label>
++                            <input id="title" name="title" value="<?php echo $course['title']; ?>"/>
++                        </div>
+ 
+-                            <!-- main banner image -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Main Banner Image</label>
+-                                <input id="banner-images" name="image" type="file" />
+-                            </div>
+-                            <!-- end of main banner image -->
++                        <!-- main banner image -->
++                        <div class="input-holder split-4">
++                            <label for="">Main Banner Image</label>
++                            <input id="image" name="image" type="file"/>
++                        </div>
++                        <!-- end of main banner image -->
+ 
+-                            <?php
+-                            include './action/course-category/courseCategoryManager.php';
+-                            $categoryObj = new CouresCategoryManager($conn);
+-                            $categories = $categoryObj->list();
+-                            ?>
+-                            <div class="input-holder split-4">
+-                                <label for="">Course Category</label>
+-                                <select name="category" id="category" required>
+-                                    <option value="">Select category</option>
+-                                    <?php foreach ($categories as $category) : ?>
+-                                        <option <?php echo $course['category_id'] === $category['id'] ? "selected" : "" ?> value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+-                                    <?php endforeach; ?>
+-                                </select>
+-                            </div>
++                        <?php
++                        include './action/course-category/courseCategoryManager.php';
++                        $categoryObj = new CouresCategoryManager($conn);
++                        $categories  = $categoryObj->list();
++                        ?>
++                        <div class="input-holder split-4">
++                            <label for="">Course Category</label>
++                            <select name="category" id="category" required>
++                                <option value="">Select category</option>
++                                <?php foreach ($categories as $category) : ?>
++                                    <option <?php echo $course['category_id'] === $category['id'] ? "selected" : "" ?> value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
++                                <?php endforeach; ?>
++                            </select>
++                        </div>
+ 
+-                            <!-- about course -->
+-                            <div class="input-holder" style="width: 100%;">
+-                                <label for="">About Course</label>
+-                                <textarea name="about" class="tiny" id="about-course"><?php echo $course['about']; ?></textarea>
+-                            </div>
+-                            <!--end of about course -->
++                        <!-- about course -->
++                        <div class="input-holder" style="width: 100%;">
++                            <label for="">About Course</label>
++                            <textarea name="about" class="tiny" id="about-course"><?php echo $course['about']; ?></textarea>
++                        </div>
++                        <!--end of about course -->
+ 
+-                            <!-- duration -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Duration</label>
+-                                <input type="text" id="duration" name="duration" value="<?php echo $course['duration']; ?>" />
+-                            </div>
+-                            <!-- end of duration -->
++                        <!-- duration -->
++                        <div class="input-holder split-4">
++                            <label for="">Duration</label>
++                            <input type="text" id="duration" name="duration" value="<?php echo $course['duration']; ?>"/>
++                        </div>
++                        <!-- end of duration -->
+ 
+-                            <!-- duration -->
+-                            <div class="input-holder split-4" style="width: 100%;">
+-                                <label for=""> Elegibitliy</label>
+-                                <input type="text" id="elegibitliy" name="elegibitliy" value="<?php echo $course['eligibility']; ?>" />
+-                            </div>
+-                            <!-- end of duration -->
++                        <!-- duration -->
++                        <div class="input-holder split-4" style="width: 100%;">
++                            <label for=""> Elegibitliy</label>
++                            <input type="text" id="elegibitliy" name="elegibitliy" value="<?php echo $course['eligibility']; ?>"/>
++                        </div>
++                        <!-- end of duration -->
+ 
+ 
+-                            <!-- Minimum age -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Minimum Age</label>
+-                                <input type="text" id="minimum-age" name="minimum-age" value="<?php echo $course['minimum_age']; ?>" />
+-                            </div>
+-                            <!-- end of Minimum age -->
++                        <!-- Minimum age -->
++                        <div class="input-holder split-4">
++                            <label for="">Minimum Age</label>
++                            <input type="text" id="minimum-age" name="minimum-age" value="<?php echo $course['minimum_age']; ?>"/>
++                        </div>
++                        <!-- end of Minimum age -->
+ 
+-                            <!-- Minimum Percentage -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Minimum Percentage</label>
+-                                <input type="text" id="minimum-percentage" name="minimum-percentage" value="<?php echo $course['minimum_percentage']; ?>" />
+-                            </div>
+-                            <!-- end of Minimum Percentage -->
++                        <!-- Minimum Percentage -->
++                        <div class="input-holder split-4">
++                            <label for="">Minimum Percentage</label>
++                            <input type="text" id="minimum-percentage" name="minimum-percentage" value="<?php echo $course['minimum_percentage']; ?>"/>
++                        </div>
++                        <!-- end of Minimum Percentage -->
+ 
+-                            <!-- Job Opertunity -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Job Opertunity </label>
+-                                <input type="text" id="job-opertunity " name="job-opertunity" value="<?php echo $course['job_opportunity']; ?>" />
+-                            </div>
++                        <!-- Job Opertunity -->
++                        <div class="input-holder split-4">
++                            <label for="">Job Opertunity </label>
++                            <input type="text" id="job-opertunity " name="job-opertunity" value="<?php echo $course['job_opportunity']; ?>"/>
++                        </div>
+ 
+-                            <!-- Display current banner image -->
+-                            <div class="input-holder split-4">
+-                                <label for="">Current Banner Image</label>
+-                                <img width="250" src="./action/course/docs/<?php echo $course['banner_image']; ?>" alt="Current Banner Image">
+-                            </div>
++                        <!-- Display current banner image -->
++                        <div class="input-holder split-4">
++                            <label for="">Current Banner Image</label>
++                            <img width="250" src="./action/course/docs/<?php echo $course['banner_image']; ?>" alt="Current Banner Image">
++                        </div>
+ 
+-                        </div>
+-                        <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+-                    </form>
+-                </div>
+-            </div>
+-        </section>
+-    </main>
++                    </div>
++                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
++                </form>
++            </div>
++        </div>
++    </section>
++</main>
+ </body>
+ <script src="https://unpkg.com/swup@4"></script>
+ <script src="https://unpkg.com/@swup/progress-plugin@3"></script>
+Index: admin/action/location/LocationManager.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\nclass LocationManager\n{\n          private mysqli $conn;\n\n          public function __construct($db)\n          {\n                    $this->conn = $db;\n          }\n\n          public function add($data)\n          {\n                    include './action/modules/documentUploader.php';\n                    $currentDateTime = date('Y-m-d H:i:s');\n                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));\n\n                    $image = '';\n                    if (isset($data['image'])) {\n                              $uploader = new DocumentUploader();\n                              $path = __DIR__ . '/docs/';\n                              $image    = $uploader->uploadDocument($data['image'], $path);\n                    }\n\n                    $query = \"INSERT INTO location (title,slug,`image`,created_at) VALUES (?,?,?,?)\";\n                    $sql   = $this->conn->prepare($query);\n                    $sql->bind_param('ssss', $data['title'], $slug, $image, $currentDateTime);\n                    return $sql->execute();\n          }\n\n          public function edit($data)\n          {\n                    include './action/modules/documentUploader.php';\n                    $image = '';\n                    if (!empty($data['image']['name'])) {\n                              $uploader = new DocumentUploader();\n                              $path = __DIR__ . '/docs/';\n                              $image    = $uploader->uploadDocument($data['image'], $path);\n                    }\n                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));\n                    $query = \"UPDATE location SET title = ?, slug=? \" . (!empty($image) ? \",`image` = ?\" : \"\") . \" WHERE id = ?\";\n                    $sql   = $this->conn->prepare($query);\n                    if (!empty($image)) {\n                              $sql->bind_param('sssi', $data['title'], $slug, $image, $data['id']);\n                    } else {\n                              $sql->bind_param('ssi', $data['title'], $slug, $data['id']);\n                    }\n                    return $sql->execute();\n          }\n\n          public function fetchEdit($id)\n          {\n                    $query = \"SELECT * FROM location WHERE id = ?\";\n                    $sql   = $this->conn->prepare($query);\n                    $sql->bind_param('i', $id);\n                    $sql->execute();\n                    $result = $sql->get_result();\n                    return $result->fetch_assoc();\n          }\n\n          public function delete($id)\n          {\n\n                    $query = \"DELETE FROM location WHERE id = ?\";\n                    $sql   = $this->conn->prepare($query);\n                    $sql->bind_param('i', $id);\n                    return $sql->execute();\n          }\n\n          public function list()\n          {\n                    if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n                              $query = \"SELECT * FROM `location` WHERE `status` != 0 ORDER BY id DESC\";\n                              $sql   = $this->conn->prepare($query);\n                              $sql->execute();\n                              $result = $sql->get_result();\n                              return $result->fetch_all(MYSQLI_ASSOC);\n                    } else {\n                              return \"Invalid request method\";\n                    }\n          }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/admin/action/location/LocationManager.php b/admin/action/location/LocationManager.php
+--- a/admin/action/location/LocationManager.php	(revision 7ebd95c76a695e8315804a243f25ccc385ede8b5)
++++ b/admin/action/location/LocationManager.php	(date 1715078584976)
+@@ -1,81 +1,81 @@
+ <?php
++
+ class LocationManager
+ {
+-          private mysqli $conn;
++    private mysqli $conn;
+ 
+-          public function __construct($db)
+-          {
+-                    $this->conn = $db;
+-          }
++    public function __construct($db)
++    {
++        $this->conn = $db;
++    }
+ 
+-          public function add($data)
+-          {
+-                    include './action/modules/documentUploader.php';
+-                    $currentDateTime = date('Y-m-d H:i:s');
+-                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
++    public function add($data)
++    {
++        include './action/modules/documentUploader.php';
++        $currentDateTime = date('Y-m-d H:i:s');
++        $slug            = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
+ 
+-                    $image = '';
+-                    if (isset($data['image'])) {
+-                              $uploader = new DocumentUploader();
+-                              $path = __DIR__ . '/docs/';
+-                              $image    = $uploader->uploadDocument($data['image'], $path);
+-                    }
++        $image = '';
++        if (isset($data['image'])) {
++            $uploader = new DocumentUploader();
++            $path     = __DIR__ . '/docs/';
++            $image    = $uploader->uploadDocument($data['image'], $path);
++        }
+ 
+-                    $query = "INSERT INTO location (title,slug,`image`,created_at) VALUES (?,?,?,?)";
+-                    $sql   = $this->conn->prepare($query);
+-                    $sql->bind_param('ssss', $data['title'], $slug, $image, $currentDateTime);
+-                    return $sql->execute();
+-          }
++        $query = "INSERT INTO location (title,slug,`image`,created_at) VALUES (?,?,?,?)";
++        $sql   = $this->conn->prepare($query);
++        $sql->bind_param('ssss', $data['title'], $slug, $image, $currentDateTime);
++        return $sql->execute();
++    }
+ 
+-          public function edit($data)
+-          {
+-                    include './action/modules/documentUploader.php';
+-                    $image = '';
+-                    if (!empty($data['image']['name'])) {
+-                              $uploader = new DocumentUploader();
+-                              $path = __DIR__ . '/docs/';
+-                              $image    = $uploader->uploadDocument($data['image'], $path);
+-                    }
+-                    $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
+-                    $query = "UPDATE location SET title = ?, slug=? " . (!empty($image) ? ",`image` = ?" : "") . " WHERE id = ?";
+-                    $sql   = $this->conn->prepare($query);
+-                    if (!empty($image)) {
+-                              $sql->bind_param('sssi', $data['title'], $slug, $image, $data['id']);
+-                    } else {
+-                              $sql->bind_param('ssi', $data['title'], $slug, $data['id']);
+-                    }
+-                    return $sql->execute();
+-          }
++    public function edit($data)
++    {
++        include './action/modules/documentUploader.php';
++        $image = '';
++        if (!empty($data['image']['name'])) {
++            $uploader = new DocumentUploader();
++            $path     = __DIR__ . '/docs/';
++            $image    = $uploader->uploadDocument($data['image'], $path);
++        }
++        $slug  = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $data['title'])));
++        $query = "UPDATE location SET title = ?, slug=? " . (!empty($image) ? ",`image` = ?" : "") . " WHERE id = ?";
++        $sql   = $this->conn->prepare($query);
++        if (!empty($image)) {
++            $sql->bind_param('sssi', $data['title'], $slug, $image, $data['id']);
++        } else {
++            $sql->bind_param('ssi', $data['title'], $slug, $data['id']);
++        }
++        return $sql->execute();
++    }
+ 
+-          public function fetchEdit($id)
+-          {
+-                    $query = "SELECT * FROM location WHERE id = ?";
+-                    $sql   = $this->conn->prepare($query);
+-                    $sql->bind_param('i', $id);
+-                    $sql->execute();
+-                    $result = $sql->get_result();
+-                    return $result->fetch_assoc();
+-          }
++    public function fetchEdit($id)
++    {
++        $query = "SELECT * FROM location WHERE id = ?";
++        $sql   = $this->conn->prepare($query);
++        $sql->bind_param('i', $id);
++        $sql->execute();
++        $result = $sql->get_result();
++        return $result->fetch_assoc();
++    }
+ 
+-          public function delete($id)
+-          {
+-
+-                    $query = "DELETE FROM location WHERE id = ?";
+-                    $sql   = $this->conn->prepare($query);
+-                    $sql->bind_param('i', $id);
+-                    return $sql->execute();
+-          }
++    public function delete($id)
++    {
++        $query = "DELETE FROM location WHERE id = ?";
++        $sql   = $this->conn->prepare($query);
++        $sql->bind_param('i', $id);
++        return $sql->execute();
++    }
+ 
+-          public function list()
+-          {
+-                    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+-                              $query = "SELECT * FROM `location` WHERE `status` != 0 ORDER BY id DESC";
+-                              $sql   = $this->conn->prepare($query);
+-                              $sql->execute();
+-                              $result = $sql->get_result();
+-                              return $result->fetch_all(MYSQLI_ASSOC);
+-                    } else {
+-                              return "Invalid request method";
+-                    }
+-          }
++    public function list()
++    {
++        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
++            $query = "SELECT * FROM `location` WHERE `status` != 0 ORDER BY id DESC";
++            $sql   = $this->conn->prepare($query);
++            $sql->execute();
++            $result = $sql->get_result();
++            return $result->fetch_all(MYSQLI_ASSOC);
++        } else {
++            return "Invalid request method";
++        }
++    }
+ }
+Index: admin/action/course/CourseManager.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\nclass CourseManager\n{\n          private mysqli $conn;\n\n          public function __construct($db)\n          {\n                    $this->conn = $db;\n          }\n\n          public function add($data)\n          {\n                    include './action/modules/documentUploader.php';\n                    $currentDateTime = date('Y-m-d H:i:s');\n\n                    $image = '';\n                    if (isset($data['bannerImage'])) {\n                              $uploader = new DocumentUploader();\n                              $path = __DIR__ . '/docs/';\n                              $image    = $uploader->uploadDocument($data['bannerImage'], $path);\n                    }\n\n                    $slug = strtolower(str_replace(' ', '_', $data['title']));\n\n                    $query = \"INSERT INTO course (category_id,title,slug,duration,eligibility,minimum_age,minimum_percentage,about,job_opportunity,banner_image,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)\";\n                    $sql   = $this->conn->prepare($query);\n                    $sql->bind_param('issssssssss', $data['categoryId'], $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $currentDateTime);\n                    return $sql->execute();\n          }\n\n          public function edit($data)\n          {\n                    include './action/modules/documentUploader.php';\n                    $image = '';\n                    if (!empty($data['image']['name'])) {\n                              $uploader = new DocumentUploader();\n                              $image    = $uploader->uploadDocument($data);\n                    }\n\n                    $slug = strtolower(str_replace(' ', '_', $data['title']));\n\n                    $query = \"UPDATE course SET title = ?,slug = ?, duration = ?, eligibility = ?, minimum_age = ?, minimum_percentage = ?, about = ?, job_opportunity = ?\" . (!empty($image) ? \",banner_image = ?\" : \"\") . \" WHERE id = ?\";\n                    $sql   = $this->conn->prepare($query);\n                    if (!empty($image)) {\n                              $sql->bind_param('ssssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $data['id']);\n                    } else {\n                              $sql->bind_param('ssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $data['id']);\n                    }\n                    $result = $sql->execute();\n                    return $result;\n          }\n\n          public function fetchEdit($id)\n          {\n                    $query = \"SELECT * FROM course WHERE id = ?\";\n                    $sql = $this->conn->prepare($query);\n                    $sql->bind_param('i', $id);\n                    $sql->execute();\n                    $result = $sql->get_result();\n                    return $result->fetch_assoc();\n          }\n\n          public function delete($id)\n          {\n                    $query = \"DELETE FROM course WHERE id = ?\";\n                    $sql   = $this->conn->prepare($query);\n                    $sql->bind_param('i', $id);\n                    return $sql->execute();\n          }\n\n          public function list()\n          {\n                    if ($_SERVER['REQUEST_METHOD'] === 'GET') {\n                              $query = \"SELECT c.title,c.duration,c.eligibility,c.id,cc.title AS category FROM course c INNER JOIN course_category cc ON c.category_id = cc.id WHERE c.status != 0 ORDER BY c.id DESC\";\n                              $sql   = $this->conn->prepare($query);\n                              $sql->execute();\n                              $result = $sql->get_result();\n                              return $result->fetch_all(MYSQLI_ASSOC);\n                    } else {\n                              return \"Invalid request method\";\n                    }\n          }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/admin/action/course/CourseManager.php b/admin/action/course/CourseManager.php
+--- a/admin/action/course/CourseManager.php	(revision 7ebd95c76a695e8315804a243f25ccc385ede8b5)
++++ b/admin/action/course/CourseManager.php	(date 1715078347733)
+@@ -1,83 +1,85 @@
+ <?php
++
+ class CourseManager
+ {
+-          private mysqli $conn;
++    private mysqli $conn;
+ 
+-          public function __construct($db)
+-          {
+-                    $this->conn = $db;
+-          }
++    public function __construct($db)
++    {
++        $this->conn = $db;
++    }
+ 
+-          public function add($data)
+-          {
+-                    include './action/modules/documentUploader.php';
+-                    $currentDateTime = date('Y-m-d H:i:s');
++    public function add($data)
++    {
++        include './action/modules/documentUploader.php';
++        $currentDateTime = date('Y-m-d H:i:s');
+ 
+-                    $image = '';
+-                    if (isset($data['bannerImage'])) {
+-                              $uploader = new DocumentUploader();
+-                              $path = __DIR__ . '/docs/';
+-                              $image    = $uploader->uploadDocument($data['bannerImage'], $path);
+-                    }
++        $image = '';
++        if (isset($data['bannerImage'])) {
++            $uploader = new DocumentUploader();
++            $path     = __DIR__ . '/docs/';
++            $image    = $uploader->uploadDocument($data['bannerImage'], $path);
++        }
+ 
+-                    $slug = strtolower(str_replace(' ', '_', $data['title']));
++        $slug = strtolower(str_replace(' ', '_', $data['title']));
+ 
+-                    $query = "INSERT INTO course (category_id,title,slug,duration,eligibility,minimum_age,minimum_percentage,about,job_opportunity,banner_image,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+-                    $sql   = $this->conn->prepare($query);
+-                    $sql->bind_param('issssssssss', $data['categoryId'], $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $currentDateTime);
+-                    return $sql->execute();
+-          }
++        $query = "INSERT INTO course (category_id,title,slug,duration,eligibility,minimum_age,minimum_percentage,about,job_opportunity,banner_image,created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
++        $sql   = $this->conn->prepare($query);
++        $sql->bind_param('issssssssss', $data['categoryId'], $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $currentDateTime);
++        return $sql->execute();
++    }
+ 
+-          public function edit($data)
+-          {
+-                    include './action/modules/documentUploader.php';
+-                    $image = '';
+-                    if (!empty($data['image']['name'])) {
+-                              $uploader = new DocumentUploader();
+-                              $image    = $uploader->uploadDocument($data);
+-                    }
++    public function edit($data)
++    {
++        include './action/modules/documentUploader.php';
++        $image = '';
++        if (!empty($data['bannerImage']['name'])) {
++            $uploader = new DocumentUploader();
++            $path     = __DIR__ . '/docs/';
++            $image    = $uploader->uploadDocument($data['bannerImage'], $path);
++        }
+ 
+-                    $slug = strtolower(str_replace(' ', '_', $data['title']));
++        $slug = strtolower(str_replace(' ', '_', $data['title']));
+ 
+-                    $query = "UPDATE course SET title = ?,slug = ?, duration = ?, eligibility = ?, minimum_age = ?, minimum_percentage = ?, about = ?, job_opportunity = ?" . (!empty($image) ? ",banner_image = ?" : "") . " WHERE id = ?";
+-                    $sql   = $this->conn->prepare($query);
+-                    if (!empty($image)) {
+-                              $sql->bind_param('ssssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $data['id']);
+-                    } else {
+-                              $sql->bind_param('ssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $data['id']);
+-                    }
+-                    $result = $sql->execute();
+-                    return $result;
+-          }
++        $query = "UPDATE course SET title = ?,slug = ?, duration = ?, eligibility = ?, minimum_age = ?, minimum_percentage = ?, about = ?, job_opportunity = ?" . (!empty($image) ? ",banner_image = ?" : "") . " WHERE id = ?";
++        $sql   = $this->conn->prepare($query);
++        if (!empty($image)) {
++            $sql->bind_param('sssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $image, $data['id']);
++        } else {
++            $sql->bind_param('ssssssssi', $data['title'], $slug, $data['duration'], $data['elegibitliy'], $data['minimumAge'], $data['minimumPercentage'], $data['about'], $data['jobOpertunity'], $data['id']);
++        }
++        $result = $sql->execute();
++        return $result;
++    }
+ 
+-          public function fetchEdit($id)
+-          {
+-                    $query = "SELECT * FROM course WHERE id = ?";
+-                    $sql = $this->conn->prepare($query);
+-                    $sql->bind_param('i', $id);
+-                    $sql->execute();
+-                    $result = $sql->get_result();
+-                    return $result->fetch_assoc();
+-          }
++    public function fetchEdit($id)
++    {
++        $query = "SELECT * FROM course WHERE id = ?";
++        $sql   = $this->conn->prepare($query);
++        $sql->bind_param('i', $id);
++        $sql->execute();
++        $result = $sql->get_result();
++        return $result->fetch_assoc();
++    }
+ 
+-          public function delete($id)
+-          {
+-                    $query = "DELETE FROM course WHERE id = ?";
+-                    $sql   = $this->conn->prepare($query);
+-                    $sql->bind_param('i', $id);
+-                    return $sql->execute();
+-          }
++    public function delete($id)
++    {
++        $query = "DELETE FROM course WHERE id = ?";
++        $sql   = $this->conn->prepare($query);
++        $sql->bind_param('i', $id);
++        return $sql->execute();
++    }
+ 
+-          public function list()
+-          {
+-                    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+-                              $query = "SELECT c.title,c.duration,c.eligibility,c.id,cc.title AS category FROM course c INNER JOIN course_category cc ON c.category_id = cc.id WHERE c.status != 0 ORDER BY c.id DESC";
+-                              $sql   = $this->conn->prepare($query);
+-                              $sql->execute();
+-                              $result = $sql->get_result();
+-                              return $result->fetch_all(MYSQLI_ASSOC);
+-                    } else {
+-                              return "Invalid request method";
+-                    }
+-          }
++    public function list()
++    {
++        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
++            $query = "SELECT c.title,c.duration,c.eligibility,c.id,cc.title AS category FROM course c INNER JOIN course_category cc ON c.category_id = cc.id WHERE c.status != 0 ORDER BY c.id DESC";
++            $sql   = $this->conn->prepare($query);
++            $sql->execute();
++            $result = $sql->get_result();
++            return $result->fetch_all(MYSQLI_ASSOC);
++        } else {
++            return "Invalid request method";
++        }
++    }
+ }
+Index: admin/action/college/CollegeManager.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\nclass CollegeManager\n{\n    private mysqli $conn;\n\n    public function __construct($db)\n    {\n        $this->conn = $db;\n    }\n\n    public function add($data)\n    {\n        $currentDateTime = date('Y-m-d H:i:s');\n        include './action/modules/documentUploader.php';\n        $slug = strtolower(str_replace(' ', '-', $data['title']));\n\n        $query = \"INSERT INTO college (title,slug,about,location_id,yt_url,direct,featured,created_at) VALUES (?,?,?,?,?,?,?,?)\";\n        $sql   = $this->conn->prepare($query);\n        $sql->bind_param('sssisiis', $data['title'], $slug, $data['about'], $data['location'], $data['youtubeLink'], $data['isDirectCollege'], $data['isFeatured'], $currentDateTime);\n        if ($sql->execute()) {\n            $collegeId = $sql->insert_id;\n\n            if (!empty($data['collegeImages'])) {\n                $path = __DIR__ . '/docs/';\n                $countFiles = count($data['collegeImages']['name']);\n                for ($i = 0; $i < $countFiles; $i++) {\n                    $originalFileName = $data['collegeImages']['name'][$i];\n                    $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);\n                    $newFileName = uniqid() . '.' . $fileExtension;\n                    $targetFilePath = $path . $newFileName;\n                    if (move_uploaded_file($data['collegeImages']['tmp_name'][$i], $targetFilePath)) {\n                        // inserting to database\n                        $query = \"INSERT INTO college_images (college_id, `image`) VALUES (?, ?)\";\n                        $sql = $this->conn->prepare($query);\n                        $sql->bind_param('is', $collegeId, $newFileName);\n                        $sql->execute();\n                    }\n                }\n            }\n\n            // inserting college courses\n            if (isset($data['courses'])) {\n                foreach ($data['courses'] as $courseId) {\n                    $query = \"INSERT INTO college_courses (college_id, course_id) VALUES (?, ?)\";\n                    $sql = $this->conn->prepare($query);\n                    $sql->bind_param('ii', $collegeId, $courseId);\n                    $sql->execute();\n                }\n            }\n\n            // inserting college facilities\n            if (isset($data['facility'])) {\n                foreach ($data['facility'] as $facilityId) {\n                    $query = \"INSERT INTO college_facilities (college_id, facility_id) VALUES (?, ?)\";\n                    $sql = $this->conn->prepare($query);\n                    $sql->bind_param('ii', $collegeId, $facilityId);\n                    $sql->execute();\n                }\n            }\n\n            return true;\n        } else {\n            return false;\n        }\n    }\n\n    public function edit($data)\n    {\n        include './action/modules/documentUploader.php';\n        $slug = strtolower(str_replace(' ', '-', $data['title']));\n\n        $query = \"UPDATE college SET title=?, slug=?, about=?, location_id=?, direct=?, featured=? WHERE id=?\";\n        $sql   = $this->conn->prepare($query);\n        $sql->bind_param('sssiiii', $data['title'], $slug, $data['about'], $data['location'], $data['isDirectCollege'], $data['isFeatured'], $data['collgeId']);\n        if ($sql->execute()) {\n            $collegeId = $data['collgeId'];\n\n            if (!empty($data['collegeImages'])) {\n                $path = __DIR__ . '/docs/';\n                $countFiles = count($data['collegeImages']['name']);\n                for ($i = 0; $i < $countFiles; $i++) {\n                    $originalFileName = $data['collegeImages']['name'][$i];\n                    $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);\n                    $newFileName = uniqid() . '.' . $fileExtension;\n                    $targetFilePath = $path . $newFileName;\n                    if (move_uploaded_file($data['collegeImages']['tmp_name'][$i], $targetFilePath)) {\n                        // inserting to database\n                        $query = \"INSERT INTO college_images (college_id, `image`) VALUES (?, ?)\";\n                        $sql = $this->conn->prepare($query);\n                        $sql->bind_param('is', $collegeId, $newFileName);\n                        $sql->execute();\n                    }\n                }\n            }\n\n            // updating college courses\n            if (isset($data['courses'])) {\n                // First, clear existing courses\n                $deleteQuery = \"DELETE FROM college_courses WHERE college_id = ?\";\n                $deleteSql = $this->conn->prepare($deleteQuery);\n                $deleteSql->bind_param('i', $collegeId);\n                $deleteSql->execute();\n\n                // Then, insert new course entries\n                foreach ($data['courses'] as $courseId) {\n                    $query = \"INSERT INTO college_courses (college_id, course_id) VALUES (?, ?)\";\n                    $sql = $this->conn->prepare($query);\n                    $sql->bind_param('ii', $collegeId, $courseId);\n                    $sql->execute();\n                }\n            }\n\n            // updating college facilities\n            if (isset($data['facility'])) {\n                // First, clear existing facilities\n                $deleteQuery = \"DELETE FROM college_facilities WHERE college_id = ?\";\n                $deleteSql = $this->conn->prepare($deleteQuery);\n                $deleteSql->bind_param('i', $collegeId);\n                $deleteSql->execute();\n\n                // Then, insert new facility entries\n                foreach ($data['facility'] as $facilityId) {\n                    $query = \"INSERT INTO college_facilities (college_id, facility_id) VALUES (?, ?)\";\n                    $sql = $this->conn->prepare($query);\n                    $sql->bind_param('ii', $collegeId, $facilityId);\n                    $sql->execute();\n                }\n            }\n\n            return true;\n        } else {\n            return false;\n        }\n    }\n\n    public function fetchEdit($id)\n    {\n        $query = \"SELECT * FROM college WHERE id = ?\";\n        $sql = $this->conn->prepare($query);\n        $sql->bind_param('i', $id);\n        $sql->execute();\n        $result = $sql->get_result();\n        $collegeData = $result->fetch_assoc();\n\n        // fetching colleage facilities\n        $facilityQuery = \"SELECT id,facility_id FROM college_facilities WHERE college_id = ?\";\n        $facilitySql = $this->conn->prepare($facilityQuery);\n        $facilitySql->bind_param('i', $id);\n        $facilitySql->execute();\n        $facilityResult = $facilitySql->get_result();\n        $collegeFacilities = $facilityResult->fetch_all(MYSQLI_ASSOC);\n        $collegeData['facilities'] = $collegeFacilities;\n\n        // fetching college courses\n        $courseQuery = \"SELECT id,course_id FROM college_courses WHERE college_id = ?\";\n        $courseSql = $this->conn->prepare($courseQuery);\n        $courseSql->bind_param('i', $id);\n        $courseSql->execute();\n        $courseResult = $courseSql->get_result();\n        $collegeCourses = $courseResult->fetch_all(MYSQLI_ASSOC);\n        $collegeData['courses'] = $collegeCourses;\n\n        // Fetching college images\n        $imageQuery = \"SELECT `image` FROM college_images WHERE college_id = ?\";\n        $imageSql = $this->conn->prepare($imageQuery);\n        $imageSql->bind_param('i', $id);\n        $imageSql->execute();\n        $imageResult = $imageSql->get_result();\n        $collegeImages = $imageResult->fetch_all(MYSQLI_ASSOC);\n        $collegeData['images'] = $collegeImages;\n\n        return $collegeData;\n    }\n\n    public function delete($id)\n    {\n        $query = \"DELETE FROM college WHERE id = ?\";\n        $sql   = $this->conn->prepare($query);\n        $sql->bind_param('i', $id);\n        return $sql->execute();\n    }\n\n    public function list()\n    {\n        $query = \"SELECT c.id,c.title,c.featured,c.direct,l.title AS location FROM college c INNER JOIN location l ON c.location_id = l.id WHERE c.status != 0 ORDER BY c.id DESC\";\n        $sql   = $this->conn->prepare($query);\n        $sql->execute();\n        $result = $sql->get_result();\n        return $result->fetch_all(MYSQLI_ASSOC);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/admin/action/college/CollegeManager.php b/admin/action/college/CollegeManager.php
+--- a/admin/action/college/CollegeManager.php	(revision 7ebd95c76a695e8315804a243f25ccc385ede8b5)
++++ b/admin/action/college/CollegeManager.php	(date 1715079470146)
+@@ -142,7 +142,7 @@
+         $result = $sql->get_result();
+         $collegeData = $result->fetch_assoc();
+ 
+-        // fetching colleage facilities
++        // fetching college facilities
+         $facilityQuery = "SELECT id,facility_id FROM college_facilities WHERE college_id = ?";
+         $facilitySql = $this->conn->prepare($facilityQuery);
+         $facilitySql->bind_param('i', $id);
