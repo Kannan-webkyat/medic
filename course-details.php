@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
     <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
 
-
-
 </head>
 
 <main id="swup" class="transition-fade">

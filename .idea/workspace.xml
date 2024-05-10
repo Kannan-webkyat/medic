@@ -4,7 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6d35e1d-8f05-447e-b4d1-1eda5bb1ffbb" name="Changes" comment=".." />
+    <list default="true" id="f6d35e1d-8f05-447e-b4d1-1eda5bb1ffbb" name="Changes" comment="..">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/medic.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/action/college/logos/663dca3f2ee611715325503.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/action/college/logos/663dcaad81d151715325613.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/action/college/logos/663dd189602a31715327369.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/action/course/docs/663a047f258e01715078271.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/action/course/docs/663a04cde9e2a1715078349.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/action/collegeCollections.php" beforeDir="false" afterPath="$PROJECT_DIR$/action/collegeCollections.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/action/locations.php" beforeDir="false" afterPath="$PROJECT_DIR$/action/locations.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/action/college/CollegeManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/action/college/CollegeManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/action/course/CourseManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/action/course/CourseManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/action/location/LocationManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/action/location/LocationManager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/add-college.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/add-college.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/edit-college.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/edit-college.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/edit-course.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin/edit-course.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-details.php" beforeDir="false" afterPath="$PROJECT_DIR$/course-details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,27 +54,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;update&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/opt/lampp/htdocs/medic&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging update",
+    "last_opened_file_path": "/opt/lampp/htdocs/medic",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mariadb"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
