@@ -196,9 +196,13 @@
                                     </div>
                                     <h4><?php echo $college['title']; ?></h4>
 
-                                    <div class="approval">
-                                        <div><ion-icon name="checkmark-circle-sharp"></ion-icon> &nbsp; Approved by INC</div>
-                                    </div>
+                                    <?php
+                                    if (!empty($college['approved'])) {
+                                    ?>
+                                        <div class="approval">
+                                            <div><ion-icon name="checkmark-circle-sharp"></ion-icon> &nbsp; Approved by <?php echo $college['approved']; ?></div>
+                                        </div>
+                                    <?php } ?>
 
                                     <div class="buttons">
                                         <button class="apply-trigger">Apply Now</button>
