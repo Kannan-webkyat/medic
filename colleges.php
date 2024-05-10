@@ -18,6 +18,7 @@
     include './_class/dbConfig.php';
     include './action/locations.php';
     include './action/allCourses.php';
+    include './ui/Popup.php';
     $conn = (new dbConfig)->getConnection();
     $courses = fetchAllCourses($conn);
     $locations = getAllLocations($conn);

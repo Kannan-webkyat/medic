@@ -22,6 +22,7 @@
         <?php
         include './_class/dbConfig.php';
         include './action/locations.php';
+        include './ui/Popup.php';
         $conn = (new dbConfig)->getConnection();
         $locations = getAllLocations($conn);
         include './ui/Header.php';
@@ -30,40 +31,7 @@
 
 
         <!-- popup -->
-        <div class="popup">
-            <form action="">
-                <div class="close">
-                    <ion-icon name="close-outline"></ion-icon>
-                </div>
-                <h3>Looking for admission at the college. Give us your details and we will help you </h3>
-                <div class="input-holder">
-                    <input required type="text" placeholder="Name">
-                </div>
-                <div class="input-holder">
-                    <input requiredtype="email" placeholder="Email">
-                </div>
-                <div class="input-holder number-holder">
-                    <input type="text" disabled value="+91">
-                    <input required type="number" placeholder="Enter you 10 digit phone number">
-                </div>
-                <div class="toggle">
-                    <span class="switch">
-                        <input id="switch-rounded" checked type="checkbox" />
-                        <label for="switch-rounded"></label>
-                    </span>
-                    <div class="text">
-                        Enable update and important notication on whatsapp
-                    </div>
-                </div>
-                <button>
-                    Apply Now
-                </button>
-                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus </p> -->
-            </form>
 
-
-
-        </div>
 
         <!-- loader -->
         <div class="loader-container">
@@ -113,19 +81,23 @@
         <div class="container">
             <section id="goal">
                 <h2 class="section-heading">Choose by desitination</h2>
-                <div class="goal-container">
-                    <?php foreach ($locations as $location) {
-                        print_r($location) ?>
-                        <a href="http://localhost/medic/colleges/location:<?php echo $location['slug'] ?>" class="goal-card">
-                            <div class="icon">
-                                <img src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image']; ?>" alt="<?php echo $location['title'] ?>">
-                            </div>
-                            <div class="content">
-                                <h3><?php echo $location['title'] ?></h3>
-                                <span></span>
-                            </div>
-                        </a>
-                    <?php } ?>
+                <div class="goal-container splide destination">
+                    <div class="splide__track">
+                        <div class="splide__list">
+                            <?php foreach ($locations as $location) {
+                            ?>
+                                <a href="http://localhost/medic/colleges/location:<?php echo $location['slug'] ?>" class="goal-card splide__slide">
+                                    <div class="icon">
+                                        <img src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image']; ?>" alt="<?php echo $location['title'] ?>">
+                                    </div>
+                                    <div class="content">
+                                        <h3><?php echo $location['title'] ?></h3>
+                                        <span></span>
+                                    </div>
+                                </a>
+                            <?php } ?>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -134,31 +106,6 @@
         <!-- main section -->
         <div class="container">
             <div class="body-bg">
-
-
-                <?php
-                include './action/allLocations.php';
-                $locations = fetchAllLocations($conn);
-                ?>
-                <div id="location" style="display: none;">
-                    <h2>Explore by Locations</h2>
-                    <div class="destination">
-                        <?php foreach ($locations as $location) : ?>
-                            <a href="http://localhost/medic/colleges/location:<?php echo $location['slug']; ?>" class="location-image">
-                                <img class="thumbnail" src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image'] ?>" alt="location img">
-                                <div class="no-of-college">
-                                    <h4><?php echo $location['total_colleges']; ?> Colleges</h4>
-                                </div>
-                                <div class="place">
-                                    <div class="icon"><img src="http://localhost/medic/assets/icons/white-location.png" alt=""></div>
-                                    <h3><?php echo $location['title']; ?></h3>
-                                    choose-
-                                </div>
-                            </a>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-
                 <?php
                 include './action/collegeCollections.php';
                 $collections = fetchAllCollegeCollections($conn);
@@ -173,7 +120,7 @@
                                 <h2 class="section-heading"><?php echo $collection['title']; ?></h2>
 
                             </div>
-                            <div class="card-wrapper splide">
+                            <div class="card-wrapper splide collections">
                                 <div class="splide__track">
                                     <div class="splide__list">
                                         <?php

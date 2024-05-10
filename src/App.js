@@ -32,9 +32,9 @@ const namespaceManager = () => {
                     });
                 });
 
-                let splides = document.querySelectorAll(".splide");
-                splides.forEach((splide) => {
-                    new Splide(splide, {
+                let collections = document.querySelectorAll(".collections");
+                collections.forEach((collection) => {
+                    new Splide(collection, {
                         type: "loop",
                         perPage: 4,
                         gap: 10,
@@ -42,6 +42,9 @@ const namespaceManager = () => {
                         pagination: false,
                     }).mount();
                 });
+
+                const destination = document.querySelector(".destination");
+                new Splide(destination, { type: "loop", perPage: 6, gap: 10, nav: false, pagination: false }).mount();
 
                 basic();
             }
@@ -160,9 +163,18 @@ swup.hooks.on("page:view", (event) => {
 });
 
 // show popup
-function showPopup(prop) {
+function showPopup(prop, title) {
+    let template = "";
+    if (prop == "apply") {
+        template = `Looking for admission at the ${title}. Give us your details and we will help you`;
+    } else {
+        template = "Just a random text for the form";
+    }
+
+    // set headline
     const popup = document.querySelector(".popup");
     popup.style.display = "flex";
+    popup.querySelector("h3").textContent = template;
 
     // close
     popup.querySelector(".close").addEventListener("click", function () {
@@ -185,7 +197,6 @@ function courseBar() {
         shimmer.style.display = "none";
     });
 
-    console.log(searchCourse);
     // search
     searchCourse.addEventListener("input", function () {
         var filter = this.value.toLowerCase();

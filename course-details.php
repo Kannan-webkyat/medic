@@ -17,6 +17,7 @@
     <!-- header -->
     <?php
     include './ui/Header.php';
+    include './ui/Popup.php';
     pageHeader();
     ?>
     <!-- loader -->

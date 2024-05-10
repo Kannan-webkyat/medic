@@ -11,7 +11,7 @@ function pageHeader()
             <nav>
                 <ul>
                     <li>
-                        <a href="" class="drop-trigger">Choose a Goal</a>
+                        <a href="" class="drop-trigger">Choose a Goal &nbsp; <ion-icon name="chevron-down-outline"></ion-icon></a>
                     </li>
                     <li>
                         <a href="">About</a>
