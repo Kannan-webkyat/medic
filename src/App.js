@@ -127,12 +127,26 @@ namespaceManager();
 
 function basic() {
     const header = document.querySelector("header");
+    const dropTrigger = header.querySelector(".drop-trigger");
     const mega = header.querySelector(".mega-menu");
     const lists = mega.querySelectorAll(".left ul li");
     const subContainer = mega.querySelector(".right");
 
+    document.addEventListener("click", function (e) {
+        if (!mega.contains(e.target) && e.target !== dropTrigger) {
+            if (mega.classList.contains("mega-menu-active")) {
+                mega.classList.remove("mega-menu-active");
+            }
+        }
+    });
+
+    dropTrigger.addEventListener("click", function (e) {
+        e.preventDefault();
+        mega.classList.toggle("mega-menu-active");
+    });
+
     lists.forEach((list) => {
-        list.addEventListener("click", function () {
+        list.addEventListener("mouseenter", function () {
             if (this.classList.contains("has-sub")) {
                 lists.forEach((list) => list.classList.remove("li-active"));
                 this.classList.add("li-active");

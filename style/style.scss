@@ -825,7 +825,6 @@ header {
   .mega-menu {
     width: 40%;
     position: absolute;
-    top: 85px;
     background: white;
     display: flex;
     justify-content: space-between;
@@ -833,6 +832,11 @@ header {
     flex-wrap: wrap;
     border-radius: 5px;
     box-shadow: 0px 0px 10px #3636364a;
+    top: 100px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+    // display: none;
 
     a {
       color: $fontcolor;
@@ -874,26 +878,29 @@ header {
             right: 0;
             top: 0;
             display: none;
+            justify-content: space-between;
 
 
 
             li {
-              list-style: none;
-              width: calc(100% / 3);
-              display: block;
-              height: 30px;
 
-              &:hover {
-                background: none;
-              }
+              width: calc(100% / 3 - 10px);
+              display: block;
+              font-size: 14px;
+              line-height: 16px !important;
+
+              padding: 0px;
+
+
 
               a {
                 text-decoration: none;
-                // border-bottom: 1px solid #d8e7ff;
+                border-bottom: 1px solid #d8e7ff;
                 display: block;
+                padding: 5px 0px;
 
                 &:hover {
-                  background: none;
+                  background: #eee;
                   color: $primarycolor;
                 }
 
@@ -933,6 +940,13 @@ header {
 
 
     }
+  }
+
+  .mega-menu-active {
+    top: 85px;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.3s;
   }
 
   @media (max-width:768px) {
@@ -2924,6 +2938,10 @@ button {
             color: white;
           }
         }
+
+        .drop-trigger {
+          cursor: pointer;
+        }
       }
     }
   }
@@ -3053,7 +3071,7 @@ button {
     .goal-card {
       display: flex;
 
-      width: calc(100% / 5 - 10px);
+      width: calc(100% / 6 - 10px);
       background: #eee;
       padding: 15px;
       border-radius: 5px;
@@ -3063,6 +3081,7 @@ button {
       align-items: center;
       color: $fontcolordim;
       margin-bottom: 10px;
+      flex-direction: column;
 
       &:hover {
         h3 {
@@ -3084,12 +3103,12 @@ button {
       }
 
       .icon {
-        width: 45px;
-        height: 45px;
+        width: 100px;
+        height: 100px;
 
         background: white;
         border-radius: 100px;
-        padding: 8px;
+        // padding: 8px;
 
         img {
           width: 100%;
@@ -3097,7 +3116,9 @@ button {
       }
 
       .content {
-        width: calc(100% - 100px);
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
 
         h3 {
           font-weight: 500;

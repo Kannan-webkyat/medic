@@ -112,111 +112,20 @@
 
         <div class="container">
             <section id="goal">
-                <h2 class="section-heading">Choose your Goal</h2>
+                <h2 class="section-heading">Choose by desitination</h2>
                 <div class="goal-container">
-                    <a href="http://localhost/medic/colleges" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-                    <a href="" class="goal-card">
-                        <div class="icon">
-                            <img src="https://cdn-icons-png.freepik.com/512/94/94859.png" alt="">
-                        </div>
-                        <div class="content">
-                            <h3>Nursing</h3>
-                            <span>470 Colleges</span>
-                        </div>
-                        <div class="arrow">
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                        </div>
-                    </a>
-
-
+                    <?php foreach ($locations as $location) {
+                        print_r($location) ?>
+                        <a href="http://localhost/medic/colleges/location:<?php echo $location['slug'] ?>" class="goal-card">
+                            <div class="icon">
+                                <img src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image']; ?>" alt="<?php echo $location['title'] ?>">
+                            </div>
+                            <div class="content">
+                                <h3><?php echo $location['title'] ?></h3>
+                                <span></span>
+                            </div>
+                        </a>
+                    <?php } ?>
                 </div>
             </section>
         </div>

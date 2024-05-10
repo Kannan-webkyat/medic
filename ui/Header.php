@@ -11,7 +11,7 @@ function pageHeader()
             <nav>
                 <ul>
                     <li>
-                        <a href="">Colleges &nbsp; <ion-icon name="chevron-down-outline"></ion-icon></a>
+                        <a href="" class="drop-trigger">Choose a Goal</a>
                     </li>
                     <li>
                         <a href="">About</a>
@@ -42,7 +42,19 @@ function pageHeader()
                             <li><a href="">Bsc Nursing</a></li>
                         </ul>
                     </li>
-                    <li>Engineering<ion-icon name="chevron-forward-outline"></ion-icon></li>
+                    <li class="has-sub ">Engineering<ion-icon name="chevron-forward-outline"></ion-icon>
+                        <ul>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+                            <li><a href="">Btech Computer Science</a></li>
+
+                        </ul>
+                    </li>
                     <li>Diploma<ion-icon name="chevron-forward-outline"></ion-icon></li>
                     <li>Post Graduate <ion-icon name="chevron-forward-outline"></ion-icon></li>
                     <li>Paramedical <ion-icon name="chevron-forward-outline"></ion-icon></li>
