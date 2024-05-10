@@ -51,7 +51,7 @@
             <button>
                 Apply Now
             </button>
-            <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus </p> -->
+            <!-- <p>Lorem ipsum dolor sit amet consecrate adipisicing elite. Ducimus </p> -->
         </form>
     </div>
 
@@ -204,11 +204,9 @@
                     </div>
                 </a>
 
-
             </div>
         </section>
     </div>
-
 
     <!-- main section -->
     <div class="container">
@@ -242,7 +240,6 @@
             ?>
             <!-- end of locations -->
             <div class="bg">
-
                 <?php foreach ($collections as $collection) : ?>
                     <div class="collection">
                         <div class="heading">
@@ -298,10 +295,7 @@
                     </div>
                 <?php
                 endforeach; ?>
-
-
-                <!-- footersection  -->
-
+                <!-- footer section  -->
                 <!-- end of footer section -->
             </div>
         </div>
@@ -441,10 +435,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="http://localhost/medic/src/splide.min.js"></script>
 <script src="http://localhost/medic/src/App.js"></script>
-
-<script>
-
-</script>
 </body>
 
 </html>
