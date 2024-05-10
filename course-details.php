@@ -14,9 +14,14 @@
     <div data-swup-name="course-details"></div>
     <!-- header -->
     <?php
+    include './_class/dbConfig.php';
+    include './action/courseDetails.php';
+    $conn = (new dbConfig)->getConnection();
+    $slug = $_GET['id'];
+    $courseData = fetchCourseDetails($conn, $slug);
     include './ui/Header.php';
     include './ui/Popup.php';
-    pageHeader();
+    pageHeader($conn);
     ?>
     <!-- loader -->
     <div class="loader-container">
@@ -43,13 +48,6 @@
 
 
     <!-- fetching course details -->
-    <?php
-    include './_class/dbConfig.php';
-    include './action/courseDetails.php';
-    $conn = (new dbConfig)->getConnection();
-    $slug = $_GET['id'];
-    $courseData = fetchCourseDetails($conn, $slug);
-    ?>
 
     <!-- main section -->
     <div class="container">

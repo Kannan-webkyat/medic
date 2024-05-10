@@ -271,7 +271,6 @@ const namespaceManager = () => {
                 header.update("category", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
-                
             }
             break;
         case "list-location":
@@ -348,7 +347,6 @@ const namespaceManager = () => {
                 header.update("course-collection", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
-
             }
             break;
         case "list-college-collection":
@@ -375,7 +373,6 @@ const namespaceManager = () => {
                 header.update("college-collection", sidemenu.current().find("i")[0].outerHTML);
                 loader.stop();
                 initTiny();
-
             }
             break;
     }

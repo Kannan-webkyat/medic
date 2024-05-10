@@ -9,7 +9,7 @@
 }
 
 // variables
-$primarycolor: rgb(5, 9, 59);
+$primarycolor : rgb(18, 5, 65);
 $secondarycolor: #111928;
 $fontcolor: #1f2a37;
 $fontcolordim: #476180;
@@ -585,6 +585,7 @@ p {
   left: 0;
   width: 100%;
   padding: 10px;
+  display: none;
 
 
   ul {
@@ -646,22 +647,22 @@ p {
   background-color: white;
   // height: 40px;
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 10px #3636364a;
 
   button {
-    height: 48px;
-    width: 100%;
     background-color: $primarycolor;
-    border-radius: 27px;
-    border: 1px solid #1E429F;
-
-
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: white;
+    font-size: 18px;
+    padding: 12px 0px;
+    border-radius: 50px;
   }
 
   button:hover {
@@ -678,32 +679,6 @@ p {
 
 // sticky cta
 
-.booknow-btn-ph {
-
-  text-decoration: none;
-  width: 138px;
-  height: 44px;
-  position: fixed;
-  bottom: 74px;
-  right: 46px;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  background-color: #000000;
-  border: none;
-  border-radius: 60px;
-  padding: 13px;
-  text-align: center;
-  z-index: 1000;
-  animation: borderPulse 2000ms infinite ease-out;
-
-
-  @media (min-width:900px) {
-    display: none;
-  }
-
-
-}
 
 @keyframes borderPulse {
 
@@ -726,8 +701,8 @@ p {
 
 header {
   z-index: 15;
-  background-color: #eaf1ff;
-  height: 80px;
+  background-color: #eee;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -747,6 +722,10 @@ header {
     .logo {
       img {
         width: 190px;
+
+        @media(max-width : 768px) {
+          width: 180px;
+        }
       }
     }
 
@@ -794,30 +773,13 @@ header {
       background: $secondarycolor;
       color: white;
       cursor: pointer;
-    }
 
-    .hamburger {
-      background-color: #ffffff;
-      border-radius: 50px;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-
-
-      .bar {
-        width: 20px;
-        height: 2px;
-        margin-bottom: 4px;
-        background-color: $secondarycolor;
-
-        &:nth-child(3) {
-          margin: 0;
-        }
+      @media(max-width : 768px) {
+        display: none;
       }
     }
+
+
 
 
   }
@@ -949,6 +911,29 @@ header {
     transition: 0.3s;
   }
 
+  .hamburger {
+    background-color: white;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+    .bar {
+      width: 20px;
+      height: 2px;
+      margin-bottom: 4px;
+      background-color: $secondarycolor;
+
+      &:nth-child(3) {
+        margin: 0;
+      }
+    }
+  }
+
   @media (max-width:768px) {
     z-index: 15;
 
@@ -1061,8 +1046,52 @@ button {
   .filter {
     margin-top: 30px;
 
+    @media(max-width : 768px) {
+      margin-top: 10px;
+    }
+
+
     form {
       display: flex;
+
+      @media(max-width : 768px) {
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .input {
+          // display: none;
+          width: 48%;
+          margin-bottom: 10px;
+
+          select {
+            min-width: 100%;
+          }
+
+          .triggers {
+            margin: 0;
+            width: 100%;
+
+
+          }
+
+        }
+      }
+
+      .more-filter {
+        width: 100%;
+        background: #eee;
+        height: 40px;
+        padding: 0px 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+
+        ion-icon {
+          margin-left: 10px;
+        }
+      }
 
       .triggers {
         height: 40px;
@@ -1217,6 +1246,51 @@ button {
         }
       }
     }
+
+
+    @media(max-width : 768px) {
+      display: flex;
+      border-bottom: 1px solid #a6a6a6;
+
+      &:last-child {
+        border: none;
+      }
+
+      .thumbnail {
+        width: 80px;
+        height: 80px;
+
+        img {
+          width: 100%;
+        }
+
+        .direct-college {
+          display: none;
+        }
+
+        .college-logo {
+          display: none;
+        }
+      }
+
+      .content {
+        margin: 0;
+        width: calc(100% - 80px);
+        padding-left: 10px;
+
+        h4 {
+          font-size: 14px;
+        }
+
+        .location {
+          margin: 0;
+        }
+
+        .buttons {
+          display: none;
+        }
+      }
+    }
   }
 
 
@@ -1225,16 +1299,15 @@ button {
 /* body bg */
 .body-bg {
   // background: white;
-  margin-top: 80px;
+  // margin-top: 80px;
   //   height: 500px;
   border-radius: 46px;
+
   // padding: 15px;
-
-  @media (max-width:425px) {
-    border-radius: 30px;
-    padding: 15px;
-
+  @media(max-width : 768px) {
+    // margin-top: 0px;
   }
+
 
   .bg {
 
@@ -1312,11 +1385,7 @@ button {
       }
     }
 
-    @media (max-width:425px) {
 
-      border-radius: 30px;
-      padding: 10px;
-    }
 
   }
 }
@@ -1327,17 +1396,30 @@ button {
   height: 80vh;
   background: $primarycolor;
 
+  @media(max-width : 1000px) {
+    height: auto;
+    margin-top: 70px;
+    padding: 60px 0px;
+  }
+
   .container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100%;
 
+    @media(max-width : 1000px) {
+      flex-direction: column;
+
+    }
 
 
     .left {
       width: 50%;
 
+      @media(max-width : 1000px) {
+        width: 100%;
+      }
 
       h1 {
         font-size: 60px;
@@ -1346,9 +1428,18 @@ button {
         margin-bottom: 20px;
         font-weight: 500;
 
+        ion-icon {
+          color: rgb(131, 255, 203) !important;
+        }
+
         span {
 
           font-weight: 600;
+        }
+
+        @media(max-width : 768px) {
+          font-size: 40px;
+          line-height: 50px;
         }
       }
 
@@ -1361,14 +1452,28 @@ button {
       .button-holder {
         display: flex;
         margin-top: 20px;
+        flex-wrap: wrap;
 
+        @media(max-width : 768px) {
+          button {
+            width: 100%;
+            margin-bottom: 10px;
+
+            &:last-child {
+              margin: 0;
+            }
+          }
+        }
 
         button {
           margin-right: 10px;
           font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
 
           &:nth-child(1) {
-            background: $commoncolor;
+            background: rgb(131, 255, 203);
             border: none;
           }
 
@@ -1376,11 +1481,17 @@ button {
             color: $commoncolor;
           }
         }
+
+
       }
     }
 
     .right {
       width: 50%;
+
+      @media(max-width : 1000px) {
+        display: none;
+      }
 
       img {
         width: 100%;
@@ -1460,6 +1571,7 @@ button {
 
   .heading {
     display: flex;
+
   }
 }
 
@@ -1491,41 +1603,7 @@ button {
   margin-top: 60px;
 }
 
-@media (max-width:613px) {
-  .heading {
-    margin-bottom: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
 
-    h2 {
-      margin-bottom: 10px;
-    }
-
-  }
-}
-
-@media (max-width:425px) {
-
-  .heading {
-    margin-bottom: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-
-
-    h2 {
-      margin-bottom: 10px;
-    }
-
-    a {
-      font-size: 16px;
-    }
-
-
-  }
-
-}
 
 
 //  COLLEGE-DETAILS STYLE
@@ -1571,6 +1649,14 @@ button {
   .content {
     width: calc(100% - 500px);
 
+    ul {
+      li {
+        @media(max-width : 768px) {
+          font-size: 14px;
+        }
+      }
+    }
+
     iframe {
       border-radius: 10px;
       overflow: hidden;
@@ -1586,12 +1672,27 @@ button {
           font-weight: 600;
           margin-bottom: 20px;
           font-size: 28px;
+
+          @media(max-width : 768px) {
+            font-size: 22px;
+            font-weight: 700;
+          }
         }
       }
 
       h2 {
         font-size: 20px;
         font-weight: 600;
+
+        @media(max-width : 768px) {
+          font-size: 18px;
+        }
+      }
+
+      p {
+        @media(max-width : 768px) {
+          font-size: 14px;
+        }
       }
 
       h3 {
@@ -2714,7 +2815,7 @@ button {
 
 
   @media (max-width:425px) {
-    margin-top: 11px;
+    margin-top: 70px;
 
   }
 
@@ -2882,18 +2983,27 @@ button {
   opacity: 0;
   visibility: hidden;
 
+  @media(max-width : 768px) {
+    align-items: flex-end;
+  }
+
 
 
   .side-bar {
     width: 600px;
     min-height: 60%;
+
     background: white;
     padding: 10px;
     border-radius: 5px;
 
     display: flex;
     flex-direction: column;
+
     // justify-content: space-between;
+    @media(max-width : 768px) {
+      height: calc(100%);
+    }
 
     // box-shadow: 0px 0px 10px #3636364a;
     .header {
@@ -2964,6 +3074,11 @@ button {
     margin-right: 20px;
     width: calc(100% / 4 - 20px);
     margin-bottom: 20px;
+
+    @media(max-width : 768px) {
+      width: 100%;
+
+    }
   }
 }
 
@@ -3106,7 +3221,12 @@ button {
 
         background: white;
         border-radius: 100px;
+
         // padding: 8px;
+        @media(max-width : 768px) {
+          width: 60px;
+          height: 60px;
+        }
 
         img {
           width: 100%;
@@ -3121,6 +3241,10 @@ button {
         h3 {
           font-weight: 500;
           font-size: 18px;
+
+          @media(max-width : 768px) {
+            font-size: 16px;
+          }
 
         }
 
@@ -3142,10 +3266,62 @@ button {
 
 .collection {
   margin-bottom: 60px;
+
+  @media(max-width : 768px) {
+    .splide__list {
+      .splide__slide {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #a6a6a6;
+
+        &:last-child {
+          border: none;
+        }
+
+        .thumbnail {
+          width: 80px;
+          height: 80px;
+
+          img {
+            width: 100%;
+          }
+
+          .direct-college {
+            display: none;
+          }
+
+          .college-logo {
+            display: none;
+          }
+        }
+
+        .content {
+          margin: 0;
+          width: calc(100% - 80px);
+          padding-left: 10px;
+
+          h4 {
+            font-size: 14px;
+          }
+
+          .location {
+            margin: 0;
+          }
+
+          .buttons {
+            display: none;
+          }
+        }
+
+
+      }
+    }
+  }
 }
 
 .college-details {
   padding-top: 20px;
+  margin-top: 60px;
 
   .splide__slide {
     img {

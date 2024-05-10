@@ -191,7 +191,7 @@ p {
   line-height: 140%;
 }
 #footer .footer-links-section .links ul li a:hover {
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 #footer .copyright {
   display: flex;
@@ -225,7 +225,7 @@ p {
 #footer .copyright .social ul li a {
   width: 30px;
   height: 30px;
-  background-color: rgb(5, 9, 59);
+  background-color: rgb(18, 5, 65);
   display: flex;
   border-radius: 50px;
   align-items: center;
@@ -421,6 +421,7 @@ p {
   left: 0;
   width: 100%;
   padding: 10px;
+  display: none;
 }
 #fixed-menu ul {
   display: flex;
@@ -446,7 +447,7 @@ p {
 }
 #fixed-menu ul li .active {
   background: #eaf1ff;
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 @media (min-width: 1024px) {
   #fixed-menu {
@@ -463,20 +464,22 @@ p {
   z-index: 5;
   background-color: white;
   position: fixed;
-  bottom: 0;
+  bottom: 0px;
   left: 0;
   width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
+  box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.2901960784);
 }
 #fixed-cta button {
-  height: 48px;
+  background-color: rgb(18, 5, 65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  background-color: rgb(5, 9, 59);
-  border-radius: 27px;
-  border: 1px solid #1E429F;
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
+  color: white;
+  font-size: 18px;
+  padding: 12px 0px;
+  border-radius: 50px;
 }
 #fixed-cta button:hover {
   background-color: #111928;
@@ -485,30 +488,6 @@ p {
 }
 @media (min-width: 768px) {
   #fixed-cta {
-    display: none;
-  }
-}
-
-.booknow-btn-ph {
-  text-decoration: none;
-  width: 138px;
-  height: 44px;
-  position: fixed;
-  bottom: 74px;
-  right: 46px;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 17px;
-  background-color: #000000;
-  border: none;
-  border-radius: 60px;
-  padding: 13px;
-  text-align: center;
-  z-index: 1000;
-  animation: borderPulse 2000ms infinite ease-out;
-}
-@media (min-width: 900px) {
-  .booknow-btn-ph {
     display: none;
   }
 }
@@ -528,8 +507,8 @@ p {
 }
 header {
   z-index: 15;
-  background-color: #eaf1ff;
-  height: 80px;
+  background-color: #eee;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -546,6 +525,11 @@ header .container {
 }
 header .container .logo img {
   width: 190px;
+}
+@media (max-width: 768px) {
+  header .container .logo img {
+    width: 180px;
+  }
 }
 header .container nav ul {
   display: flex;
@@ -570,7 +554,7 @@ header .container nav ul li a img {
 }
 header .container nav ul li .active {
   background: #eaf1ff;
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 header .container a {
   text-decoration: none;
@@ -580,24 +564,10 @@ header .container .booknow-btn {
   color: white;
   cursor: pointer;
 }
-header .container .hamburger {
-  background-color: #ffffff;
-  border-radius: 50px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-header .container .hamburger .bar {
-  width: 20px;
-  height: 2px;
-  margin-bottom: 4px;
-  background-color: #111928;
-}
-header .container .hamburger .bar:nth-child(3) {
-  margin: 0;
+@media (max-width: 768px) {
+  header .container .booknow-btn {
+    display: none;
+  }
 }
 header .mega-menu {
   width: 40%;
@@ -666,7 +636,7 @@ header .mega-menu .left ul li ul li a {
 }
 header .mega-menu .left ul li ul li a:hover {
   background: #eee;
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 header .mega-menu .left ul li:hover {
   background: #090e16;
@@ -690,6 +660,25 @@ header .mega-menu-active {
   visibility: visible;
   opacity: 1;
   transition: 0.3s;
+}
+header .hamburger {
+  background-color: white;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+header .hamburger .bar {
+  width: 20px;
+  height: 2px;
+  margin-bottom: 4px;
+  background-color: #111928;
+}
+header .hamburger .bar:nth-child(3) {
+  margin: 0;
 }
 @media (max-width: 768px) {
   header {
@@ -756,12 +745,12 @@ button ion-icon {
 }
 
 .switch input:checked ~ label {
-  border-color: rgb(5, 9, 59);
+  border-color: rgb(18, 5, 65);
 }
 
 .switch input:checked ~ label::after {
   translate: 20px 0;
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
 }
 
 .switch input:disabled ~ label {
@@ -790,8 +779,44 @@ button ion-icon {
 .head .filter {
   margin-top: 30px;
 }
+@media (max-width: 768px) {
+  .head .filter {
+    margin-top: 10px;
+  }
+}
 .head .filter form {
   display: flex;
+}
+@media (max-width: 768px) {
+  .head .filter form {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .head .filter form .input {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+  .head .filter form .input select {
+    min-width: 100%;
+  }
+  .head .filter form .input .triggers {
+    margin: 0;
+    width: 100%;
+  }
+}
+.head .filter form .more-filter {
+  width: 100%;
+  background: #eee;
+  height: 40px;
+  padding: 0px 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.head .filter form .more-filter ion-icon {
+  margin-left: 10px;
 }
 .head .filter form .triggers {
   height: 40px;
@@ -809,7 +834,7 @@ button ion-icon {
   background: #eee;
 }
 .head .filter form .clear:hover {
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 .head .filter form .trigger-active {
   background: #111928;
@@ -901,21 +926,50 @@ button ion-icon {
   border-radius: 5px;
 }
 .card-wrapper .cards .content .buttons button:nth-child(1) {
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
   color: white;
   margin-right: 5px;
+}
+@media (max-width: 768px) {
+  .card-wrapper .cards {
+    display: flex;
+    border-bottom: 1px solid #a6a6a6;
+  }
+  .card-wrapper .cards:last-child {
+    border: none;
+  }
+  .card-wrapper .cards .thumbnail {
+    width: 80px;
+    height: 80px;
+  }
+  .card-wrapper .cards .thumbnail img {
+    width: 100%;
+  }
+  .card-wrapper .cards .thumbnail .direct-college {
+    display: none;
+  }
+  .card-wrapper .cards .thumbnail .college-logo {
+    display: none;
+  }
+  .card-wrapper .cards .content {
+    margin: 0;
+    width: calc(100% - 80px);
+    padding-left: 10px;
+  }
+  .card-wrapper .cards .content h4 {
+    font-size: 14px;
+  }
+  .card-wrapper .cards .content .location {
+    margin: 0;
+  }
+  .card-wrapper .cards .content .buttons {
+    display: none;
+  }
 }
 
 /* body bg */
 .body-bg {
-  margin-top: 80px;
   border-radius: 46px;
-}
-@media (max-width: 425px) {
-  .body-bg {
-    border-radius: 30px;
-    padding: 15px;
-  }
 }
 .body-bg .bg {
   margin-top: 60px;
@@ -954,25 +1008,26 @@ button ion-icon {
 .body-bg .bg .tab ul li a:hover {
   background-color: #DFEAFF;
   border: 1px solid #ffffff;
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 .body-bg .bg .tab ul li .activer {
   background-color: #DFEAFF;
   border: 1px solid #ffffff;
-  color: rgb(5, 9, 59);
-}
-@media (max-width: 425px) {
-  .body-bg .bg {
-    border-radius: 30px;
-    padding: 10px;
-  }
+  color: rgb(18, 5, 65);
 }
 
 /* home page */
 .banner {
   width: 100%;
   height: 80vh;
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
+}
+@media (max-width: 1000px) {
+  .banner {
+    height: auto;
+    margin-top: 70px;
+    padding: 60px 0px;
+  }
 }
 .banner .container {
   display: flex;
@@ -980,8 +1035,18 @@ button ion-icon {
   justify-content: center;
   height: 100%;
 }
+@media (max-width: 1000px) {
+  .banner .container {
+    flex-direction: column;
+  }
+}
 .banner .container .left {
   width: 50%;
+}
+@media (max-width: 1000px) {
+  .banner .container .left {
+    width: 100%;
+  }
 }
 .banner .container .left h1 {
   font-size: 60px;
@@ -990,8 +1055,17 @@ button ion-icon {
   margin-bottom: 20px;
   font-weight: 500;
 }
+.banner .container .left h1 ion-icon {
+  color: rgb(131, 255, 203) !important;
+}
 .banner .container .left h1 span {
   font-weight: 600;
+}
+@media (max-width: 768px) {
+  .banner .container .left h1 {
+    font-size: 40px;
+    line-height: 50px;
+  }
 }
 .banner .container .left p {
   font-size: 18px;
@@ -1001,13 +1075,26 @@ button ion-icon {
 .banner .container .left .button-holder {
   display: flex;
   margin-top: 20px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .banner .container .left .button-holder button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .banner .container .left .button-holder button:last-child {
+    margin: 0;
+  }
 }
 .banner .container .left .button-holder button {
   margin-right: 10px;
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .banner .container .left .button-holder button:nth-child(1) {
-  background: #eaf1ff;
+  background: rgb(131, 255, 203);
   border: none;
 }
 .banner .container .left .button-holder button:nth-child(2) {
@@ -1015,6 +1102,11 @@ button ion-icon {
 }
 .banner .container .right {
   width: 50%;
+}
+@media (max-width: 1000px) {
+  .banner .container .right {
+    display: none;
+  }
 }
 .banner .container .right img {
   width: 100%;
@@ -1087,8 +1179,8 @@ button ion-icon {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  color: rgb(5, 9, 59);
-  border-bottom: 2px solid rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
+  border-bottom: 2px solid rgb(18, 5, 65);
 }
 .heading a:hover {
   color: #111928;
@@ -1099,31 +1191,6 @@ button ion-icon {
   margin-top: 60px;
 }
 
-@media (max-width: 613px) {
-  .heading {
-    margin-bottom: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-  .heading h2 {
-    margin-bottom: 10px;
-  }
-}
-@media (max-width: 425px) {
-  .heading {
-    margin-bottom: 30px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-  }
-  .heading h2 {
-    margin-bottom: 10px;
-  }
-  .heading a {
-    font-size: 16px;
-  }
-}
 .college-img {
   display: flex;
   justify-content: space-between;
@@ -1157,6 +1224,11 @@ button ion-icon {
 .info .content {
   width: calc(100% - 500px);
 }
+@media (max-width: 768px) {
+  .info .content ul li {
+    font-size: 14px;
+  }
+}
 .info .content iframe {
   border-radius: 10px;
   overflow: hidden;
@@ -1168,9 +1240,25 @@ button ion-icon {
   margin-bottom: 20px;
   font-size: 28px;
 }
+@media (max-width: 768px) {
+  .info .content .details .about h1 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
 .info .content .details h2 {
   font-size: 20px;
   font-weight: 600;
+}
+@media (max-width: 768px) {
+  .info .content .details h2 {
+    font-size: 18px;
+  }
+}
+@media (max-width: 768px) {
+  .info .content .details p {
+    font-size: 14px;
+  }
 }
 .info .content .details h3 {
   font-weight: 600;
@@ -1263,8 +1351,8 @@ button ion-icon {
 .info .content .news .content .cta {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(5, 9, 59);
-  border-bottom: 2px solid rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
+  border-bottom: 2px solid rgb(18, 5, 65);
 }
 .info .content .news .content .date {
   display: flex;
@@ -1287,8 +1375,8 @@ button ion-icon {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  color: rgb(5, 9, 59);
-  border-bottom: 2px solid rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
+  border-bottom: 2px solid rgb(18, 5, 65);
 }
 .info .content .news .content .discription a:hover {
   border-color: #111928;
@@ -1301,7 +1389,7 @@ button ion-icon {
   padding: 20px;
 }
 .info .form button {
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
   text-align: center;
   width: 100%;
   color: white;
@@ -1389,8 +1477,8 @@ button ion-icon {
 #news-articles .content .cta {
   font-size: 14px;
   font-weight: 500;
-  color: rgb(5, 9, 59);
-  border-bottom: 2px solid rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
+  border-bottom: 2px solid rgb(18, 5, 65);
 }
 #news-articles .content h3 {
   margin-top: 20px;
@@ -1474,8 +1562,8 @@ button ion-icon {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  color: rgb(5, 9, 59);
-  border-bottom: 2px solid rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
+  border-bottom: 2px solid rgb(18, 5, 65);
 }
 #news-articles .news-listing .news .content .discription a:hover {
   border-color: #111928;
@@ -1559,7 +1647,7 @@ button ion-icon {
   cursor: pointer;
   color: #ffffff;
   font-size: 16px;
-  background-color: rgb(5, 9, 59);
+  background-color: rgb(18, 5, 65);
   border: 1px solid #1E429F;
   border-radius: 60px;
 }
@@ -1851,7 +1939,7 @@ button ion-icon {
   width: 61.5%;
 }
 #about .description .content h4 {
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
   margin-bottom: 10px;
 }
 #about .description .content h2 {
@@ -1955,16 +2043,16 @@ button ion-icon {
 #college-section .tab ul li a:hover {
   background-color: #DFEAFF;
   border: 1px solid #ffffff;
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 #college-section .tab ul li .activer {
   background-color: #DFEAFF;
   border: 1px solid #ffffff;
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 @media (max-width: 425px) {
   #college-section {
-    margin-top: 11px;
+    margin-top: 70px;
   }
 }
 
@@ -1983,7 +2071,7 @@ button ion-icon {
   cursor: pointer;
   color: #ffffff;
   font-size: 16px;
-  background-color: rgb(5, 9, 59);
+  background-color: rgb(18, 5, 65);
   border: 1px solid #1E429F;
   border-radius: 60px;
 }
@@ -2080,6 +2168,11 @@ button ion-icon {
   opacity: 0;
   visibility: hidden;
 }
+@media (max-width: 768px) {
+  .side-bar-container {
+    align-items: flex-end;
+  }
+}
 .side-bar-container .side-bar {
   width: 600px;
   min-height: 60%;
@@ -2088,6 +2181,11 @@ button ion-icon {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+}
+@media (max-width: 768px) {
+  .side-bar-container .side-bar {
+    height: 100%;
+  }
 }
 .side-bar-container .side-bar .header {
   height: 100px;
@@ -2119,7 +2217,7 @@ button ion-icon {
   font-size: 14px;
 }
 .side-bar-container .side-bar ul li a:hover {
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
   color: white;
 }
 .side-bar-container .side-bar ul li .drop-trigger {
@@ -2140,6 +2238,11 @@ button ion-icon {
   margin-right: 20px;
   width: calc(25% - 20px);
   margin-bottom: 20px;
+}
+@media (max-width: 768px) {
+  .college-wrapper .cards {
+    width: 100%;
+  }
 }
 
 .popup {
@@ -2199,7 +2302,7 @@ button ion-icon {
 }
 .popup form button {
   width: 100%;
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
   color: white;
   margin-bottom: 10px;
   font-weight: 500;
@@ -2239,13 +2342,13 @@ button ion-icon {
   flex-direction: column;
 }
 #goal .goal-container .goal-card:hover h3 {
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 #goal .goal-container .goal-card:hover ion-icon {
-  color: rgb(5, 9, 59);
+  color: rgb(18, 5, 65);
 }
 #goal .goal-container .goal-card:hover .icon {
-  background: rgb(5, 9, 59);
+  background: rgb(18, 5, 65);
 }
 #goal .goal-container .goal-card:hover .icon img {
   filter: invert(100%);
@@ -2255,6 +2358,12 @@ button ion-icon {
   height: 100px;
   background: white;
   border-radius: 100px;
+}
+@media (max-width: 768px) {
+  #goal .goal-container .goal-card .icon {
+    width: 60px;
+    height: 60px;
+  }
 }
 #goal .goal-container .goal-card .icon img {
   width: 100%;
@@ -2268,6 +2377,11 @@ button ion-icon {
   font-weight: 500;
   font-size: 18px;
 }
+@media (max-width: 768px) {
+  #goal .goal-container .goal-card .content h3 {
+    font-size: 16px;
+  }
+}
 #goal .goal-container .goal-card .content span {
   font-size: 14px;
 }
@@ -2280,9 +2394,47 @@ button ion-icon {
 .collection {
   margin-bottom: 60px;
 }
+@media (max-width: 768px) {
+  .collection .splide__list .splide__slide {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #a6a6a6;
+  }
+  .collection .splide__list .splide__slide:last-child {
+    border: none;
+  }
+  .collection .splide__list .splide__slide .thumbnail {
+    width: 80px;
+    height: 80px;
+  }
+  .collection .splide__list .splide__slide .thumbnail img {
+    width: 100%;
+  }
+  .collection .splide__list .splide__slide .thumbnail .direct-college {
+    display: none;
+  }
+  .collection .splide__list .splide__slide .thumbnail .college-logo {
+    display: none;
+  }
+  .collection .splide__list .splide__slide .content {
+    margin: 0;
+    width: calc(100% - 80px);
+    padding-left: 10px;
+  }
+  .collection .splide__list .splide__slide .content h4 {
+    font-size: 14px;
+  }
+  .collection .splide__list .splide__slide .content .location {
+    margin: 0;
+  }
+  .collection .splide__list .splide__slide .content .buttons {
+    display: none;
+  }
+}
 
 .college-details {
   padding-top: 20px;
+  margin-top: 60px;
 }
 .college-details .splide__slide img {
   border-radius: 5px;

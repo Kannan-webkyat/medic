@@ -1,6 +1,6 @@
 <?php
 
-function pageHeader()
+function pageHeader(mysqli $conn)
 {
 ?>
     <header>
@@ -22,50 +22,57 @@ function pageHeader()
                 </ul>
             </nav>
             <button class="booknow-btn desktop-cta apply-trigger"> <ion-icon name="chatbox-ellipses-outline"></ion-icon> &nbsp; Get a Free Consultation</button>
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
         </div>
         <div class="mega-menu">
 
             <div class="left">
                 <div class="heading">Course Category</div>
                 <ul>
-                    <li class="has-sub li-active">Nursing<ion-icon name="chevron-forward-outline"></ion-icon>
-                        <ul>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                            <li><a href="">Bsc Nursing</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-sub ">Engineering<ion-icon name="chevron-forward-outline"></ion-icon>
-                        <ul>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
-                            <li><a href="">Btech Computer Science</a></li>
+                    <?php
+                    include './action/allCategoriesWithCourseName.php';
 
-                        </ul>
-                    </li>
-                    <li>Diploma<ion-icon name="chevron-forward-outline"></ion-icon></li>
-                    <li>Post Graduate <ion-icon name="chevron-forward-outline"></ion-icon></li>
-                    <li>Paramedical <ion-icon name="chevron-forward-outline"></ion-icon></li>
-                    <li>Engineering<ion-icon name="chevron-forward-outline"></ion-icon></li>
-                    <li>Diploma<ion-icon name="chevron-forward-outline"></ion-icon></li>
-                    <li>Post Graduate <ion-icon name="chevron-forward-outline"></ion-icon></li>
-                    <li>Paramedical <ion-icon name="chevron-forward-outline"></ion-icon></li>
+                    // Fetch all categories and their associated courses
+                    $megaData = fetchAllCategories($conn);
+
+                    // Loop through each category
+                    foreach ($megaData as $index => $data) :
+                        // Extract courses for the current category
+                        $sub = $data['courses'];
+                    ?>
+                        <li class="<?php echo ($index == 0) ? 'has-sub li-active' : (count($sub) > 0 ? 'has-sub' : '') ?>">
+                            <?php echo $data['title']; ?>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                            <?php
+                            // If there are courses for this category, display them
+                            if (count($sub) > 0) :
+                            ?>
+                                <ul>
+                                    <?php
+                                    // Loop through each course and display its title
+                                    foreach ($sub as $item) :
+                                    ?>
+                                        <li><a href="http://localhost/medic/colleges/course=<?php echo $item['slug']; ?>"><?php echo $item['title']; ?></a></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php
+                            endif; // End check for courses
+                            ?>
+                        </li>
+                    <?php
+                    endforeach; // End loop through categories
+                    ?>
                 </ul>
+
             </div>
 
         </div>
+
+
     </header>
 <?php
 }

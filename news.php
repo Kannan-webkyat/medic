@@ -15,7 +15,7 @@
     <!-- header -->
     <?php
     include './ui/Header.php';
-    pageHeader();
+    pageHeader($conn);
     ?>
     <div data-swup-name="news"></div>
     <!-- loader -->

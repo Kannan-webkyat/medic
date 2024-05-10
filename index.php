@@ -20,7 +20,7 @@
         $conn = (new dbConfig)->getConnection();
         $locations = getAllLocations($conn);
         include './ui/Header.php';
-        pageHeader();
+        pageHeader($conn);
         ?>
 
 
@@ -48,16 +48,15 @@
             </ul>
         </div>
         <!-- sticky cta -->
-        <a href="http://localhost/medic/book-now" class="booknow-btn-ph">Book Now</a>
 
         <div class="banner">
             <div class="container">
                 <div class="left">
-                    <h1>The <span>easiest way</span> to find your college</h1>
+                    <h1>The <span>easiest way</span> to <ion-icon name="search-outline"></ion-icon> find your dream college</h1>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis minus quod aliquid incidunt!</p>
                     <div class="button-holder">
                         <button class="goal-trigger">
-                            <ion-icon name="apps-outline"></ion-icon> &nbsp; Choose a Goal
+                            <ion-icon name="apps-outline"></ion-icon> &nbsp; View Colleges
                         </button>
                         <button class="apply-trigger">Book Admission &nbsp;
                             <ion-icon name="arrow-forward-outline"></ion-icon>
@@ -79,13 +78,13 @@
                         <div class="splide__list">
                             <?php foreach ($locations as $location) {
                             ?>
-                                <a href="http://localhost/medic/colleges/location:<?php echo $location['slug'] ?>" class="goal-card splide__slide">
+                                <a href="http://localhost/medic/colleges/location=<?php echo $location['slug'] ?>" class="goal-card splide__slide">
                                     <div class="icon">
                                         <img src="http://localhost/medic/admin/action/location/docs/<?php echo $location['image']; ?>" alt="<?php echo $location['title'] ?>">
                                     </div>
                                     <div class="content">
                                         <h3><?php echo $location['title'] ?></h3>
-                                        <span></span>
+                                        <span><?php echo $location['college_count'] ?> College</span>
                                     </div>
                                 </a>
                             <?php } ?>

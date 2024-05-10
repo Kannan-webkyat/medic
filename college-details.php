@@ -19,9 +19,15 @@
         <div data-swup-name="college-details"></div>
         <!-- header -->
         <?php
+        include './_class/dbConfig.php';
+        include './action/collegeDetails.php';
+        $conn = (new dbConfig)->getConnection();
+        $slug = $_GET['id'];
+        $collegeDetails = fetchCollegeDetails($conn, $slug);
+        $collegeImagePath = "http://localhost/medic/admin/action/college/docs/";
         include './ui/Header.php';
         include './ui/Popup.php';
-        pageHeader();
+        pageHeader($conn);
         ?>
         <!-- loader -->
         <div class="loader-container">
@@ -49,20 +55,13 @@
 
         <!-- fixed cta -->
         <div id="fixed-cta">
-            <button type="submit">Apply Now</button>
+            <button type="submit">Apply Now &nbsp; <ion-icon name="arrow-forward-outline"></ion-icon></button>
         </div>
         <!-- main section -->
         <div class="container">
             <div class="body-bg">
                 <div class="college-details com-table com-ul">
-                    <?php
-                    include './_class/dbConfig.php';
-                    include './action/collegeDetails.php';
-                    $conn = (new dbConfig)->getConnection();
-                    $slug = $_GET['id'];
-                    $collegeDetails = fetchCollegeDetails($conn, $slug);
-                    $collegeImagePath = "http://localhost/medic/admin/action/college/docs/";
-                    ?>
+
                     <!-- hero section -->
 
 

@@ -14,20 +14,24 @@ const namespaceManager = () => {
             {
                 const goalTrigger = document.querySelector(".goal-trigger");
                 goalTrigger.addEventListener("click", function () {
-                    const element = document.querySelector("#goal");
-                    const elementPosition = element.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - 100;
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: "smooth",
-                    });
+                    // const element = document.querySelector("#goal");
+                    // const elementPosition = element.getBoundingClientRect().top;
+                    // const offsetPosition = elementPosition + window.pageYOffset - 100;
+                    // window.scrollTo({
+                    //     top: offsetPosition,
+                    //     behavior: "smooth",
+                    // });
+                    location.href = "http://localhost/medic/colleges";
                 });
                 const apply = document.querySelectorAll(".apply-trigger");
                 apply.forEach((button) => {
                     button.addEventListener("click", function (e) {
                         e.stopPropagation();
                         e.preventDefault();
-                        showPopup("apply");
+                        const card = this.closest(".cards");
+                        const h4 = card.querySelector("h4");
+
+                        showPopup("apply", h4.textContent);
                         return false;
                     });
                 });
@@ -40,11 +44,23 @@ const namespaceManager = () => {
                         gap: 10,
                         nav: false,
                         pagination: false,
+                        breakpoints: {
+                            1200: { perPage: 3 },
+                            900: { perPage: 2, nav: false, padding: "1rem", arrows: false },
+                            768: { destroy: true },
+                        },
                     }).mount();
                 });
 
                 const destination = document.querySelector(".destination");
-                new Splide(destination, { type: "loop", perPage: 6, gap: 10, nav: false, pagination: false }).mount();
+                new Splide(destination, {
+                    type: "loop",
+                    perPage: 6,
+                    gap: 10,
+                    nav: false,
+                    pagination: false,
+                    breakpoints: { 900: { perPage: 4 }, 500: { perPage: 2, nav: false, padding: "1rem", arrows: false } },
+                }).mount();
 
                 basic();
             }
@@ -107,6 +123,11 @@ const namespaceManager = () => {
                     gap: 10,
                     nav: false,
                     pagination: false,
+                    autoplay: true,
+                    interval: 1000,
+                    pauseOnHover: true,
+                    pauseOnFocus: true,
+                    breakpoints: { 768: { perPage: 1, padding: "2rem", arrows: false } },
                 }).mount();
 
                 // while window on scroll form fixed
@@ -195,15 +216,16 @@ swup.hooks.on("page:view", (event) => {
 function showPopup(prop, title) {
     let template = "";
     if (prop == "apply") {
-        template = `Looking for admission at the ${title}. Give us your details and we will help you`;
+        template = `Looking for admission at the <span><b>${title}.</b></span> Give us your details and we will help you`;
     } else {
         template = "Just a random text for the form";
     }
 
     // set headline
     const popup = document.querySelector(".popup");
+    popup.querySelector("h3").innerHTML = "";
+    popup.querySelector("h3").insertAdjacentHTML("beforeend", template);
     popup.style.display = "flex";
-    popup.querySelector("h3").textContent = template;
 
     // close
     popup.querySelector(".close").addEventListener("click", function () {

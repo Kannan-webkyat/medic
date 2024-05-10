@@ -17,7 +17,7 @@
     <?php
     include './ui/Header.php';
     include './ui/Popup.php';
-    pageHeader();
+    pageHeader($conn);
     ?>
     <!-- loader -->
     <div class="loader-container">
