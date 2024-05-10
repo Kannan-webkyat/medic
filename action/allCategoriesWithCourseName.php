@@ -6,7 +6,7 @@ function fetchAllCategories(mysqli $conn)
     $result->execute();
     $categoryDatas = $result->get_result()->fetch_all(MYSQLI_ASSOC);
 
-    foreach ($categoryDatas as &$categoryDatas) {
+    foreach ($categoryDatas as &$categoryData) {
         // fetching all course under this category
         $courses = $conn->prepare("SELECT title,slug,id FROM course WHERE category_id = ?");
         $courses->bind_param('i', $categoryData['id']);
