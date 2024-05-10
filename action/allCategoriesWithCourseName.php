@@ -1,5 +1,5 @@
 <?php
-function fetchAllCourses(mysqli $conn)
+function fetchAllCategories(mysqli $conn)
 {
     $query  = "SELECT title,slug,id FROM course_category";
     $result = $conn->prepare($query);
