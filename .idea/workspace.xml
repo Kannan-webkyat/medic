@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6d35e1d-8f05-447e-b4d1-1eda5bb1ffbb" name="Changes" comment="..">
-      <change beforePath="$PROJECT_DIR$/action/allCategoriesWithCourseName.php" beforeDir="false" afterPath="$PROJECT_DIR$/action/allCategoriesWithCourseName.php" afterDir="false" />
-    </list>
+    <list default="true" id="f6d35e1d-8f05-447e-b4d1-1eda5bb1ffbb" name="Changes" comment=".." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,7 +151,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715339102511</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="..">
+      <option name="closed" value="true" />
+      <created>1715341832456</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1715341832456</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
