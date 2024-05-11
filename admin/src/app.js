@@ -375,6 +375,15 @@ const namespaceManager = () => {
                 initTiny();
             }
             break;
+        case "list-leads":
+            {
+                loader.load();
+                sidemenu.active("leads");
+                header.update("leads", sidemenu.current().find("i")[0].outerHTML);
+                loader.stop();
+                initTiny();
+            }
+            break;
     }
 };
 

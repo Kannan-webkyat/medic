@@ -41,17 +41,17 @@
                             </div>
                             <!-- end of facility icon  -->
 
-                        <!-- description -->
-                        <div class="input-holder split-4">
-                            <label for="">Description</label>
-                            <textarea id="description" name="description"></textarea>
-                        </div>
-                        <!-- end of description -->
+                            <!-- description -->
+                            <div class="input-holder">
+                                <label for="">Description</label>
+                                <textarea id="description" name="description"></textarea>
+                            </div>
+                            <!-- end of description -->
 
-                    </div>
-                    <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-                </form>
-            </div>
+                        </div>
+                        <button id="save_btn" type="submit">Create &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    </form>
+                </div>
         </section>
 
         <?php

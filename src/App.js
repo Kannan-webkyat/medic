@@ -100,11 +100,11 @@ const namespaceManager = () => {
                     constructor() {
                         this.filter = null;
                     }
-                    clear() {}
-                    recommended() {}
-                    location() {}
-                    redirect() {}
-                    events() {}
+                    clear() { }
+                    recommended() { }
+                    location() { }
+                    redirect() { }
+                    events() { }
                 }
 
                 basic();
@@ -253,19 +253,26 @@ function showPopup(prop, title) {
         e.preventDefault();
 
         let fd = new FormData();
-        fd.append("name", document.getElementById("name").value);
-        fd.append("name", document.getElementById("name").value);
-        fd.append("name", document.getElementById("name").value);
-        fd.append("name", document.getElementById("name").value);
-        fd.append("name", document.getElementById("name").value);
+        fd.append("name", popup.querySelector("#name").value);
+        fd.append("email", popup.querySelector("#email").value);
+        fd.append("phone", popup.querySelector("#phone").value);
+        fd.append("for", popup.querySelector("h3 span b").textContent);
+        fd.append("whatsapp-noti", popup.querySelector("#whatsapp-noti") ? (popup.querySelector("#whatsapp-noti").checked ? 1 : 0) : 0);
 
         // ajax to submit this value
-        fetch("./action/submitForm.php", {
+        fetch("http://localhost/medic/action/submitForm.php", {
             method: "POST",
             body: fd,
         })
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                if (data.status) {
+                    console.log(data.message)
+                    // add success alert here
+                } else {
+                    console.log(data.message)
+                }
+            })
             .catch((error) => console.error("Error:", error));
     });
 }
@@ -279,6 +286,7 @@ function courseBar() {
             sidebar.classList.add("side-bar-active");
         });
     });
+
     const closeSidebar = sidebar.querySelector(".close");
     closeSidebar.addEventListener("click", function () {
         sidebar.classList.remove("side-bar-active");
