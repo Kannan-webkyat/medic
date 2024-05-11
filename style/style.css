@@ -126,7 +126,6 @@ p {
 
 form {
   background: white;
-  padding: 20px;
   border-radius: 10px;
 }
 form .close {
@@ -645,8 +644,14 @@ header .mega-menu-container {
   opacity: 0;
   transition: 0.3s;
 }
+@media (max-width: 600px) {
+  header .mega-menu-container {
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
 header .mega-menu-container .mega-menu {
-  width: 40%;
+  width: 800px;
   background: white;
   display: flex;
   justify-content: space-between;
@@ -657,6 +662,13 @@ header .mega-menu-container .mega-menu {
   height: 500px;
   overflow: hidden;
   margin-bottom: 30px;
+}
+@media (max-width: 900px) {
+  header .mega-menu-container .mega-menu {
+    width: 95%;
+    height: auto;
+    height: 80%;
+  }
 }
 header .mega-menu-container .mega-menu .close {
   width: 50px;
@@ -683,14 +695,33 @@ header .mega-menu-container .mega-menu .heading {
   color: white;
   font-size: 18px;
 }
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .heading {
+    width: 100%;
+    color: #1f2a37;
+    font-weight: 600;
+    padding: 0px;
+  }
+}
 header .mega-menu-container .mega-menu .left {
   width: 200px;
   height: 100%;
   background: #111928;
   padding: 10px;
 }
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left {
+    width: 100%;
+    background: white;
+  }
+}
 header .mega-menu-container .mega-menu .left ul {
   padding: 10px;
+}
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul {
+    padding: 0px;
+  }
 }
 header .mega-menu-container .mega-menu .left ul li {
   padding: 8px;
@@ -700,6 +731,20 @@ header .mega-menu-container .mega-menu .left ul li {
   cursor: pointer;
   color: white;
   border-radius: 5px;
+}
+header .mega-menu-container .mega-menu .left ul li ion-icon {
+  color: white;
+}
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul li {
+    flex-wrap: wrap;
+    color: #1f2a37;
+    font-weight: 500;
+    padding: 8px 0px;
+  }
+  header .mega-menu-container .mega-menu .left ul li ion-icon {
+    color: #1f2a37;
+  }
 }
 header .mega-menu-container .mega-menu .left ul li ul {
   display: flex;
@@ -714,12 +759,26 @@ header .mega-menu-container .mega-menu .left ul li ul {
   height: 100%;
   overflow-y: scroll;
 }
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul li ul {
+    position: static;
+    width: 100%;
+    padding: 0px;
+    padding-top: 10px;
+    overflow: hidden;
+  }
+}
 header .mega-menu-container .mega-menu .left ul li ul li {
   width: 100%;
   display: block;
   font-size: 14px;
   line-height: 16px !important;
   padding: 0px;
+}
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul li ul li {
+    font-weight: 400;
+  }
 }
 header .mega-menu-container .mega-menu .left ul li ul li a {
   text-decoration: none;
@@ -741,11 +800,13 @@ header .mega-menu-container .mega-menu .left ul li ul li a:hover {
 header .mega-menu-container .mega-menu .left ul li:hover {
   background: #090e16;
 }
-header .mega-menu-container .mega-menu .left ul li ion-icon {
-  color: white;
-}
 header .mega-menu-container .mega-menu .left ul .li-active {
   background: #090e16;
+}
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul .li-active {
+    background: white;
+  }
 }
 header .mega-menu-container .mega-menu .left ul .li-active ul {
   display: block;
@@ -882,6 +943,69 @@ button ion-icon {
   .head .filter {
     margin-top: 10px;
   }
+}
+.head .filter form {
+  display: flex;
+}
+@media (max-width: 768px) {
+  .head .filter form {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .head .filter form .input {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+  .head .filter form .input select {
+    min-width: 100%;
+  }
+  .head .filter form .input .triggers {
+    margin: 0;
+    width: 100%;
+  }
+}
+.head .filter form .more-filter {
+  width: 100%;
+  background: #eee;
+  height: 40px;
+  padding: 0px 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.head .filter form .more-filter ion-icon {
+  margin-left: 10px;
+}
+.head .filter form .triggers {
+  height: 40px;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #1f2a37;
+  margin-right: 10px;
+  border: 1px solid rgb(204, 204, 204);
+  cursor: pointer;
+}
+.head .filter form .clear {
+  background: #eee;
+}
+.head .filter form .clear:hover {
+  color: rgb(18, 5, 65);
+}
+.head .filter form .trigger-active {
+  background: #111928;
+  color: white;
+}
+.head .filter form select {
+  margin-right: 5px;
+  min-width: 150px;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 16px;
 }
 
 .card-wrapper {
@@ -1428,6 +1552,9 @@ button ion-icon {
   background: #eee;
   display: inline-flex;
   margin-bottom: 10px;
+}
+.info .form form {
+  padding: 20px;
 }
 .info .form-active {
   position: fixed;
@@ -2198,6 +2325,7 @@ button ion-icon {
 }
 .popup form {
   width: 400px;
+  padding: 20px;
 }
 
 .popup-active {
