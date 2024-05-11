@@ -166,7 +166,8 @@
                                 </div>
                             </div>
                             <div class="input select-holder">
-                                <div class="triggers <?= $_GET['recommended'] === 'true' ? 'trigger-active' : '' ?>">
+                                <?php $recommended = isset($_GET['recommended']) ? $_GET['recommended'] : null ?>
+                                <div class="triggers <?= $recommended === 'true' ? 'trigger-active' : '' ?>">
                                     <ion-icon name="star-sharp"></ion-icon> &nbsp; Recommended
                                 </div>
                             </div>
