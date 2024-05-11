@@ -140,8 +140,8 @@
                     <?php if (!empty($colleges[0]['course_names'])) {
                     ?>
                         <div class="heading">
-                            <!-- <?php echo $colleges[0]['course_names'] ?> -->
-                            <h1>Explore Colleges</h1>
+
+                            <h1>Explore <?php echo $colleges[0]['course_names'] ?> Colleges</h1>
                         </div>
                         <span class="result"><?php echo count($colleges) ?> Colleges Found</span>
                     <?php } ?>

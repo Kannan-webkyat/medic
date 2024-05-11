@@ -44,6 +44,10 @@ const namespaceManager = () => {
                     gap: 10,
                     nav: false,
                     pagination: false,
+                    autoplay: true,
+                    interval: 1500,
+                    pauseOnFocus: true,
+                    pauseOnHover: true,
                     breakpoints: {
                         900: {
                             perPage: 4,
@@ -56,6 +60,18 @@ const namespaceManager = () => {
                         },
                     },
                 }).mount();
+
+                // while scroll
+                if (window.matchMedia("(max-width: 600px)").matches) {
+                    const fixedButton = document.querySelector(".choose-goal-fixed");
+                    window.addEventListener("scroll", function () {
+                        if (this.scrollY > 200) {
+                            fixedButton.style.display = "flex";
+                        } else {
+                            fixedButton.style.display = "none";
+                        }
+                    });
+                }
 
                 basic();
             }
@@ -79,34 +95,25 @@ const namespaceManager = () => {
                     });
                 });
 
-                // filters
-
-                // const filter = document.querySelector(".filter");
-                // // clear filter
-                // const clear = filter.querySelector(".clear");
-                // clear.addEventListener("click", function () {
-                //     location.href = "http://localhost/medic/colleges";
-                // });
-                // // on location change
-                // const location = filter.querySelector("#location-select");
-                // location.addEventListener("change", function () {
-                //     const value = this.value;
-                //     if (value != "") {
-                //         window.location.href = `http://localhost/medic/colleges/location:${value}`;
-                //     }
-                // });
-
                 class Filter {
                     constructor() {
-                        this.filter = null;
+                        this.basePath = "http://localhost/medic/colleges/";
+                        this.clearBtn = document.querySelector(".filter .clear");
+                        this.events();
                     }
-                    clear() { }
-                    recommended() { }
-                    location() { }
-                    redirect() { }
-                    events() { }
+                    clear() {}
+                    recommended() {}
+                    location() {}
+                    redirect(params) {
+                        window.location.href = this.basePath + params;
+                    }
+                    events() {
+                        this.clearBtn.addEventListener("click", () => {
+                            this.redirect("");
+                        });
+                    }
                 }
-
+                let filter = new Filter();
                 basic();
             }
             break;
@@ -197,7 +204,7 @@ function basic() {
     });
 
     lists.forEach((list) => {
-        list.addEventListener("mouseenter", function () {
+        list.addEventListener("click", function () {
             if (this.classList.contains("has-sub")) {
                 lists.forEach((list) => list.classList.remove("li-active"));
                 this.classList.add("li-active");
@@ -257,7 +264,10 @@ function showPopup(prop, title) {
         fd.append("email", popup.querySelector("#email").value);
         fd.append("phone", popup.querySelector("#phone").value);
         fd.append("for", popup.querySelector("h3 span b").textContent);
-        fd.append("whatsapp-noti", popup.querySelector("#whatsapp-noti") ? (popup.querySelector("#whatsapp-noti").checked ? 1 : 0) : 0);
+        fd.append(
+            "whatsapp-noti",
+            popup.querySelector("#whatsapp-noti") ? (popup.querySelector("#whatsapp-noti").checked ? 1 : 0) : 0
+        );
 
         // ajax to submit this value
         fetch("http://localhost/medic/action/submitForm.php", {
@@ -267,10 +277,10 @@ function showPopup(prop, title) {
             .then((response) => response.json())
             .then((data) => {
                 if (data.status) {
-                    console.log(data.message)
+                    console.log(data.message);
                     // add success alert here
                 } else {
-                    console.log(data.message)
+                    console.log(data.message);
                 }
             })
             .catch((error) => console.error("Error:", error));
