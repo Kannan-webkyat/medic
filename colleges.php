@@ -53,7 +53,7 @@
                 </li>
                 <?php foreach ($courses as $course) : ?>
                     <li>
-                        <a href="http://localhost/medic/colleges/course=<?php echo $course['slug'] ?>"><?php echo $course['title']; ?></a>
+                        <a class="<?php $_GET['course'] === $course['slug'] ? 'Active' : '' ?>" href="http://localhost/medic/colleges/course=<?php echo $course['slug'] ?>"><?php echo $course['title']; ?></a>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -140,8 +140,20 @@
                     <?php if (!empty($colleges[0]['course_names'])) {
                     ?>
                         <div class="heading">
-                            <!-- <?php echo $colleges[0]['course_names'] ?> -->
-                            <h1>Explore Colleges</h1>
+                            <?php
+                            $urlCourse = isset($_GET['course']) ? $_GET['course'] : null;
+                            $urlLocation = isset($_GET['location']) ? $_GET['location'] : null;
+
+                            function convertToTitleCase($inputString)
+                            {
+                                // Replace underscores with spaces
+                                $modifiedString = str_replace('_', ' ', $inputString);
+                                // Capitalize the first letter
+                                $modifiedString = ucfirst($modifiedString);
+                                return $modifiedString;
+                            }
+                            ?>
+                            <h1>Explore Colleges <?php echo $urlCourse ? convertToTitleCase($urlCourse) : '' ?><?php echo $urlLocation ? ' in ' . $urlLocation : '' ?></h1>
                         </div>
                         <span class="result"><?php echo count($colleges) ?> Colleges Found</span>
                     <?php } ?>
@@ -154,7 +166,7 @@
                                 </div>
                             </div>
                             <div class="input select-holder">
-                                <div class="triggers">
+                                <div class="triggers <?= $_GET['recommended'] === 'true' ? 'trigger-active' : '' ?>">
                                     <ion-icon name="star-sharp"></ion-icon> &nbsp; Recommended
                                 </div>
                             </div>
@@ -162,7 +174,7 @@
                                 <select class="activer" id="location-select" name="type-data" required>
                                     <option value="">Select Location</option>
                                     <?php foreach ($locations as $location) : ?>
-                                        <option value="<?php echo $location['slug']; ?>"><?php echo $location['title']; ?></option>
+                                        <option <?php echo $urlLocation === $location['slug'] ? 'selected' : '' ?> value="<?php echo $location['slug']; ?>"><?php echo $location['title']; ?></option>
                                         <?php endforeach; ?>s
                                 </select>
                             </div>
