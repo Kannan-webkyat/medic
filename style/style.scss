@@ -45,6 +45,8 @@ body::-webkit-scrollbar-thumb {
 
 
 
+
+
 .loader-container {
   width: 100%;
   height: 100%;
@@ -143,6 +145,83 @@ p {
   @media (max-width:425px) {
     font-size: 16px;
     font-weight: 400;
+  }
+}
+
+
+// form 
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+
+  .close {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+
+    ion-icon {
+      font-size: 25px;
+      cursor: pointer;
+    }
+  }
+
+  h3 {
+    margin-bottom: 30px;
+  }
+
+  .input-holder {
+    width: 100%;
+    margin-bottom: 20px;
+
+    input {
+      width: 100%;
+
+    }
+  }
+
+  .number-holder {
+    display: flex;
+
+    input {
+      &:nth-child(1) {
+        width: 60px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .toggle {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+    .text {
+      padding-left: 10px;
+      font-size: 14px !important;
+    }
+  }
+
+  button {
+    width: 100%;
+    background: $primarycolor;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  p {
+    width: 75%;
+    text-align: center;
+    line-height: 18px;
+    margin: 0 auto;
   }
 }
 
@@ -809,18 +888,43 @@ header {
       box-shadow: 0px 0px 10px #3636364a;
       position: relative;
       height: 500px;
+      overflow: hidden;
+
+
+
       // display: none;
+      .close {
+
+        width: 50px;
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        position: absolute;
+        right: 20px;
+        top: 10px;
+        z-index: 10;
+        cursor: pointer;
+
+
+        ion-icon {
+          font-size: 25px;
+        }
+      }
+
+      margin-bottom: 30px;
 
       a {
         color: $fontcolor;
       }
 
       .heading {
-        font-weight: 600;
+        font-weight: 500;
         padding-left: 10px;
         width: 100%;
         margin-bottom: 10px;
         color: white;
+        font-size: 18px;
 
       }
 
@@ -832,6 +936,7 @@ header {
 
         ul {
           padding: 10px;
+
 
 
           li {
@@ -852,12 +957,13 @@ header {
               top: 0;
               display: none;
               justify-content: space-between;
-
-
+              padding-top: 35px;
+              height: 100%;
+              overflow-y: scroll;
 
               li {
 
-                width: calc(100% / 3 - 10px);
+                width: calc(100%);
                 display: block;
                 font-size: 14px;
                 line-height: 16px !important;
@@ -866,15 +972,26 @@ header {
 
 
 
+
                 a {
                   text-decoration: none;
                   border-bottom: 1px solid #d8e7ff;
                   display: block;
-                  padding: 5px 0px;
+                  padding: 8px 0px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+
+                  ion-icon {
+                    color: $fontcolor;
+                    transform: rotate(-45deg);
+                  }
 
                   &:hover {
                     background: #eee;
                     color: $primarycolor;
+
+                    i {}
                   }
 
 
@@ -900,7 +1017,7 @@ header {
             background: #090e16;
 
             ul {
-              display: flex;
+              display: block;
             }
           }
         }
@@ -1064,87 +1181,7 @@ button {
     }
 
 
-    form {
-      display: flex;
 
-      @media(max-width : 768px) {
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-        .input {
-          // display: none;
-          width: 48%;
-          margin-bottom: 10px;
-
-          select {
-            min-width: 100%;
-          }
-
-          .triggers {
-            margin: 0;
-            width: 100%;
-
-
-          }
-
-        }
-      }
-
-      .more-filter {
-        width: 100%;
-        background: #eee;
-        height: 40px;
-        padding: 0px 10px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 10px;
-
-        ion-icon {
-          margin-left: 10px;
-        }
-      }
-
-      .triggers {
-        height: 40px;
-        padding: 0px 10px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 5px;
-        color: $fontcolor;
-        margin-right: 10px;
-        border: 1px solid rgb(204, 204, 204);
-        cursor: pointer;
-
-      }
-
-      .clear {
-        background: #eee;
-
-        &:hover {
-
-          color: $primarycolor;
-        }
-
-
-      }
-
-      .trigger-active {
-        background: $secondarycolor;
-        color: white;
-      }
-
-      select {
-        margin-right: 5px;
-        min-width: 150px;
-        border-radius: 5px;
-        padding-left: 10px;
-        font-size: 16px;
-      }
-    }
   }
 }
 
@@ -1879,33 +1916,10 @@ button {
     width: 400px;
     padding: 20px;
 
-
-    button {
-      background: $primarycolor;
-      text-align: center;
-      width: 100%;
-      color: white;
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
     .direct-college {
-      background: white;
+      background: #eee;
       display: inline-flex;
-      margin-top: 10px;
-    }
-
-    .input-field {
-      //   padding: 20px;
-      margin-top: 20px;
-
-      label {
-        color: $secondarycolor;
-        font-size: 14px;
-        font-weight: 500;
-      }
+      margin-bottom: 10px;
     }
 
   }
@@ -2839,143 +2853,27 @@ button {
 // BOOK NOW PAGE STYLE
 .addmission-form {
   margin-bottom: 50px;
-
-  h2 {
-    text-align: center !important;
-    margin-bottom: 30px;
-    margin-top: 30px;
-  }
-
-
-  button {
-    // margin-top: 20px;
-    width: calc(100% - 70%);
-    height: 48px;
-    width: 100px;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 16px;
-    background-color: $primarycolor;
-    border: 1px solid #1E429F;
-
-    border-radius: 60px;
-  }
-
-  button:hover {
-    background-color: $secondarycolor;
-    border: 1px solid #4B5563;
-    cursor: pointer;
-
-  }
-
-  .book-now-form {
-    margin: 0 auto;
-
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 #00000017, 0 6px 20px 0 #00000013;
-    border-radius: 28px;
-    width: 70%;
-    padding: 20px;
-  }
-
-  .input-field {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    width: 100%;
-    margin-bottom: 30px;
-
-
-    .box {
-      width: 48%;
-
-
-      .textarea {
-        width: 100%;
-      }
-
-    }
-
-    .field {
-      padding: 12px 10px;
-
-
-      // width: 250px;
-      .holder {
-        width: 100%;
-
-        .input {
-          input {
-            width: 100%;
-            background: none;
-            border: none;
-            outline: none;
-          }
-
-          textarea {
-            width: 100%;
-            background: none;
-            border: none !important;
-            outline: none;
-            resize: none;
-            font-size: 14px;
-
-          }
-
-
-        }
+  margin-top: 80px;
 
 
 
+  display: flex;
 
-      }
+  .left {
+    width: 50%;
+    padding-right: 50px;
 
-    }
-
-    .message {
-      width: 100%;
-
+    h1 {
+      font-size: 28px;
+      font-weight: 500;
     }
   }
 
-  @media (max-width:599px) {
-
-    // padding: 2px;
-    .book-now-form {
-      width: 100%;
-    }
-
-    button {
-      width: 100% !important;
-    }
-
-    .address {
-      margin-bottom: 25px;
-
-      &:nth-child(4) {
-        margin-bottom: 0;
-      }
-
-      h4 {
-        font-size: 17px;
-      }
-    }
-
-    form {
-
-      margin-top: 30px;
-    }
-
-    .input-field {
-      flex-direction: column;
-      margin: 0 !important;
-
-      .box {
-        width: 100% !important;
-        margin-bottom: 30px;
-      }
-    }
+  .right {
+    width: 50%;
   }
+
+
 }
 
 // END OF BOOK NOW PAGE STYLE
@@ -3110,75 +3008,6 @@ button {
 
   form {
     width: 400px;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-
-    .close {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 10px;
-
-      ion-icon {
-        font-size: 25px;
-        cursor: pointer;
-      }
-    }
-
-    h3 {
-      margin-bottom: 30px;
-    }
-
-    .input-holder {
-      width: 100%;
-      margin-bottom: 20px;
-
-      input {
-        width: 100%;
-
-      }
-    }
-
-    .number-holder {
-      display: flex;
-
-      input {
-        &:nth-child(1) {
-          width: 60px;
-          margin-right: 5px;
-        }
-      }
-    }
-
-    .toggle {
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-
-      .text {
-        padding-left: 10px;
-        font-size: 14px !important;
-      }
-    }
-
-    button {
-      width: 100%;
-      background: $primarycolor;
-      color: white;
-      margin-bottom: 10px;
-      font-weight: 500;
-      font-size: 16px;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    p {
-      width: 75%;
-      text-align: center;
-      line-height: 18px;
-      margin: 0 auto;
-    }
   }
 }
 

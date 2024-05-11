@@ -11,10 +11,10 @@ function pageHeader(mysqli $conn)
             <nav>
                 <ul>
                     <li>
-                        <a href="" class="drop-trigger">Choose a Goal &nbsp; <ion-icon name="chevron-down-outline"></ion-icon></a>
+                        <a href="" class="drop-trigger">Choose Your Goal &nbsp; <ion-icon name="chevron-down-outline"></ion-icon></a>
                     </li>
                     <li>
-                        <a href="">About</a>
+                        <a href="http://localhost/medic/book">Book Admission</a>
                     </li>
                     <li>
                         <a href="">Contact</a>
@@ -30,9 +30,9 @@ function pageHeader(mysqli $conn)
         </div>
         <div class="mega-menu-container">
             <div class="mega-menu">
-
+                <div class="close"><ion-icon name="close-outline"></ion-icon></div>
                 <div class="left">
-                    <div class="heading">Course Category</div>
+                    <div class="heading">Choose Your Goal</div>
                     <ul>
                         <?php
                         include './action/allCategoriesWithCourseName.php';
@@ -57,7 +57,7 @@ function pageHeader(mysqli $conn)
                                         // Loop through each course and display its title
                                         foreach ($sub as $item) :
                                         ?>
-                                            <li><a href="http://localhost/medic/colleges/course=<?php echo $item['slug']; ?>"><?php echo $item['title']; ?></a></li>
+                                            <li><a href="http://localhost/medic/colleges/course=<?php echo $item['slug']; ?>"><?php echo $item['title']; ?> <ion-icon name="arrow-forward-outline"></ion-icon></a></li>
                                         <?php endforeach; ?>
                                     </ul>
                                 <?php

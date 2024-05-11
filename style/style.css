@@ -124,6 +124,67 @@ p {
   }
 }
 
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+}
+form .close {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+form .close ion-icon {
+  font-size: 25px;
+  cursor: pointer;
+}
+form h3 {
+  margin-bottom: 30px;
+}
+form .input-holder {
+  width: 100%;
+  margin-bottom: 20px;
+}
+form .input-holder input {
+  width: 100%;
+}
+form .number-holder {
+  display: flex;
+}
+form .number-holder input:nth-child(1) {
+  width: 60px;
+  margin-right: 5px;
+}
+form .toggle {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+form .toggle .text {
+  padding-left: 10px;
+  font-size: 14px !important;
+}
+form button {
+  width: 100%;
+  background: rgb(18, 5, 65);
+  color: white;
+  margin-bottom: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+form p {
+  width: 75%;
+  text-align: center;
+  line-height: 18px;
+  margin: 0 auto;
+}
+
 #footer {
   margin-top: 50px;
   background-color: #eee;
@@ -594,16 +655,33 @@ header .mega-menu-container .mega-menu {
   box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.2901960784);
   position: relative;
   height: 500px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+header .mega-menu-container .mega-menu .close {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  z-index: 10;
+  cursor: pointer;
+}
+header .mega-menu-container .mega-menu .close ion-icon {
+  font-size: 25px;
 }
 header .mega-menu-container .mega-menu a {
   color: #1f2a37;
 }
 header .mega-menu-container .mega-menu .heading {
-  font-weight: 600;
+  font-weight: 500;
   padding-left: 10px;
   width: 100%;
   margin-bottom: 10px;
   color: white;
+  font-size: 18px;
 }
 header .mega-menu-container .mega-menu .left {
   width: 200px;
@@ -632,9 +710,12 @@ header .mega-menu-container .mega-menu .left ul li ul {
   top: 0;
   display: none;
   justify-content: space-between;
+  padding-top: 35px;
+  height: 100%;
+  overflow-y: scroll;
 }
 header .mega-menu-container .mega-menu .left ul li ul li {
-  width: calc(33.3333333333% - 10px);
+  width: 100%;
   display: block;
   font-size: 14px;
   line-height: 16px !important;
@@ -644,7 +725,14 @@ header .mega-menu-container .mega-menu .left ul li ul li a {
   text-decoration: none;
   border-bottom: 1px solid #d8e7ff;
   display: block;
-  padding: 5px 0px;
+  padding: 8px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .mega-menu-container .mega-menu .left ul li ul li a ion-icon {
+  color: #1f2a37;
+  transform: rotate(-45deg);
 }
 header .mega-menu-container .mega-menu .left ul li ul li a:hover {
   background: #eee;
@@ -660,7 +748,7 @@ header .mega-menu-container .mega-menu .left ul .li-active {
   background: #090e16;
 }
 header .mega-menu-container .mega-menu .left ul .li-active ul {
-  display: flex;
+  display: block;
 }
 header .mega-menu-container .mega-menu .right {
   height: 100%;
@@ -794,69 +882,6 @@ button ion-icon {
   .head .filter {
     margin-top: 10px;
   }
-}
-.head .filter form {
-  display: flex;
-}
-@media (max-width: 768px) {
-  .head .filter form {
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .head .filter form .input {
-    width: 48%;
-    margin-bottom: 10px;
-  }
-  .head .filter form .input select {
-    min-width: 100%;
-  }
-  .head .filter form .input .triggers {
-    margin: 0;
-    width: 100%;
-  }
-}
-.head .filter form .more-filter {
-  width: 100%;
-  background: #eee;
-  height: 40px;
-  padding: 0px 10px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-.head .filter form .more-filter ion-icon {
-  margin-left: 10px;
-}
-.head .filter form .triggers {
-  height: 40px;
-  padding: 0px 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  color: #1f2a37;
-  margin-right: 10px;
-  border: 1px solid rgb(204, 204, 204);
-  cursor: pointer;
-}
-.head .filter form .clear {
-  background: #eee;
-}
-.head .filter form .clear:hover {
-  color: rgb(18, 5, 65);
-}
-.head .filter form .trigger-active {
-  background: #111928;
-  color: white;
-}
-.head .filter form select {
-  margin-right: 5px;
-  min-width: 150px;
-  border-radius: 5px;
-  padding-left: 10px;
-  font-size: 16px;
 }
 
 .card-wrapper {
@@ -1399,28 +1424,10 @@ button ion-icon {
   width: 400px;
   padding: 20px;
 }
-.info .form button {
-  background: rgb(18, 5, 65);
-  text-align: center;
-  width: 100%;
-  color: white;
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .info .form .direct-college {
-  background: white;
+  background: #eee;
   display: inline-flex;
-  margin-top: 10px;
-}
-.info .form .input-field {
-  margin-top: 20px;
-}
-.info .form .input-field label {
-  color: #111928;
-  font-size: 14px;
-  font-weight: 500;
+  margin-bottom: 10px;
 }
 .info .form-active {
   position: fixed;
@@ -2069,99 +2076,19 @@ button ion-icon {
 
 .addmission-form {
   margin-bottom: 50px;
-}
-.addmission-form h2 {
-  text-align: center !important;
-  margin-bottom: 30px;
-  margin-top: 30px;
-}
-.addmission-form button {
-  width: 30%;
-  height: 48px;
-  width: 100px;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 16px;
-  background-color: rgb(18, 5, 65);
-  border: 1px solid #1E429F;
-  border-radius: 60px;
-}
-.addmission-form button:hover {
-  background-color: #111928;
-  border: 1px solid #4B5563;
-  cursor: pointer;
-}
-.addmission-form .book-now-form {
-  margin: 0 auto;
-  background-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.0901960784), 0 6px 20px 0 rgba(0, 0, 0, 0.0745098039);
-  border-radius: 28px;
-  width: 70%;
-  padding: 20px;
-}
-.addmission-form .input-field {
+  margin-top: 80px;
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-  width: 100%;
-  margin-bottom: 30px;
 }
-.addmission-form .input-field .box {
-  width: 48%;
+.addmission-form .left {
+  width: 50%;
+  padding-right: 50px;
 }
-.addmission-form .input-field .box .textarea {
-  width: 100%;
+.addmission-form .left h1 {
+  font-size: 28px;
+  font-weight: 500;
 }
-.addmission-form .input-field .field {
-  padding: 12px 10px;
-}
-.addmission-form .input-field .field .holder {
-  width: 100%;
-}
-.addmission-form .input-field .field .holder .input input {
-  width: 100%;
-  background: none;
-  border: none;
-  outline: none;
-}
-.addmission-form .input-field .field .holder .input textarea {
-  width: 100%;
-  background: none;
-  border: none !important;
-  outline: none;
-  resize: none;
-  font-size: 14px;
-}
-.addmission-form .input-field .message {
-  width: 100%;
-}
-@media (max-width: 599px) {
-  .addmission-form .book-now-form {
-    width: 100%;
-  }
-  .addmission-form button {
-    width: 100% !important;
-  }
-  .addmission-form .address {
-    margin-bottom: 25px;
-  }
-  .addmission-form .address:nth-child(4) {
-    margin-bottom: 0;
-  }
-  .addmission-form .address h4 {
-    font-size: 17px;
-  }
-  .addmission-form form {
-    margin-top: 30px;
-  }
-  .addmission-form .input-field {
-    flex-direction: column;
-    margin: 0 !important;
-  }
-  .addmission-form .input-field .box {
-    width: 100% !important;
-    margin-bottom: 30px;
-  }
+.addmission-form .right {
+  width: 50%;
 }
 
 .side-bar-container {
@@ -2271,61 +2198,6 @@ button ion-icon {
 }
 .popup form {
   width: 400px;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-}
-.popup form .close {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-.popup form .close ion-icon {
-  font-size: 25px;
-  cursor: pointer;
-}
-.popup form h3 {
-  margin-bottom: 30px;
-}
-.popup form .input-holder {
-  width: 100%;
-  margin-bottom: 20px;
-}
-.popup form .input-holder input {
-  width: 100%;
-}
-.popup form .number-holder {
-  display: flex;
-}
-.popup form .number-holder input:nth-child(1) {
-  width: 60px;
-  margin-right: 5px;
-}
-.popup form .toggle {
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-}
-.popup form .toggle .text {
-  padding-left: 10px;
-  font-size: 14px !important;
-}
-.popup form button {
-  width: 100%;
-  background: rgb(18, 5, 65);
-  color: white;
-  margin-bottom: 10px;
-  font-weight: 500;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-}
-.popup form p {
-  width: 75%;
-  text-align: center;
-  line-height: 18px;
-  margin: 0 auto;
 }
 
 .popup-active {

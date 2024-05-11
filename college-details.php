@@ -139,98 +139,43 @@
                         </div>
                         <!-- form -->
                         <div class="form">
+                            <form action="" class="book-form">
 
-                            <form action="" method="post">
-                                <h3>Book Your Admission</h3>
-                                <?php if ($collegeDetails['direct'] == 1) { ?>
+                                <?php
+                                if ($collegeDetails['direct'] == 1) {
+                                ?>
                                     <div class="direct-college">
-                                        <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission Available
+                                        <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission
                                     </div>
                                 <?php
                                 }
                                 ?>
-                                <div class="input-field">
-                                    <label for="name">Name</label>
-                                    <div class="field">
-                                        <div class="holder">
-                                            <div class="icon">
-                                                <img src="http://localhost/medic/assets/icons/name-icon.png" alt="name icon">
-                                            </div>
-                                            <div class="input">
-                                                <input type="text" id="name" name="name" required placeholder="Enter your name">
-                                            </div>
-                                            <div class="x-icon">
-                                                <img src="http://localhost/medic/assets/icons/x-icon.png" alt=" close">
-                                            </div>
-                                        </div>
+                                <h3>Book Your Admission on <b><?php echo $collegeDetails['title'] ?></b></h3>
+                                <div class="input-holder">
+                                    <input required type="text" id="name" placeholder="Name">
+                                </div>
+                                <div class="input-holder">
+                                    <input requiredtype="email" id="email" placeholder="Email">
+                                </div>
+                                <div class="input-holder number-holder">
+                                    <input type="text" disabled value="+91">
+                                    <input required type="number" id="phone" placeholder="Enter you 10 digit phone number">
+                                </div>
+                                <div class="toggle">
+                                    <span class="switch">
+                                        <input id="switch-rounded" id="whatsapp-noti" checked type="checkbox" />
+                                        <label for="switch-rounded"></label>
+                                    </span>
+                                    <div class="text">
+                                        Enable update and important notication on whatsapp
                                     </div>
                                 </div>
-                                <!-- mail -->
-                                <div class="input-field">
-                                    <label for="email">Email</label>
-                                    <div class="field">
-                                        <div class="holder">
-                                            <div class="icon">
-                                                <img src="http://localhost/medic/assets/icons/email-icon.png" alt="email icon">
-                                            </div>
-                                            <div class="input">
-                                                <input type="email" id="email" name="email" required placeholder="Enter email address">
-                                            </div>
-                                            <div class="x-icon">
-                                                <img src="http://localhost/medic/assets/icons/x-icon.png" alt="close">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- phone -->
-
-                                <div class="input-field">
-                                    <label for="phone">Phone Number</label>
-                                    <div class="field">
-                                        <div class="holder">
-                                            <div class="icon">
-                                                <img src="http://localhost/medic/assets/icons/mobile-icon.png" alt="email icon">
-                                            </div>
-                                            <div class="input">
-                                                <input type="tel" id="phone" name="phone" required placeholder="Enter phone number">
-                                            </div>
-                                            <div class="x-icon">
-                                                <img src="http://localhost/medic/assets/icons/x-icon.png" alt="close">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- course -->
-
-                                <div class="input-field">
-                                    <label for="course">Course</label>
-                                    <div class="field">
-                                        <div class="holder">
-                                            <div class="icon">
-                                                <img src="http://localhost/medic/assets/icons/course-icon.png" alt="email icon">
-                                            </div>
-                                            <div class="input select-holder">
-                                                <select id="course" name="course" required>
-                                                    <option value=" select-course">Select Course</option>
-                                                    <?php
-                                                    include './action/allCourses.php';
-                                                    $courses = fetchAllCourses($conn);
-                                                    foreach ($courses as $course) : ?>
-                                                        <option value="<?php echo $course['id']; ?>"><?php echo $course['title']; ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <!-- <div class="x-icon">
-                                            <img src="http://localhost/medic/assets/icons/x-icon.png" alt="close">
-                                        </div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- cta -->
-                                <button type="submit">Apply Now</button>
+                                <button type="submit">
+                                    Apply Now
+                                </button>
+                                <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus </p> -->
                             </form>
+
                         </div>
                         <!-- end of form -->
 

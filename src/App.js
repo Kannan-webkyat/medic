@@ -12,23 +12,6 @@ const namespaceManager = () => {
     switch (currentNamespace) {
         case "home":
             {
-                const goalTrigger = document.querySelector(".goal-trigger");
-                goalTrigger.addEventListener("click", function () {
-                    location.href = "http://localhost/medic/colleges";
-                });
-                const apply = document.querySelectorAll(".apply-trigger");
-                apply.forEach((button) => {
-                    button.addEventListener("click", function (e) {
-                        e.stopPropagation();
-                        e.preventDefault();
-                        const card = this.closest(".cards");
-                        const h4 = card.querySelector("h4");
-
-                        showPopup("apply", h4.textContent);
-                        return false;
-                    });
-                });
-
                 let collections = document.querySelectorAll(".collections");
                 collections.forEach((collection) => {
                     new Splide(collection, {
@@ -198,22 +181,19 @@ namespaceManager();
 
 function basic() {
     const header = document.querySelector("header");
-    const dropTrigger = header.querySelector(".drop-trigger");
+    const dropTrigger = document.querySelectorAll(".drop-trigger");
     const mega = header.querySelector(".mega-menu-container");
     const lists = mega.querySelectorAll(".left ul li");
     const subContainer = mega.querySelector(".right");
-
-    document.addEventListener("click", function (e) {
-        if (!mega.contains(e.target) && e.target !== dropTrigger) {
-            if (mega.classList.contains("mega-menu-active")) {
-                mega.classList.remove("mega-menu-active");
-            }
-        }
+    const close = mega.querySelector(".close");
+    close.addEventListener("click", function () {
+        mega.classList.remove("mega-menu-active");
     });
-
-    dropTrigger.addEventListener("click", function (e) {
-        e.preventDefault();
-        mega.classList.toggle("mega-menu-active");
+    dropTrigger.forEach((trigger) => {
+        trigger.addEventListener("click", function (e) {
+            e.preventDefault();
+            mega.classList.add("mega-menu-active");
+        });
     });
 
     lists.forEach((list) => {
@@ -222,6 +202,24 @@ function basic() {
                 lists.forEach((list) => list.classList.remove("li-active"));
                 this.classList.add("li-active");
             }
+        });
+    });
+
+    const apply = document.querySelectorAll(".apply-trigger");
+    apply.forEach((button) => {
+        console.log(button);
+        button.addEventListener("click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            if (this.closest(".cards")) {
+                const card = this.closest(".cards");
+                const h4 = card.querySelector("h4");
+
+                showPopup("apply", h4.textContent);
+            } else {
+                showPopup("book");
+            }
+            return false;
         });
     });
 }
@@ -235,8 +233,8 @@ function showPopup(prop, title) {
     let template = "";
     if (prop == "apply") {
         template = `Looking for admission at the <span><b>${title}.</b></span> Give us your details and we will help you`;
-    } else {
-        template = "Just a random text for the form";
+    } else if (prop == "book") {
+        template = "Get a Free Consultation from Medic Guidance Experts";
     }
 
     // set headline

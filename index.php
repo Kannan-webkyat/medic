@@ -55,8 +55,8 @@
                     <h1>The <span>easiest way</span> to <ion-icon name="search-outline"></ion-icon> find your dream college</h1>
                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis minus quod aliquid incidunt!</p>
                     <div class="button-holder">
-                        <button class="goal-trigger">
-                            <ion-icon name="apps-outline"></ion-icon> &nbsp; View Colleges
+                        <button class="drop-trigger">
+                            <ion-icon name="apps-outline"></ion-icon> &nbsp; Choose Your Goal
                         </button>
                         <button class="apply-trigger">Book Admission &nbsp;
                             <ion-icon name="arrow-forward-outline"></ion-icon>
