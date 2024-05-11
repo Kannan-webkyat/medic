@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +16,7 @@
     <!-- main style -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="libs/css/style.css" />
-    
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
 </head>
 

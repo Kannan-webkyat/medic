@@ -50,7 +50,7 @@
 
                     <!-- login code -->
                     <?php
-                    echo password_hash("12345", PASSWORD_DEFAULT);
+                    // echo password_hash("12345", PASSWORD_DEFAULT);
                     session_start();
                     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                               include '../_class/dbConfig.php';

@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,29 +67,29 @@
                                 <input id="title" name="title" value="<?php echo $facility['title']; ?>" />
                             </div>
 
-                        <!-- facility icon -->
-                        <div class="input-holder split-4">
-                            <label for="">Facility Icon</label>
-                            <input id="facility-icon" type="file" name="facility-icon" />
-                        </div>
-                        <!-- end of facility icon  -->
+                            <!-- facility icon -->
+                            <div class="input-holder split-4">
+                                <label for="">Facility Icon</label>
+                                <input id="facility-icon" type="file" name="facility-icon" />
+                            </div>
+                            <!-- end of facility icon  -->
 
-                        <!-- description -->
-                        <div class="input-holder split-4">
-                            <label for="">Description</label>
-                            <textarea id="description" name="description"><?php echo $facility['description']; ?></textarea>
-                        </div>
-                        <!-- end of description -->
+                            <!-- description -->
+                            <div class="input-holder split-4">
+                                <label for="">Description</label>
+                                <textarea id="description" name="description"><?php echo $facility['description']; ?></textarea>
+                            </div>
+                            <!-- end of description -->
 
-                        <!-- Display current image -->
-                        <div class="input-holder split-4">
-                            <label for="">Current Icon</label>
-                            <img width="250" src="./action/facility/docs/<?php echo $facility['image']; ?>" alt="Current Image">
+                            <!-- Display current image -->
+                            <div class="input-holder split-4">
+                                <label for="">Current Icon</label>
+                                <img width="250" src="./action/facility/docs/<?php echo $facility['image']; ?>" alt="Current Image">
+                            </div>
                         </div>
-                    </div>
-                    <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
-                </form>
-            </div>
+                        <button id="save_btn" type="submit">Save &nbsp; <img src="assets/icons/arrow-right.png" alt=""></button>
+                    </form>
+                </div>
         </section>
     </main>
 </body>
