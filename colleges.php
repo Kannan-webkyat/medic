@@ -53,7 +53,7 @@
                 </li>
                 <?php foreach ($courses as $course) : ?>
                     <li>
-                        <a class="<?php $_GET['course'] === $course['slug'] ? 'Active' : '' ?>" href="http://localhost/medic/colleges/course=<?php echo $course['slug'] ?>"><?php echo $course['title']; ?></a>
+                        <a class="<?php $_GET['course'] ?? null === $course['slug'] ? 'Active' : '' ?>" href="http://localhost/medic/colleges/course=<?php echo $course['slug'] ?>"><?php echo $course['title']; ?></a>
                     </li>
                 <?php endforeach; ?>
             </ul>
