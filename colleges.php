@@ -164,10 +164,7 @@
                                     <?php foreach ($locations as $location) : ?>
                                         <option value="<?php echo $location['slug']; ?>"><?php echo $location['title']; ?></option>
                                         <?php endforeach; ?>s
-
                                 </select>
-
-
                             </div>
                             <div class="input select-holder">
                                 <div class="triggers clear">
@@ -186,16 +183,16 @@
                                 <div class="thumbnail">
                                     <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
                                     <div class="college-logo">
-                                        <img src="https://png.pngtree.com/png-clipart/20230403/original/pngtree-education-and-college-logo-design-template-png-image_9022986.png" alt="">
+                                        <img src="http://localhost/medic/admin/action/college/logos/<?= $college['logo'] ?>" alt="">
                                     </div>
                                     <?php
-                                    if ($college['direct'] == 1) {
+                                    if ($college['direct'] == 1) :
                                     ?>
                                         <div class="direct-college">
                                             <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission
                                         </div>
                                     <?php
-                                    }
+                                    endif;
                                     ?>
                                 </div>
                                 <div class="content">

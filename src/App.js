@@ -256,7 +256,7 @@ function showPopup(prop, title) {
         fd.append("name", popup.querySelector("#name").value);
         fd.append("email", popup.querySelector("#email").value);
         fd.append("phone", popup.querySelector("#phone").value);
-        fd.append("for", popup.querySelector("h3 span b").textContent);
+        fd.append("for", prop === 'book' ? 'Direct Booking' : popup.querySelector("h3 span b").textContent);
         fd.append("whatsapp-noti", popup.querySelector("#whatsapp-noti") ? (popup.querySelector("#whatsapp-noti").checked ? 1 : 0) : 0);
 
         // ajax to submit this value

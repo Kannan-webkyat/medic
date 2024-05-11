@@ -7,16 +7,11 @@
     <title>Book Addmission - Medic Guidance</title>
     <link rel="stylesheet" href="http://localhost/medic/style/style.css">
     <link rel="stylesheet" href="http://localhost/medic/src/splide.min.css">
-
-
-
-
 </head>
 
 <main id="swup" class="transition-fade">
 
     <div data-swup-name="book-now"></div>
-
     <!-- header -->
     <?php
     include './_class/dbConfig.php';
@@ -61,32 +56,30 @@
                     <img src="https://static.vecteezy.com/system/resources/previews/011/842/991/non_2x/man-is-working-at-a-computer-use-a-computer-mouse-and-typing-on-keyboard-illustration-simple-graphic-style-vector.jpg" width="100%" alt="">
                 </div>
                 <div class="right">
-                    <form action="" class="book-form">
-
-
+                    <form action="" class="book-form" method="POST">
                         <div class="input-holder">
-                            <input required type="text" id="name" placeholder="Name">
+                            <input required type="text" id="name" name="name" placeholder="Name">
                         </div>
                         <div class="input-holder">
-                            <input requiredtype="email" id="email" placeholder="Email">
+                            <input requiredtype="email" id="email" name="email" placeholder="Email">
                         </div>
                         <div class="input-holder">
-                            <select style="width: 100%;" name="" id="">
+                            <select style="width: 100%;" name="course" id="">
                                 <option>-- Choose Course --</option>
                                 <?php foreach ($courses as $course) : ?>
                                     <option value="<?php echo $course['title']; ?>"><?php echo $course['title']; ?></option>
                                 <?php endforeach; ?>
-                                <option value="">Other</option>
+                                <option value="other course">Other</option>
                             </select>
                         </div>
                         <div class="input-holder number-holder">
                             <input type="text" disabled value="+91">
-                            <input required type="number" id="phone" placeholder="Enter you 10 digit phone number">
+                            <input required type="number" id="phone" name="phone" placeholder="Enter you 10 digit phone number">
                         </div>
 
                         <div class="toggle">
                             <span class="switch">
-                                <input id="switch-rounded" id="whatsapp-noti" checked type="checkbox" />
+                                <input id="switch-rounded" id="whatsapp-noti" name="whatsapp" checked type="checkbox" />
                                 <label for="switch-rounded"></label>
                             </span>
                             <div class="text">
@@ -98,8 +91,23 @@
                         </button>
                         <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus </p> -->
                     </form>
-                </div>
 
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $currentDateTime = date('Y-m-d H:i:s');
+                        $whtatsappNoti = isset($_POST['whatsapp']) ? 1 : 0;
+                        $query = "INSERT INTO common_leads (`name`, `email`, `phone`, `whatsapp_noti`, `for`, `date_time`) VALUES (?, ?, ?, ?, ?, ?)";
+                        $sql = $conn->prepare($query);
+                        $sql->bind_param('sssiss', $_POST['name'], $_POST['email'], $_POST['phone'], $whtatsappNoti, $_POST['course'], $currentDateTime);
+                        if ($sql->execute()) {
+                            // success message
+                            echo '<script> console.log("success") </script>';
+                        } else {
+                            // error message
+                        }
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>

@@ -139,31 +139,31 @@
                         </div>
                         <!-- form -->
                         <div class="form">
-                            <form action="" class="book-form">
+                            <form action="" class="book-form" method="POST">
 
                                 <?php
-                                if ($collegeDetails['direct'] == 1) {
+                                if ($collegeDetails['direct'] == 1) :
                                 ?>
                                     <div class="direct-college">
                                         <ion-icon name="shield-checkmark"></ion-icon> &nbsp; Direct Admission
                                     </div>
                                 <?php
-                                }
+                                endif;
                                 ?>
-                                <h3>Book Your Admission on <b><?php echo $collegeDetails['title'] ?></b></h3>
+                                <h3>Book Your Admission on <b><?= $collegeDetails['title'] ?></b></h3>
                                 <div class="input-holder">
-                                    <input required type="text" id="name" placeholder="Name">
+                                    <input required type="text" id="name" name="name" placeholder="Name">
                                 </div>
                                 <div class="input-holder">
-                                    <input requiredtype="email" id="email" placeholder="Email">
+                                    <input requiredtype="email" id="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="input-holder number-holder">
                                     <input type="text" disabled value="+91">
-                                    <input required type="number" id="phone" placeholder="Enter you 10 digit phone number">
+                                    <input required type="number" id="phone" name="phone" placeholder="Enter you 10 digit phone number">
                                 </div>
                                 <div class="toggle">
                                     <span class="switch">
-                                        <input id="switch-rounded" id="whatsapp-noti" checked type="checkbox" />
+                                        <input id="switch-rounded" id="whatsapp-noti" name="whatsapp" checked type="checkbox" />
                                         <label for="switch-rounded"></label>
                                     </span>
                                     <div class="text">
@@ -182,11 +182,14 @@
                         <!-- submit form -->
                         <?php
                         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                            $query = "INSERT INTO leads (`name`,phone,email,course_id) VALUES(?,?,?,?)";
+                            $currentDateTime = date('Y-m-d H:i:s');
+                            $whtatsappNoti = isset($_POST['whatsapp']) ? 1 : 0;
+                            $query = "INSERT INTO common_leads (`name`, `email`, `phone`, `whatsapp_noti`, `for`, `date_time`) VALUES (?, ?, ?, ?, ?, ?)";
                             $sql = $conn->prepare($query);
-                            $sql->bind_param('sssi', $_POST['name'], $_POST['phone'], $_POST['email'], $_POST['course_id'], $_POST['read_status']);
+                            $sql->bind_param('sssiss', $_POST['name'], $_POST['email'], $_POST['phone'], $whtatsappNoti, $collegeDetails['title'], $currentDateTime);
                             if ($sql->execute()) {
                                 // success message
+                                echo '<script> console.log("success") </script>';
                             } else {
                                 // error message
                             }
@@ -206,10 +209,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="http://localhost/medic/src/splide.min.js"></script>
     <script src="http://localhost/medic/src/App.js"></script>
-
-    <script>
-
-    </script>
 </body>
 
 </html>
