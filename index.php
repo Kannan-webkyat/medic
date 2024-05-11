@@ -23,6 +23,8 @@
         pageHeader($conn);
         ?>
 
+        <!-- choose your goal fixed -->
+        <button class="choose-goal-fixed drop-trigger"> <ion-icon name="apps-outline"></ion-icon> &nbsp; Choose Your Goal</button>
 
         <!-- popup -->
 

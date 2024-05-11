@@ -191,6 +191,7 @@ form p {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: none;
 }
 #footer .line {
   width: 100%;
@@ -665,9 +666,10 @@ header .mega-menu-container .mega-menu {
 }
 @media (max-width: 900px) {
   header .mega-menu-container .mega-menu {
-    width: 95%;
+    width: 100%;
     height: auto;
-    height: 80%;
+    height: calc(100% - 70px);
+    margin-bottom: 0;
   }
 }
 header .mega-menu-container .mega-menu .close {
@@ -701,6 +703,7 @@ header .mega-menu-container .mega-menu .heading {
     color: #1f2a37;
     font-weight: 600;
     padding: 0px;
+    font-size: 22px;
   }
 }
 header .mega-menu-container .mega-menu .left {
@@ -721,6 +724,7 @@ header .mega-menu-container .mega-menu .left ul {
 @media (max-width: 600px) {
   header .mega-menu-container .mega-menu .left ul {
     padding: 0px;
+    padding-top: 10px;
   }
 }
 header .mega-menu-container .mega-menu .left ul li {
@@ -740,7 +744,9 @@ header .mega-menu-container .mega-menu .left ul li ion-icon {
     flex-wrap: wrap;
     color: #1f2a37;
     font-weight: 500;
-    padding: 8px 0px;
+    padding: 12px 0px;
+    border-bottom: 1px solid #d8e7ff;
+    border-radius: 0px;
   }
   header .mega-menu-container .mega-menu .left ul li ion-icon {
     color: #1f2a37;
@@ -778,6 +784,7 @@ header .mega-menu-container .mega-menu .left ul li ul li {
 @media (max-width: 600px) {
   header .mega-menu-container .mega-menu .left ul li ul li {
     font-weight: 400;
+    border: none;
   }
 }
 header .mega-menu-container .mega-menu .left ul li ul li a {
@@ -789,6 +796,11 @@ header .mega-menu-container .mega-menu .left ul li ul li a {
   justify-content: space-between;
   align-items: center;
 }
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul li ul li a {
+    border: none;
+  }
+}
 header .mega-menu-container .mega-menu .left ul li ul li a ion-icon {
   color: #1f2a37;
   transform: rotate(-45deg);
@@ -799,6 +811,11 @@ header .mega-menu-container .mega-menu .left ul li ul li a:hover {
 }
 header .mega-menu-container .mega-menu .left ul li:hover {
   background: #090e16;
+}
+@media (max-width: 600px) {
+  header .mega-menu-container .mega-menu .left ul li:hover {
+    background: none;
+  }
 }
 header .mega-menu-container .mega-menu .left ul .li-active {
   background: #090e16;
@@ -925,9 +942,13 @@ button ion-icon {
   flex-direction: column;
   align-items: flex-start;
 }
+.head .heading {
+  margin-bottom: 10px;
+}
 .head .heading h1 {
   font-size: 25px;
   font-weight: 600;
+  line-height: 30px;
 }
 .head .result {
   font-size: 12px;
@@ -1093,7 +1114,7 @@ button ion-icon {
 @media (max-width: 768px) {
   .card-wrapper .cards {
     display: flex;
-    border-bottom: 1px solid #a6a6a6;
+    border-bottom: 1px solid #e7e7e7;
   }
   .card-wrapper .cards:last-child {
     border: none;
@@ -2151,7 +2172,7 @@ button ion-icon {
 }
 
 #college-section {
-  margin-top: 150px;
+  margin-top: 100px;
 }
 #college-section .tab {
   overflow-x: auto;
@@ -2205,18 +2226,37 @@ button ion-icon {
   margin: 0 auto;
   display: flex;
   margin-top: 150px;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .addmission-form {
+    margin-top: 100px;
+  }
 }
 .addmission-form .left {
   width: 50%;
   padding-right: 50px;
   margin-bottom: 30px;
 }
+@media (max-width: 768px) {
+  .addmission-form .left {
+    width: 100%;
+    padding-right: 0;
+  }
+}
 .addmission-form .left h1 {
   font-size: 28px;
   font-weight: 500;
+  line-height: 35px;
+  margin-bottom: 10px;
 }
 .addmission-form .right {
   width: 50%;
+}
+@media (max-width: 768px) {
+  .addmission-form .right {
+    width: 100%;
+  }
 }
 .addmission-form .right .mini-heading {
   margin-bottom: 10px;
@@ -2470,4 +2510,24 @@ button ion-icon {
 }
 .direct-college ion-icon {
   color: green;
+}
+
+.choose-goal-fixed {
+  position: fixed;
+  width: 100%;
+  background: rgb(131, 255, 203);
+  color: black;
+  bottom: 20px;
+  left: 0;
+  z-index: 10;
+  width: 90%;
+  transform: translateX(-50%);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  display: none;
 }/*# sourceMappingURL=style.css.map */

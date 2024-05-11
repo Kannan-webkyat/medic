@@ -234,6 +234,7 @@ form {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: none;
 
   .line {
     width: 100%;
@@ -896,9 +897,12 @@ header {
       overflow: hidden;
 
       @media(max-width : 900px) {
-        width: 95%;
+        width: 100%;
         height: auto;
-        height: 80%;
+        // height: 80%;
+        height: calc(100% - 70px);
+        margin-bottom: 0;
+
 
       }
 
@@ -945,6 +949,8 @@ header {
           color: $fontcolor;
           font-weight: 600;
           padding: 0px;
+          font-size: 22px;
+
         }
       }
 
@@ -957,6 +963,7 @@ header {
         @media(max-width : 600px) {
           width: 100%;
           background: white;
+
         }
 
         ul {
@@ -964,6 +971,7 @@ header {
 
           @media(max-width : 600px) {
             padding: 0px;
+            padding-top: 10px;
           }
 
 
@@ -984,7 +992,9 @@ header {
               flex-wrap: wrap;
               color: $fontcolor;
               font-weight: 500;
-              padding: 8px 0px;
+              padding: 12px 0px;
+              border-bottom: 1px solid #d8e7ff;
+              border-radius: 0px;
 
               ion-icon {
                 color: $fontcolor;
@@ -1023,6 +1033,7 @@ header {
 
                 @media(max-width : 600px) {
                   font-weight: 400;
+                  border: none;
                 }
 
 
@@ -1035,6 +1046,11 @@ header {
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
+
+                  @media(max-width : 600px) {
+
+                    border: none;
+                  }
 
                   ion-icon {
                     color: $fontcolor;
@@ -1057,6 +1073,9 @@ header {
             &:hover {
               background: #090e16;
 
+              @media(max-width : 600px) {
+                background: none;
+              }
 
             }
 
@@ -1214,9 +1233,12 @@ button {
   align-items: flex-start;
 
   .heading {
+    margin-bottom: 10px;
+
     h1 {
       font-size: 25px;
       font-weight: 600;
+      line-height: 30px;
     }
   }
 
@@ -1436,7 +1458,7 @@ button {
 
     @media(max-width : 768px) {
       display: flex;
-      border-bottom: 1px solid #a6a6a6;
+      border-bottom: 1px solid #e7e7e7;
 
       &:last-child {
         border: none;
@@ -2908,7 +2930,7 @@ button {
 // COLLEGE PAGE STYLE
 #college-section {
 
-  margin-top: 150px;
+  margin-top: 100px;
 
   .tab {
     overflow-x: auto;
@@ -3002,20 +3024,36 @@ button {
   display: flex;
   // flex-direction: column;
   margin-top: 150px;
+  flex-wrap: wrap;
+
+  @media(max-width : 768px) {
+    margin-top: 100px;
+  }
 
   .left {
     width: 50%;
     padding-right: 50px;
     margin-bottom: 30px;
 
+    @media(max-width : 768px) {
+      width: 100%;
+      padding-right: 0;
+    }
+
     h1 {
       font-size: 28px;
       font-weight: 500;
+      line-height: 35px;
+      margin-bottom: 10px;
     }
   }
 
   .right {
     width: 50%;
+
+    @media(max-width : 768px) {
+      width: 100%;
+    }
 
     .mini-heading {
       margin-bottom: 10px;
@@ -3339,4 +3377,26 @@ button {
   ion-icon {
     color: green;
   }
+}
+
+.choose-goal-fixed {
+  position: fixed;
+  width: 100%;
+  background: rgb(131, 255, 203);
+
+  color: black;
+  bottom: 20px;
+  left: 0;
+  z-index: 10;
+  width: 90%;
+  transform: translateX(-50%);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 400;
+  border: none;
+  display: none;
+  // border-radius: 30px;
 }
