@@ -14,13 +14,6 @@ const namespaceManager = () => {
             {
                 const goalTrigger = document.querySelector(".goal-trigger");
                 goalTrigger.addEventListener("click", function () {
-                    // const element = document.querySelector("#goal");
-                    // const elementPosition = element.getBoundingClientRect().top;
-                    // const offsetPosition = elementPosition + window.pageYOffset - 100;
-                    // window.scrollTo({
-                    //     top: offsetPosition,
-                    //     behavior: "smooth",
-                    // });
                     location.href = "http://localhost/medic/colleges";
                 });
                 const apply = document.querySelectorAll(".apply-trigger");
@@ -45,9 +38,18 @@ const namespaceManager = () => {
                         nav: false,
                         pagination: false,
                         breakpoints: {
-                            1200: { perPage: 3 },
-                            900: { perPage: 2, nav: false, padding: "1rem", arrows: false },
-                            768: { destroy: true },
+                            1200: {
+                                perPage: 3,
+                            },
+                            900: {
+                                perPage: 2,
+                                nav: false,
+                                padding: "1rem",
+                                arrows: false,
+                            },
+                            768: {
+                                destroy: true,
+                            },
                         },
                     }).mount();
                 });
@@ -59,7 +61,17 @@ const namespaceManager = () => {
                     gap: 10,
                     nav: false,
                     pagination: false,
-                    breakpoints: { 900: { perPage: 4 }, 500: { perPage: 2, nav: false, padding: "1rem", arrows: false } },
+                    breakpoints: {
+                        900: {
+                            perPage: 4,
+                        },
+                        500: {
+                            perPage: 2,
+                            nav: false,
+                            padding: "1rem",
+                            arrows: false,
+                        },
+                    },
                 }).mount();
 
                 basic();
@@ -127,7 +139,13 @@ const namespaceManager = () => {
                     interval: 1000,
                     pauseOnHover: true,
                     pauseOnFocus: true,
-                    breakpoints: { 768: { perPage: 1, padding: "2rem", arrows: false } },
+                    breakpoints: {
+                        768: {
+                            perPage: 1,
+                            padding: "2rem",
+                            arrows: false,
+                        },
+                    },
                 }).mount();
 
                 // while window on scroll form fixed
@@ -181,7 +199,7 @@ namespaceManager();
 function basic() {
     const header = document.querySelector("header");
     const dropTrigger = header.querySelector(".drop-trigger");
-    const mega = header.querySelector(".mega-menu");
+    const mega = header.querySelector(".mega-menu-container");
     const lists = mega.querySelectorAll(".left ul li");
     const subContainer = mega.querySelector(".right");
 
@@ -231,6 +249,27 @@ function showPopup(prop, title) {
     popup.querySelector(".close").addEventListener("click", function () {
         popup.style.display = "none";
     });
+
+    // form submission
+    document.querySelector(".pop-up-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let fd = new FormData();
+        fd.append("name", document.getElementById("name").value);
+        fd.append("name", document.getElementById("name").value);
+        fd.append("name", document.getElementById("name").value);
+        fd.append("name", document.getElementById("name").value);
+        fd.append("name", document.getElementById("name").value);
+
+        // ajax to submit this value
+        fetch("./action/submitForm.php", {
+            method: "POST",
+            body: fd,
+        })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error("Error:", error));
+    });
 }
 
 function courseBar() {
@@ -262,4 +301,10 @@ function courseBar() {
             }
         });
     });
+}
+
+function triggerCourseBar(prop) {
+    if (prop == "show") {
+    } else {
+    }
 }

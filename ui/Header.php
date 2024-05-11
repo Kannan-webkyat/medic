@@ -28,48 +28,50 @@ function pageHeader(mysqli $conn)
                 <div class="bar"></div>
             </div>
         </div>
-        <div class="mega-menu">
+        <div class="mega-menu-container">
+            <div class="mega-menu">
 
-            <div class="left">
-                <div class="heading">Course Category</div>
-                <ul>
-                    <?php
-                    include './action/allCategoriesWithCourseName.php';
+                <div class="left">
+                    <div class="heading">Course Category</div>
+                    <ul>
+                        <?php
+                        include './action/allCategoriesWithCourseName.php';
 
-                    // Fetch all categories and their associated courses
-                    $megaData = fetchAllCategories($conn);
+                        // Fetch all categories and their associated courses
+                        $megaData = fetchAllCategories($conn);
 
-                    // Loop through each category
-                    foreach ($megaData as $index => $data) :
-                        // Extract courses for the current category
-                        $sub = $data['courses'];
-                    ?>
-                        <li class="<?php echo ($index == 0) ? 'has-sub li-active' : (count($sub) > 0 ? 'has-sub' : '') ?>">
-                            <?php echo $data['title']; ?>
-                            <ion-icon name="chevron-forward-outline"></ion-icon>
-                            <?php
-                            // If there are courses for this category, display them
-                            if (count($sub) > 0) :
-                            ?>
-                                <ul>
-                                    <?php
-                                    // Loop through each course and display its title
-                                    foreach ($sub as $item) :
-                                    ?>
-                                        <li><a href="http://localhost/medic/colleges/course=<?php echo $item['slug']; ?>"><?php echo $item['title']; ?></a></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            <?php
-                            endif; // End check for courses
-                            ?>
-                        </li>
-                    <?php
-                    endforeach; // End loop through categories
-                    ?>
-                </ul>
+                        // Loop through each category
+                        foreach ($megaData as $index => $data) :
+                            // Extract courses for the current category
+                            $sub = $data['courses'];
+                        ?>
+                            <li class="<?php echo ($index == 0) ? 'has-sub li-active' : (count($sub) > 0 ? 'has-sub' : '') ?>">
+                                <?php echo $data['title']; ?>
+                                <ion-icon name="chevron-forward-outline"></ion-icon>
+                                <?php
+                                // If there are courses for this category, display them
+                                if (count($sub) > 0) :
+                                ?>
+                                    <ul>
+                                        <?php
+                                        // Loop through each course and display its title
+                                        foreach ($sub as $item) :
+                                        ?>
+                                            <li><a href="http://localhost/medic/colleges/course=<?php echo $item['slug']; ?>"><?php echo $item['title']; ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                <?php
+                                endif; // End check for courses
+                                ?>
+                            </li>
+                        <?php
+                        endforeach; // End loop through categories
+                        ?>
+                    </ul>
+
+                </div>
 
             </div>
-
         </div>
 
 

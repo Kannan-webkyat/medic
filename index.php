@@ -117,9 +117,8 @@
                                     <div class="splide__list">
                                         <?php
                                         $colleges = $collection['colleges'];
-                                        foreach ($colleges as $college) {
-
-                                        ?>
+                                        $colleges = array_slice($colleges, 0, 8);
+                                        foreach ($colleges as $college) : ?>
                                             <a href="http://localhost/medic/college-details/<?= $college['slug']; ?>" class="cards splide__slide">
                                                 <div class="thumbnail">
                                                     <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
@@ -157,9 +156,7 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                        <?php
-                                        }
-                                        ?>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
                             </div>

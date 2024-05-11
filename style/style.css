@@ -569,40 +569,52 @@ header .container .booknow-btn {
     display: none;
   }
 }
-header .mega-menu {
+header .mega-menu-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.438);
+  z-index: 100;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+header .mega-menu-container .mega-menu {
   width: 40%;
-  position: absolute;
   background: white;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   border-radius: 5px;
   box-shadow: 0px 0px 10px rgba(54, 54, 54, 0.2901960784);
-  top: 100px;
-  visibility: hidden;
-  opacity: 0;
-  transition: 0.3s;
+  position: relative;
+  height: 500px;
 }
-header .mega-menu a {
+header .mega-menu-container .mega-menu a {
   color: #1f2a37;
 }
-header .mega-menu .heading {
+header .mega-menu-container .mega-menu .heading {
   font-weight: 600;
   padding-left: 10px;
   width: 100%;
   margin-bottom: 10px;
   color: white;
 }
-header .mega-menu .left {
+header .mega-menu-container .mega-menu .left {
   width: 200px;
   height: 100%;
   background: #111928;
   padding: 10px;
 }
-header .mega-menu .left ul {
+header .mega-menu-container .mega-menu .left ul {
   padding: 10px;
 }
-header .mega-menu .left ul li {
+header .mega-menu-container .mega-menu .left ul li {
   padding: 8px;
   list-style: none;
   display: flex;
@@ -611,7 +623,7 @@ header .mega-menu .left ul li {
   color: white;
   border-radius: 5px;
 }
-header .mega-menu .left ul li ul {
+header .mega-menu-container .mega-menu .left ul li ul {
   display: flex;
   flex-wrap: wrap;
   position: absolute;
@@ -621,42 +633,41 @@ header .mega-menu .left ul li ul {
   display: none;
   justify-content: space-between;
 }
-header .mega-menu .left ul li ul li {
+header .mega-menu-container .mega-menu .left ul li ul li {
   width: calc(33.3333333333% - 10px);
   display: block;
   font-size: 14px;
   line-height: 16px !important;
   padding: 0px;
 }
-header .mega-menu .left ul li ul li a {
+header .mega-menu-container .mega-menu .left ul li ul li a {
   text-decoration: none;
   border-bottom: 1px solid #d8e7ff;
   display: block;
   padding: 5px 0px;
 }
-header .mega-menu .left ul li ul li a:hover {
+header .mega-menu-container .mega-menu .left ul li ul li a:hover {
   background: #eee;
   color: rgb(18, 5, 65);
 }
-header .mega-menu .left ul li:hover {
+header .mega-menu-container .mega-menu .left ul li:hover {
   background: #090e16;
 }
-header .mega-menu .left ul li ion-icon {
+header .mega-menu-container .mega-menu .left ul li ion-icon {
   color: white;
 }
-header .mega-menu .left ul .li-active {
+header .mega-menu-container .mega-menu .left ul .li-active {
   background: #090e16;
 }
-header .mega-menu .left ul .li-active ul {
+header .mega-menu-container .mega-menu .left ul .li-active ul {
   display: flex;
 }
-header .mega-menu .right {
+header .mega-menu-container .mega-menu .right {
   height: 100%;
   width: calc(100% - 200px);
   padding: 10px;
 }
 header .mega-menu-active {
-  top: 85px;
   visibility: visible;
   opacity: 1;
   transition: 0.3s;
