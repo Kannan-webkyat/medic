@@ -63,6 +63,7 @@
                 <div class="right">
                     <form action="" class="book-form">
 
+                        <span class="mini-heading">PLEASE FILL THE FORM</span>
 
                         <div class="input-holder">
                             <input required type="text" id="name" placeholder="Name">
