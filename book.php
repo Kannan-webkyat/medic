@@ -20,7 +20,9 @@
     <!-- header -->
     <?php
     include './_class/dbConfig.php';
+    include './action/allCourses.php';
     $conn = (new dbConfig)->getConnection();
+    $courses   = fetchAllCourses($conn);
     include './ui/Header.php';
     include './ui/Popup.php';
     pageHeader($conn);
@@ -54,24 +56,34 @@
         <div class="body-bg">
             <div class="addmission-form">
                 <div class="left">
-                    <h1>Let us assist you sercure your admission at your dream college</h1>
+                    <h1>Let us assist you <b>sercure</b> your admission at your dream college</h1>
+                    <p>we'll get back to you as soon as possible</p>
+                    <img src="https://static.vecteezy.com/system/resources/previews/011/842/991/non_2x/man-is-working-at-a-computer-use-a-computer-mouse-and-typing-on-keyboard-illustration-simple-graphic-style-vector.jpg" width="100%" alt="">
                 </div>
                 <div class="right">
                     <form action="" class="book-form">
-                        <div class="close">
-                            <ion-icon name="close-outline"></ion-icon>
-                        </div>
-                        <h3></h3>
+
+
                         <div class="input-holder">
                             <input required type="text" id="name" placeholder="Name">
                         </div>
                         <div class="input-holder">
                             <input requiredtype="email" id="email" placeholder="Email">
                         </div>
+                        <div class="input-holder">
+                            <select style="width: 100%;" name="" id="">
+                                <option>-- Choose Course --</option>
+                                <?php foreach ($courses as $course) : ?>
+                                    <option value="<?php echo $course['title']; ?>"><?php echo $course['title']; ?></option>
+                                <?php endforeach; ?>
+                                <option value="">Other</option>
+                            </select>
+                        </div>
                         <div class="input-holder number-holder">
                             <input type="text" disabled value="+91">
                             <input required type="number" id="phone" placeholder="Enter you 10 digit phone number">
                         </div>
+
                         <div class="toggle">
                             <span class="switch">
                                 <input id="switch-rounded" id="whatsapp-noti" checked type="checkbox" />

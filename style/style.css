@@ -2202,22 +2202,20 @@ button ion-icon {
 }
 
 .addmission-form {
-  margin-bottom: 50px;
-  margin-top: 80px;
+  width: 600px;
+  margin: 0 auto;
   display: flex;
+  flex-direction: column;
+  margin-top: 100px;
 }
 .addmission-form .left {
-  width: 50%;
   padding-right: 50px;
+  margin-bottom: 30px;
 }
 .addmission-form .left h1 {
   font-size: 28px;
   font-weight: 500;
 }
-.addmission-form .right {
-  width: 50%;
-}
-
 .side-bar-container {
   display: flex;
   align-items: center;
