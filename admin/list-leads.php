@@ -25,13 +25,6 @@
                               <h1 class="page-title">Leads</h1>
                     </div>
                     <div class="table-options">
-                              <!-- <div class="option">
-                                        <a href="add-facility.php"><button class="assign_button">Add Facility<ion-icon name="add-outline">
-                                                            </ion-icon></button></a>
-                              </div> -->
-                              <!-- <div class="option">
-                <input id="searchFilter" type="text" placeholder="Search Students">
-            </div> -->
                     </div>
                     <div class="content">
                               <div class="table-container">
@@ -53,15 +46,19 @@
                                                             include './action/facility/FacilityManager.php';
 
                                                             $conn = (new dbConfig)->getConnection();
-                                                            $query = "SELECT * FROM common_leads";
+                                                            $perPage = 10;
+                                                            $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+                                                            $startAt = ($page - 1) * $perPage;
+                                                            $query = "SELECT * FROM common_leads ORDER BY id DESC LIMIT ?, ?";
                                                             $stmt = $conn->prepare($query);
+                                                            $stmt->bind_param("ii", $startAt, $perPage);
                                                             $stmt->execute();
                                                             $leads = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
                                                             ?>
 
                                                             <?php foreach ($leads as $index => $lead) : ?>
                                                                       <tr>
-                                                                                <td class="<?= $lead['read_status'] ? 'bg-color' : '' ?>"><?= $index + 1 ?></td>
+                                                                                <td class="<?= $lead['read_status'] ? 'bg-color' : '' ?>"><?= $startAt + $index + 1 ?></td>
                                                                                 <td class="<?= $lead['read_status'] ? 'bg-color' : '' ?>"><?= $lead['name']; ?></td>
                                                                                 <td class="<?= $lead['read_status'] ? 'bg-color' : '' ?>"><?= $lead['email']; ?></td>
                                                                                 <td class="<?= $lead['read_status'] ? 'bg-color' : '' ?>"><?= $lead['phone']; ?></td>
@@ -80,8 +77,28 @@
                                                             <?php endforeach; ?>
                                                   </tbody>
                                         </table>
+                                        <!-- Pagination -->
+                                        <div class="pagination" style="text-align: right; margin-top: 20px;">
+                                                  <?php
+                                                  $result = $conn->query("SELECT COUNT(id) AS total FROM common_leads");
+                                                  $row = $result->fetch_assoc();
+                                                  $totalPages = ceil($row['total'] / $perPage);
+
+                                                  // First page button
+                                                  if ($page > 1) : ?>
+                                                            <a style='padding: 8px; background:#1f1f1f; color: white; border-radius:5px; margin-right: 5px;' href='list-leads.php?page=1'>First</a>
+                                                  <?php endif ?>
+
+                                                  <?php for ($i = 1; $i <= $totalPages; $i++) :
+                                                            $style = $page == $i ? "background:#1f1f1f; color: white;" : "background:none; color: #1f1f1f;"; ?>
+                                                            <a style='padding: 8px; border: 1px solid #1f1f1f; border-radius:5px; margin-right: 5px; <?= $style ?>' href='list-leads.php?page=<?= $i ?>'><?= $i ?></a>
+                                                  <?php endfor; ?>
+
+                                                  <?php if ($page < $totalPages) : ?>
+                                                            <a style='padding: 8px; background:#1f1f1f; color: white; border-radius:5px; margin-left: 5px;' href='list-leads.php?page=<?= $totalPages ?>'>Last</a>
+                                                  <?php endif; ?>
+                                        </div>
                               </div>
-                              <ul id="pagination-demo" class="pagination-sm"></ul>
                     </div>
 
                     <!-- delete -->
@@ -92,20 +109,16 @@
                               $updateStatus->bind_param("ii", $status, $id);
                               $status = 1;
                               if ($updateStatus->execute()) {
-                                        echo '<script>window.location = "list-leads.php"</script>';
+                                        echo '<script>window.location.href = window.location.href;</script>';
                               }
                     }
                     ?>
           </main>
 </body>
-
 <script src="https://unpkg.com/swup@4"></script>
 <script src="https://unpkg.com/@swup/progress-plugin@3"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-<!-- global jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<!-- app js -->
-<!-- tiny editor -->
 <script src="https://cdn.tiny.cloud/1/43aunf39f890dvkf0odugutyswrwof33rftvvs52jrl27zli/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script type="module" src="src/app.js"></script>

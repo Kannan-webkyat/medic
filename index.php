@@ -125,7 +125,7 @@
                                                 <div class="thumbnail">
                                                     <img src="http://localhost/medic/admin/action/college/docs/<?php echo $college['images'][0]['image'] ?>" alt="<?php echo $college['title']; ?>">
                                                     <div class="college-logo">
-                                                        <img src="./admin/action/college/logos/<?= $college['logo'] ?>" alt="">
+                                                        <img src="http://localhost/medic/admin/action/college/logos/<?= $college['logo'] ?>" alt="">
                                                     </div>
                                                     <?php
                                                     if ($college['direct'] == 1) {
